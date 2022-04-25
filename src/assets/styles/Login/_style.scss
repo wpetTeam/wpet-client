@@ -1,0 +1,153 @@
+@use '../_theme.scss';
+
+/*common*/
+@mixin close-icon {
+    width: 27px;
+    height: 27px;
+
+    margin-top: -2%;
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+        transition: 0.2s ease-in-out;
+        color: theme.$main-color;
+    }
+}
+@mixin text($top: 0, $bottom: 0, $font-size: 0) {
+    margin-top: $top;
+    margin-bottom: $bottom;
+
+    font-size: $font-size;
+}
+@mixin button(
+    $width: 0,
+    $height: 0,
+    $border: transparent,
+    $border-radius: 0,
+    $background: transparent,
+    $font-family: Strawberry Muffins,
+    $color: theme.$main-color
+) {
+    width: $width;
+    height: $height;
+
+    font-family: $font-family;
+    color: $color;
+
+    background: $background;
+    border: $border;
+    border-radius: $border-radius;
+}
+
+/* page/Login */
+.login {
+    .close-icon {
+        @include close-icon();
+        margin-left: 80%;
+    }
+    .welcome-text {
+        @include text($top: 5%, $bottom: 12%, $font-size: 1.7em);
+    }
+    .or-text {
+        @include text($top: 3%, $font-size: 1em);
+    }
+    .pw-text {
+        @include text($top: -1%, $font-size: 0.7em);
+        margin-left: -30%;
+    }
+    .signup-text {
+        @include text($top: 7%, $font-size: 0.8em);
+        width: 90%;
+        text-align: center;
+
+        button {
+            @include button(
+                $width: fit-content,
+                $height: fit-content,
+                $border: 1.5px solid theme.$main-color,
+                $border-radius: 20px
+            );
+
+            margin-right: 1%;
+            padding: 2.5px 6px;
+
+            &:hover {
+                transition: 0.1s ease-in;
+                cursor: pointer;
+
+                color: black;
+                border: 1.5px solid black;
+            }
+        }
+    }
+}
+
+/* page/Signup */
+.signup {
+    .close-icon {
+        @include close-icon();
+        margin-left: 90%;
+    }
+    .welcome-text {
+        @include text($top: 3%, $font-size: 1.7em);
+    }
+    .sub-text {
+        @include text($top: 1.9%, $font-size: 0.75em);
+    }
+    .profile-text {
+        @include text($top: 1.9%, $font-size: 0.75em);
+        text-align: center;
+    }
+    .alert-text {
+        @include text($top: -2.1%, $bottom: '0.5%', $font-size: 0.7em);
+        margin-left: 2%;
+        color: firebrick;
+    }
+}
+.profile-upload-icon {
+    margin-left: 30%;
+    margin-top: 30%;
+
+    color: theme.$main-color;
+    opacity: 0.5;
+
+    &:hover {
+        transform: scale(1.03);
+        transition: opacity 0.2s ease-in;
+        opacity: 0.8;
+        cursor: pointer;
+    }
+}
+.profile-picture {
+    @include button(
+        $width: 180px,
+        $height: 180px,
+        $border: 2px dashed theme.$main-color,
+        $border-radius: 50%
+    );
+
+    margin-bottom: 10%;
+}
+.profile-button {
+    @include button(
+        $width: 100px,
+        $height: 30px,
+        $border: 1px solid theme.$main-color,
+        $border-radius: 10px,
+        $font-family: Pretendard Medium
+    );
+
+    margin-left: 2%;
+    margin-right: 2%;
+
+    &:hover {
+        transform: scale(1.01);
+        transition: 0.2s ease-in;
+        cursor: pointer;
+
+        color: black;
+        border: 1.5px solid black;
+        font-family: Pretendard SemiBold;
+    }
+}
