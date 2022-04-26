@@ -20,6 +20,7 @@ const Container = styled.div`
     }
 `;
 const About = () => {
+    /* Login, Signup 버튼이 눌릴 시  상태 수정*/
     const [blur, setBlur] = useState(false);
 
     return (

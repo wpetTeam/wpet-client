@@ -27,6 +27,7 @@ const Main = (props) => {
 
     const [slideIndex, setSlideIndex] = useState(1);
 
+    /* 애니메이션 함수 */
     const delay = 5000;
     const [isRunning, setIsRunning] = useState(true);
 
