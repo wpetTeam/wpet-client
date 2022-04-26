@@ -26,7 +26,7 @@ const About = () => {
         <ThemeProvider theme={theme}>
             <Container className={blur ? 'isBlur' : ''}>
                 <Header setBlur={setBlur} />
-                <Main />
+                <Main isBlur={blur} />
                 <Footer />
             </Container>
         </ThemeProvider>

@@ -1,4 +1,4 @@
-/* 비밀번호, 이름, 이메일 검사 */
+/* 회원가입 검사 */
 
 /* 이름 : 1~15자  + 중복체크*/
 export function checkName(name) {
@@ -15,6 +15,6 @@ export function checkPw(pw) {
 /* 이메일 : _@_._ + 중복체크*/
 export function checkEmail(email) {
     var regExp =
-        /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+        /^[0-9a-zA-Z]([-_]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
     return regExp.test(email);
 }

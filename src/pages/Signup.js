@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import LogoImage from 'assets/images/Logo/text-icon.png';
 import { Input, Button } from 'components/Login';
-import { checkPw, checkEmail, checkName } from 'components/Login/Check';
+import { checkPw, checkEmail, checkName } from 'utils/Check';
 import { FaPaw } from 'react-icons/fa';
 import { IoIosClose } from 'react-icons/io';
 import 'assets/styles/Login/_style.scss';
