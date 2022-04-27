@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Logo from 'assets/images/Logo/text-icon.png';
 import { Button } from 'components/About';
+import { SignupModal } from 'components/Login';
 import {
     LogoText,
     ButtonContainer,
@@ -24,6 +25,7 @@ const logo = <img src={Logo} alt="로고" width={60} height={60}></img>;
 const Header = (props) => {
     const [showLogin, setShowLogin] = useState(false);
     const [showSignup, setShowSignup] = useState(false);
+    const [isSignupCompleted, setIsSignupCompleted] = useState(false);
 
     const LoginButtonHandler = () => {
         setShowLogin(true);
@@ -73,7 +75,17 @@ const Header = (props) => {
                 />
             )}
             {showSignup && (
-                <Signup setShowSignup={setShowSignup} setBlur={props.setBlur} />
+                <Signup
+                    setShowSignup={setShowSignup}
+                    setsetBlur={props.setBlur}
+                    setIsSignupCompleted={setIsSignupCompleted}
+                />
+            )}
+            {isSignupCompleted && (
+                <SignupModal
+                    setShowLogin={setShowLogin}
+                    setIsSignupCompleted={setIsSignupCompleted}
+                />
             )}
         </Container>
     );

@@ -69,8 +69,9 @@ const Signup = (props) => {
                     : '알파벳, 숫자를 포함한 8~13자로 생성해주세요.',
             });
         }
-        if (error === true) {
-            window.alert('Success!');
+        if (!error) {
+            props.setShowSignup(false);
+            props.setIsSignupCompleted(true);
         }
     };
 
@@ -95,7 +96,7 @@ const Signup = (props) => {
         setProfile('');
     };
 
-    let inputRef;
+    var inputRef;
 
     return (
         <ThemeProvider theme={theme}>
@@ -115,7 +116,7 @@ const Signup = (props) => {
                         Welcome to <span>wpet !</span>
                     </BoldText>
                     <Text className="sub-text">
-                        환영합니다. 반려견의 일상을 특별하게 기록해보세요.
+                        반갑습니다. 반려견의 일상을 특별하게 기록해보세요.
                     </Text>
                     <Content>
                         <Profile>
@@ -139,8 +140,8 @@ const Signup = (props) => {
                                         />
                                     </Picture>
                                     <Text className="profile-text">
-                                        발바닥을 클릭해, <br /> 프로필 사진을
-                                        업로드해주세요.
+                                        [선택] 발바닥을 클릭해, <br /> 프로필
+                                        사진을 업로드해주세요.
                                     </Text>
                                 </>
                             )}

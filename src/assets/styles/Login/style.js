@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 /* Common Styled components */
 const Container = styled.div`
+    transition: 0.4s ease-in-out;
+
     position: fixed;
     top: 10%;
     height: 70%;
@@ -38,13 +40,12 @@ export const BoldText = styled.p`
     font-family: Strawberry Muffins;
     color: rgba(0, 0, 0, 0.9);
 
-    span {
+    & span {
         color: ${({ theme }) => theme.aboutLogoText};
     }
 `;
 export const Text = styled.p`
     font-family: Pretendard Medium;
-
     color: rgba(0, 0, 0, 0.7);
 
     & span {
@@ -113,4 +114,16 @@ export const Info = styled.div`
     padding-top: 15%;
 
     justfy-content: space-between;
+`;
+
+/* component/Login/Modal */
+export const ModalContainer = styled(Container)`
+    width: 10%;
+    height: 30%;
+
+    left: 45%;
+    top: 33%;
+`;
+export const ModalFrame = styled(Frame)`
+    width: 360px;
 `;
