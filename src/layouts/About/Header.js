@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Logo from 'assets/images/Logo/text-icon.png';
 import { Button } from 'components/About';
+import { Login, Signup } from 'pages';
 import { SignupModal } from 'components/Login';
 import {
     LogoText,
     ButtonContainer,
     SubContainer,
 } from 'assets/styles/About/style';
-import { Login, Signup } from 'pages';
 
 const Container = styled.div`
     width: 94%;
@@ -77,7 +77,7 @@ const Header = (props) => {
             {showSignup && (
                 <Signup
                     setShowSignup={setShowSignup}
-                    setsetBlur={props.setBlur}
+                    setBlur={props.setBlur}
                     setIsSignupCompleted={setIsSignupCompleted}
                 />
             )}

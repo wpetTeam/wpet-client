@@ -27,7 +27,6 @@ const Signup = (props) => {
         password: '',
         passwordConfirm: '',
     });
-    const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState({
         name: '',
         email: '',
@@ -41,39 +40,30 @@ const Signup = (props) => {
             [e.target.name]: value,
         });
     }
-    const resetError = () => {
-        setError(false);
+
+    function handleButton() {
+        let isError = false;
+
+        if (checkName(info.name) === false) isError = true;
+        if (checkEmail(info.email) === false) isError = true;
+        if (checkPw(info.password) === false) isError = true;
+
+        console.log(checkName(info.name), isError);
         setErrorMessage({
-            name: '',
-            email: '',
-            password: '',
+            name: checkName(info.name) ? '' : '이름의 글자수를 확인해주세요.',
+            email: checkEmail(info.email)
+                ? ''
+                : '올바른 이메일 형식이 아닙니다.',
+            password: checkPw(info.password)
+                ? ''
+                : '알파벳, 숫자를 포함한 8~13자로 생성해주세요.',
         });
-    };
-    const handleButton = () => {
-        resetError();
-        if (
-            !checkName(info.name) ||
-            !checkEmail(info.email) ||
-            !checkPw(info.password)
-        ) {
-            setError(true);
-            setErrorMessage({
-                name: checkName(info.name)
-                    ? ''
-                    : '이름의 글자수를 확인해주세요.',
-                email: checkEmail(info.email)
-                    ? ''
-                    : '올바른 이메일 형식이 아닙니다.',
-                password: checkPw(info.password)
-                    ? ''
-                    : '알파벳, 숫자를 포함한 8~13자로 생성해주세요.',
-            });
-        }
-        if (!error) {
+
+        if (isError === false) {
             props.setShowSignup(false);
             props.setIsSignupCompleted(true);
         }
-    };
+    }
 
     const handleProfile = (e) => {
         if (e.target.files[0]) {
