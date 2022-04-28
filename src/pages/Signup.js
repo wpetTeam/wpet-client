@@ -28,6 +28,7 @@ import {
 
 const Signup = (props) => {
     const [profile, setProfile] = useState('');
+
     const [info, setInfo] = useState({
         name: '',
         email: '',
