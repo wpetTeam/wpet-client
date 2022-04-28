@@ -186,26 +186,51 @@
     }
 }
 
-.loading-image {
-    width: 180px;
+.loading {
+    .loading-image {
+        width: 180px;
 
-    animation-duration: 10s;
-    animation-name: hideImage;
+        animation-duration: 2s;
+        animation-name: hideImage;
 
-    opacity: 0.8;
+        opacity: 0.8;
+        transition: 0.2s ease-in-out;
+
+        border-radius: 50%;
+    }
+    .profile-image {
+        transition: 0.2s ease-in-out;
+        animation-duration: 2s;
+        animation-name: showImage;
+
+        border-radius: 50%;
+    }
 }
-
 @keyframes hideImage {
     0% {
-        opacity: 0.1;
+        opacity: 0.4;
     }
     35% {
-        opacity: 0;
+        opacity: 0.6;
     }
     65% {
-        opacity: 0.1;
+        opacity: 0.4;
     }
     100% {
-        opacity: 0;
+        opacity: 0.2;
+    }
+}
+@keyframes showImage {
+    0% {
+        opacity: 0.2;
+    }
+    35% {
+        opacity: 0.6;
+    }
+    65% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 0.8;
     }
 }
