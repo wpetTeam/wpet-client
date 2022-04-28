@@ -53,13 +53,17 @@ export const Text = styled.p`
         font-family: Strawberry Muffins;
     }
 `;
+export const Picture = styled.div`
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+`;
 
 /* pages/Login */
 export const LoginContainer = styled(Container)`
     left: 33.5%;
     width: 35%;
-
-    transition: 0.4s ease-in-out;
 `;
 export const LoginFrame = styled(Frame)`
     width: 360px;
@@ -96,15 +100,11 @@ export const Profile = styled(ColumnDiv)`
 
     padding-top: 15%;
 `;
-export const Picture = styled.div`
-    width: 180px;
-    height: 180px;
-
+export const UploadPicture = styled(Picture)`
     margin-bottom: 5%;
     background: ${({ theme }) => theme.aboutLogoText}20;
 
     border: 2px dashed ${({ theme }) => theme.aboutLogoText};
-    border-radius: 50%;
 `;
 export const Info = styled.div`
     width: 55%;
@@ -126,4 +126,21 @@ export const ModalContainer = styled(Container)`
 `;
 export const ModalFrame = styled(Frame)`
     width: 360px;
+`;
+
+/* component/Login/LoadingModal */
+export const LoadingContainer = styled(Container)`
+    width: 35%;
+    height: 50%;
+
+    top: 23%;
+    left: 33.5%;
+`;
+export const LoadingFrame = styled(Frame)`
+    width: 360px;
+`;
+export const LoadingPicture = styled(Picture)`
+    margin-top: 10%;
+
+    border: 2px double ${({ theme }) => theme.aboutLogoText};
 `;

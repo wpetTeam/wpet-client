@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Logo from 'assets/images/Logo/text-icon.png';
 import { Button } from 'components/About';
 import { Login, Signup } from 'pages';
-import { SignupModal } from 'components/Login';
+import { SignupModal, LoadingModal } from 'components/Login';
 import {
     LogoText,
     ButtonContainer,
@@ -26,6 +26,7 @@ const Header = (props) => {
     const [showLogin, setShowLogin] = useState(false);
     const [showSignup, setShowSignup] = useState(false);
     const [isSignupCompleted, setIsSignupCompleted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const LoginButtonHandler = () => {
         setShowLogin(true);
@@ -72,6 +73,7 @@ const Header = (props) => {
                     setShowLogin={setShowLogin}
                     setBlur={props.setBlur}
                     setShowSignup={setShowSignup}
+                    setIsLoading={setIsLoading}
                 />
             )}
             {showSignup && (
@@ -87,6 +89,7 @@ const Header = (props) => {
                     setIsSignupCompleted={setIsSignupCompleted}
                 />
             )}
+            {isLoading && <LoadingModal />}
         </Container>
     );
 };

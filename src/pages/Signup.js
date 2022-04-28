@@ -20,7 +20,7 @@ import {
     Text,
     SignupContainer,
     Content,
-    Picture,
+    UploadPicture,
     Profile,
     Info,
     BoldText,
@@ -98,7 +98,7 @@ const Signup = (props) => {
                         <Profile>
                             {profile === '' && (
                                 <>
-                                    <Picture>
+                                    <UploadPicture>
                                         <FaPaw
                                             size={70}
                                             className="profile-upload-icon"
@@ -116,7 +116,7 @@ const Signup = (props) => {
                                             }
                                             hidden={true}
                                         />
-                                    </Picture>
+                                    </UploadPicture>
                                     <Text className="profile-text">
                                         [선택] 발바닥을 클릭해, <br /> 프로필
                                         사진을 업로드해주세요.

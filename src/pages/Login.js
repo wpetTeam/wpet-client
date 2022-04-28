@@ -29,7 +29,8 @@ const Login = (props) => {
     }
 
     const handleButton = () => {
-        /* 데이터 보내기 */
+        props.setShowLogin(false);
+        props.setIsLoading(true);
     };
 
     const handleSignupButton = () => {

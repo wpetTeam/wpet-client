@@ -175,7 +175,6 @@
         font-size: 1.2em;
     }
 }
-
 @keyframes fullCheck {
     from {
         transform: rotate(0deg);
@@ -184,5 +183,29 @@
     to {
         transform: rotate(360deg);
         color: theme.$main-color;
+    }
+}
+
+.loading-image {
+    width: 180px;
+
+    animation-duration: 10s;
+    animation-name: hideImage;
+
+    opacity: 0.8;
+}
+
+@keyframes hideImage {
+    0% {
+        opacity: 0.1;
+    }
+    35% {
+        opacity: 0;
+    }
+    65% {
+        opacity: 0.1;
+    }
+    100% {
+        opacity: 0;
     }
 }
