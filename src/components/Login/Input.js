@@ -44,6 +44,7 @@ const Input = (props) => {
                     onChange={props.onChange}
                     onBlur={props.onBlur}
                     placeholder={props.placeholder}
+                    onKeyPress={props.onKeyPress}
                     marginBottom={props.marginBottom}
                 />
             ) : (
@@ -53,6 +54,7 @@ const Input = (props) => {
                     onChange={props.onChange}
                     onBlur={props.onBlur}
                     placeholder={props.placeholder}
+                    onKeyPress={props.onKeyPress}
                     marginBottom={props.marginBottom}
                 />
             )}

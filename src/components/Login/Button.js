@@ -2,9 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { SiKakaotalk } from 'react-icons/si';
 
-const SubmitButton = styled.button.attrs((props) => ({
-    marginTop: props.marginTop || '5%',
-}))`
+const SubmitButton = styled.button.attrs(
+    (props) => ({
+        marginTop: props.marginTop || '5%',
+    }),
+    { type: 'button' },
+)`
     width: 230px;
     height: 37px;
 
@@ -54,6 +57,7 @@ const Button = (props) => {
                 <SubmitButton
                     onClick={props.onClick}
                     marginTop={props.marginTop}
+                    name={props.name}
                 >
                     {props.text}
                 </SubmitButton>

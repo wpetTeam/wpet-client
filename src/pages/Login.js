@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import LogoImage from 'assets/images/Logo/text-icon.png';
 import { Input, Button } from 'components/Login';
+import { onKeyPress } from 'utils';
 import { IoIosClose } from 'react-icons/io';
 import {
     Eclipse,
@@ -59,6 +60,7 @@ const Login = (props) => {
                         value={user.email}
                         onChange={handleChange}
                         placeholder="이메일"
+                        onKeyPress={(e) => onKeyPress(e, handleButton)}
                     />
                     <Input
                         name="password"
@@ -66,6 +68,7 @@ const Login = (props) => {
                         onChange={handleChange}
                         placeholder="비밀번호"
                         password
+                        onKeyPress={(e) => onKeyPress(e, handleButton)}
                     />
                     <Text className="pw-text">비밀번호를 잊어버렸나요?</Text>
                     <Button text="Login" onClick={handleButton} />

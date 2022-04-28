@@ -3,7 +3,14 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import LogoImage from 'assets/images/Logo/text-icon.png';
 import { Input, Button } from 'components/Login';
-import { checkPw, checkEmail, checkName } from 'utils/Check';
+import {
+    checkPw,
+    checkEmail,
+    checkName,
+    onKeyPress,
+    uploadPicture,
+    removePicture,
+} from 'utils';
 import { FaPaw } from 'react-icons/fa';
 import { IoIosClose } from 'react-icons/io';
 import 'assets/styles/Login/_style.scss';
@@ -48,7 +55,6 @@ const Signup = (props) => {
         if (checkEmail(info.email) === false) isError = true;
         if (checkPw(info.password) === false) isError = true;
 
-        console.log(checkName(info.name), isError);
         setErrorMessage({
             name: checkName(info.name) ? '' : '이름의 글자수를 확인해주세요.',
             email: checkEmail(info.email)
@@ -64,27 +70,6 @@ const Signup = (props) => {
             props.setIsSignupCompleted(true);
         }
     }
-
-    const handleProfile = (e) => {
-        if (e.target.files[0]) {
-            setProfile(e.target.files[0]);
-        } else {
-            setProfile('');
-            return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = () => {
-            if (reader.readyState === 2) {
-                setProfile(reader.result);
-            }
-        };
-        reader.readAsDataURL(e.target.files[0]);
-    };
-
-    const removeProfile = (e) => {
-        setProfile('');
-    };
 
     var inputRef;
 
@@ -122,7 +107,9 @@ const Signup = (props) => {
                                             type="file"
                                             accept="image/*"
                                             name="profile_img"
-                                            onChange={handleProfile}
+                                            onChange={(e) =>
+                                                uploadPicture(e, setProfile)
+                                            }
                                             ref={(refParam) =>
                                                 (inputRef = refParam)
                                             }
@@ -150,7 +137,9 @@ const Signup = (props) => {
                                     >
                                         <button
                                             className="profile-button"
-                                            onClick={removeProfile}
+                                            onClick={(e) =>
+                                                removePicture(e, setProfile)
+                                            }
                                         >
                                             삭제하기
                                         </button>
@@ -164,7 +153,9 @@ const Signup = (props) => {
                                             type="file"
                                             accept="image/*"
                                             name="profile_img"
-                                            onChange={handleProfile}
+                                            onChange={(e) =>
+                                                uploadPicture(e, setProfile)
+                                            }
                                             ref={(refParam) =>
                                                 (inputRef = refParam)
                                             }
@@ -181,6 +172,7 @@ const Signup = (props) => {
                                 onChange={handleChange}
                                 placeholder="닉네임 (1~15자)"
                                 marginBottom="4%"
+                                onKeyPress={(e) => onKeyPress(e, handleButton)}
                             />
                             <Text className="alert-text">
                                 {errorMessage.name}
@@ -191,6 +183,7 @@ const Signup = (props) => {
                                 onChange={handleChange}
                                 placeholder="이메일"
                                 marginBottom="4%"
+                                onKeyPress={(e) => onKeyPress(e, handleButton)}
                             />
                             <Text className="alert-text">
                                 {errorMessage.email}
@@ -201,8 +194,8 @@ const Signup = (props) => {
                                 value={info.password}
                                 onChange={handleChange}
                                 placeholder="비밀번호 (알파벳, 숫자를 포함한 8~13자)"
-                                marg
-                                inBottom="4%"
+                                onKeyPress={(e) => onKeyPress(e, handleButton)}
+                                marginBottom="4%"
                             />
                             <Text className="alert-text">
                                 {errorMessage.password}
@@ -214,6 +207,7 @@ const Signup = (props) => {
                                 onChange={handleChange}
                                 placeholder="비밀번호 확인"
                                 marginBottom="4%"
+                                onKeyPress={(e) => onKeyPress(e, handleButton)}
                             />
                             {info.passwordConfirm !== '' &&
                                 info.password !== info.passwordConfirm && (
@@ -222,6 +216,7 @@ const Signup = (props) => {
                                     </Text>
                                 )}
                             <Button
+                                name="submit"
                                 text="Complete!"
                                 marginTop="6%"
                                 onClick={handleButton}
