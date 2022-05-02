@@ -20,9 +20,9 @@ const Container = styled.div`
 
 const Main = (props) => {
     const pageSlider = [
-        { id: 1, components: <Page1 /> },
-        { id: 2, components: <Page2 /> },
-        { id: 3, components: <Page3 /> },
+        { id: 1, component: <Page1 /> },
+        { id: 2, component: <Page2 /> },
+        { id: 3, component: <Page3 /> },
     ];
 
     const [slideIndex, setSlideIndex] = useState(1);
@@ -58,7 +58,7 @@ const Main = (props) => {
             setSlideIndex(slideIndex - 1);
         }
     };
-    const moveDot = (index) => {
+    const movePaw = (index) => {
         setSlideIndex(index);
     };
 
@@ -66,11 +66,7 @@ const Main = (props) => {
         <Container>
             <Aside>
                 {slideIndex !== 1 && (
-                    <Pagination
-                        moveSlide={prevSlide}
-                        direction="prev"
-                        isShow="True"
-                    />
+                    <Pagination moveSlide={prevSlide} direction="prev" />
                 )}
             </Aside>
             <Slider>
@@ -85,7 +81,7 @@ const Main = (props) => {
                                         : 'slide'
                                 }
                             >
-                                {pageSlider[index]['components']}
+                                {pageSlider[index]['component']}
                             </div>
                         );
                     })}
@@ -94,7 +90,7 @@ const Main = (props) => {
                     {Array.from({ length: 3 }).map((item, index) => (
                         <IoPawSharp
                             key={index}
-                            onClick={() => moveDot(index + 1)}
+                            onClick={() => movePaw(index + 1)}
                             className={
                                 slideIndex === index + 1 ? 'paw active' : 'paw'
                             }
@@ -105,11 +101,7 @@ const Main = (props) => {
             </Slider>
             <Aside>
                 {slideIndex !== pageSlider.length && (
-                    <Pagination
-                        moveSlide={nextSlide}
-                        direction="next"
-                        isShow="True"
-                    />
+                    <Pagination moveSlide={nextSlide} direction="next" />
                 )}
             </Aside>
         </Container>

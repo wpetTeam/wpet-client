@@ -1,14 +1,14 @@
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import 'assets/styles/About/_style.scss';
 
-const Pagination = ({ direction, moveSlide, isShow }) => {
+const Pagination = ({ direction, moveSlide }) => {
     return (
         <>
             <button onClick={moveSlide} className="button">
-                {direction === 'next' && isShow === 'True' && (
+                {direction === 'next' && (
                     <MdKeyboardArrowRight size={45} className="icon" />
                 )}
-                {direction === 'prev' && isShow === 'True' && (
+                {direction === 'prev' && (
                     <MdKeyboardArrowLeft size={45} className="icon" />
                 )}
             </button>
