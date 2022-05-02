@@ -1,0 +1,36 @@
+@use '../_theme.scss';
+.home-header {
+    .logo-text {
+        color: theme.$main-color;
+        font-size: 1.4em;
+    }
+    .user-profile-picture {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        border-radius: 50%;
+        border: 2px double #c4c4c4;
+    }
+    .user-name-text {
+        font-size: 0.85em;
+        span {
+            color: theme.$main-color;
+            font-weight: 900;
+        }
+    }
+    .user-profile-info {
+        margin-left: 5px;
+
+        color: theme.$dashboard-color;
+
+        border-radius: 50%;
+        background-color: theme.$main-color;
+
+        &:hover {
+            transition: 0.4s;
+            cursor: pointer;
+            color: theme.$main-color;
+            background-color: transparent;
+        }
+    }
+}
