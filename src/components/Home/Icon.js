@@ -32,9 +32,20 @@ export const Icon = (props) => {
                         style={{ textDecoration: 'none' }}
                         key={IconList[idx]['id']}
                     >
-                        <Container>
-                            <Image>{IconList[idx]['icon']}</Image>
+                        <Container
+                            className={
+                                props.isSelect
+                                    ? 'select'
+                                    : props.isShow
+                                    ? 'show'
+                                    : 'none'
+                            }
+                        >
+                            <Image className={props.isSelect ? 'select' : ''}>
+                                {IconList[idx]['icon']}
+                            </Image>
                             <Text>{IconList[idx]['text']}</Text>
+                            {props.isSelect && <SelectBar></SelectBar>}
                         </Container>
                     </Link>
                 ) : (
@@ -54,21 +65,49 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
 
-    color: ${({ theme }) => theme.dashboardIcon};
-
-    &:hover {
+    &.show {
+        color: ${({ theme }) => theme.dashboardIcon};
+    }
+    &.show:hover {
         transform: scale(1.05);
         transition: 0.3s ease-in-out;
         cursor: pointer;
         color: ${({ theme }) => theme.aboutLogoText};
     }
+    &.select {
+        transform: scale(1.05);
+        color: ${({ theme }) => theme.aboutLogoText};
+        font-weight: bold;
+    }
+    &.none {
+        color: transparent;
+    }
+    &.none:hover {
+        transform: scale(1.05);
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+        color: ${({ theme }) => theme.dashboardIcon};
+    }
 `;
 
 const Image = styled.div`
     margin-bottom: -10%;
+    color: ${({ theme }) => theme.dashboardIcon};
+
+    &.select {
+        color: ${({ theme }) => theme.aboutLogoText};
+    }
 `;
 
 const Text = styled.p`
     font-size: 0.7em;
     font-weight: 600;
+`;
+
+const SelectBar = styled.div`
+    width: 50px;
+    height: 3px;
+    margin-top: -5px;
+
+    background: ${({ theme }) => theme.aboutLogoText};
 `;

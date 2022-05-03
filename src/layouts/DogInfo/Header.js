@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { BsFillPatchPlusFill as DropDownIcon } from 'react-icons/bs';
 import {
@@ -21,15 +22,18 @@ const Header = () => {
 
     return (
         <HeaderContainer className="home-header">
-            <Logo>
-                {LogoImage}
-                <BoldText className="logo-text">wpet</BoldText>
-            </Logo>
+            <Link to="/home" style={{ textDecoration: 'none' }}>
+                <Logo>
+                    {LogoImage}
+                    <BoldText className="logo-text">wpet</BoldText>
+                </Logo>
+            </Link>
+
             <Nav>
-                <Icon name="diary" isShow />
-                <Icon name="dog-info" isShow />
-                <Icon name="community" isShow />
-                <Icon name="settings" isShow />
+                <Icon name="diary" />
+                <Icon name="dog-info" isSelect />
+                <Icon name="community" />
+                <Icon name="settings" />
             </Nav>
             <ProfileNav>
                 <img

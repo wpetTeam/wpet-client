@@ -4,6 +4,7 @@ const colors = {
     login: 'rgba(244, 231, 227, 1)',
     dashboard: '#FFFCFB',
     icon: '#D6A291',
+    step: '#D6A29180',
 };
 
 export const theme = {
@@ -13,4 +14,6 @@ export const theme = {
     loginBackground: colors.login,
     dashboardBackground: colors.dashboard,
     dashboardIcon: colors.icon,
+
+    dogInfoStepText: colors.step,
 };

@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 const Container = styled.div`
     width: fit-content;
+
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
 `;
 
 export const BoldText = styled.p`
