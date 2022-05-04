@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { About, Home, Diary, Community, Settings, DogInfo } from 'pages';
-import { Register } from 'components/DogInfo';
+import { Register } from 'DogInfo/components';
 
 function App() {
     return (

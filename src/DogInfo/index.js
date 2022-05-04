@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
-import { Header, Main } from 'layouts/DogInfo';
+import { Header, Main } from 'DogInfo/layouts';
 
 const DogInfo = () => {
     return (

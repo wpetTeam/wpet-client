@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
-import 'assets/styles/DogInfo/_style.scss';
+import 'DogInfo/styles/_style.scss';
 
 export const StepBar = (props) => {
     return (

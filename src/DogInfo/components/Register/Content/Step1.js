@@ -1,9 +1,13 @@
-import { Input } from 'components/DogInfo/Register/Input';
-import React from 'react';
+import { Input } from 'DogInfo/components/Register/Input';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import DatePicker from '../DatePicker';
 import { SubmitButton } from '../SubmitButton';
 
-const Step2 = (props) => {
+const Step1 = (props) => {
+    const [month, setMonth] = useState('');
+    const [date, setDate] = useState('');
+
     return (
         <Container className="page-step1">
             <Text>아래의 항목을 입력해주세요.</Text>
@@ -27,8 +31,20 @@ const Step2 = (props) => {
                         }}
                     >
                         <Input width="80px" text="년" />
-                        <Input width="30px" text="월" />
-                        <Input width="30px" text="일" />
+                        {/* <Input width="30px" text="월" />*/}
+                        <DatePicker
+                            text="월"
+                            type="month"
+                            month={month}
+                            setMonth={setMonth}
+                        />
+                        <DatePicker
+                            text="일"
+                            type="date"
+                            month={month}
+                            date={date}
+                            setDate={setDate}
+                        />
                     </div>
                     <Label>반려견 성별</Label>
                     <div
@@ -50,7 +66,7 @@ const Step2 = (props) => {
         </Container>
     );
 };
-export default Step2;
+export default Step1;
 
 const Container = styled.div`
     width: 100%;

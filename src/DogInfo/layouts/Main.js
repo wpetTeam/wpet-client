@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import 'assets/styles/DogInfo/_style.scss';
-import { CheckInfo, Register, Tab } from 'components/DogInfo';
+import 'DogInfo/styles/_style.scss';
+import { CheckInfo, Register, Tab } from 'DogInfo/components';
 
 const Main = () => {
     const [tab, setTab] = useState(0);
