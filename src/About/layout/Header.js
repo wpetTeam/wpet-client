@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Logo from 'assets/images/Logo/text-icon.png';
 import { Button } from 'About/components';
-import { Login, Signup } from 'pages';
-import { SignupModal, LoadingModal } from 'components/Login';
+import { Login, Signup } from 'Login';
+import { SignupModal, LoadingModal } from 'Login/components';
 import { LogoText, ButtonContainer, SubContainer } from 'About/styles/style';
 
 const Container = styled.div`

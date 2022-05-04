@@ -6,8 +6,8 @@ import {
     ModalContainer,
     ModalFrame,
     Text,
-} from 'assets/styles/Login/style';
-import 'assets/styles/Login/_style.scss';
+} from 'Login/styles/style.js';
+import 'Login/styles/_style.scss';
 import { useInterval } from 'utils';
 
 const Modal = (props) => {

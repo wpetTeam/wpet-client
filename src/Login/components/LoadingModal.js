@@ -4,8 +4,8 @@ import {
     LoadingPicture,
     ModalFrame,
     Text,
-} from 'assets/styles/Login/style';
-import 'assets/styles/Login/_style.scss';
+} from 'Login/styles/style.js';
+import 'Login/styles/_style.scss';
 import React, { useState } from 'react';
 import { useInterval } from 'utils';
 import Logo from 'assets/images/Logo/text-icon.png';

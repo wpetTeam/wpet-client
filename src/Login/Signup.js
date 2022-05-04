@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import LogoImage from 'assets/images/Logo/text-icon.png';
-import { Input, Button } from 'components/Login';
+import { Input, Button } from 'Login/components';
 import {
     checkPw,
     checkEmail,
@@ -13,7 +13,7 @@ import {
 } from 'utils';
 import { FaPaw } from 'react-icons/fa';
 import { IoIosClose } from 'react-icons/io';
-import 'assets/styles/Login/_style.scss';
+import 'Login/styles/_style.scss';
 import {
     Eclipse,
     SignupFrame,
@@ -24,7 +24,7 @@ import {
     Profile,
     Info,
     BoldText,
-} from 'assets/styles/Login/style';
+} from 'Login/styles/style.js';
 
 const Signup = (props) => {
     const [profile, setProfile] = useState('');

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import LogoImage from 'assets/images/Logo/text-icon.png';
-import { Input, Button } from 'components/Login';
+import { Input, Button } from 'Login/components';
 import { onKeyPress } from 'utils';
 import { IoIosClose } from 'react-icons/io';
 import {
@@ -11,8 +11,8 @@ import {
     Text,
     LoginContainer,
     BoldText,
-} from 'assets/styles/Login/style';
-import 'assets/styles/Login/_style.scss';
+} from 'Login/styles/style.js';
+import 'Login/styles/_style.scss';
 
 const Login = (props) => {
     const [user, setUser] = useState({
