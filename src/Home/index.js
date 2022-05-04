@@ -1,7 +1,7 @@
 import React from 'react';
 import { theme } from 'assets/styles/theme';
 import styled, { ThemeProvider } from 'styled-components';
-import { Header, Main } from 'layouts/Home';
+import { Header, Main } from 'Home/layouts';
 
 const Home = () => {
     return (

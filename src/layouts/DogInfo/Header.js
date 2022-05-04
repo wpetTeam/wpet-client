@@ -2,16 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { BsFillPatchPlusFill as DropDownIcon } from 'react-icons/bs';
-import {
-    BoldText,
-    Logo,
-    Nav,
-    ProfileNav,
-    Text,
-} from 'assets/styles/Home/style';
-import { Icon } from 'components/Home';
+import { BoldText, Logo, Nav, ProfileNav, Text } from 'Home/styles/style';
+import { Icon } from 'Home/components';
 import logo from 'assets/images/Logo/text-icon.png';
-import 'assets/styles/Home/_style.scss';
+import 'Home/styles/_style.scss';
 
 const Header = () => {
     const LogoImage = <img src={logo} alt="로고" width={55} height={55} />;

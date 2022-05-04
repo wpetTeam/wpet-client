@@ -1,4 +1,4 @@
-export { default as Home } from './Home';
+export { default as Home } from 'Home';
 export { default as About } from 'About';
 export { Login } from 'Login';
 export { Signup } from 'Login';
