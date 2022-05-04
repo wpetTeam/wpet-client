@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const StepText = (props) => {
     const StepText = [
@@ -40,8 +41,6 @@ const Container = styled.div`
 const StepContainer = styled.div`
     width: 100%;
     height: 17%;
-
-    margin-left: 10%;
 `;
 const SmallText = styled.p`
     font-size: 0.75em;

@@ -1,2 +1,3 @@
 export { Tab } from './Tab';
-export { Frame } from './Register/Frame';
+export { Register } from './Register';
+export { CheckInfo } from './CheckInfo';

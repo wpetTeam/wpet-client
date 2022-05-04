@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { About, Home, Diary, Community, Settings, DogInfo } from 'pages';
+import { Register } from 'components/DogInfo';
 
 function App() {
     return (
@@ -9,7 +10,9 @@ function App() {
                 <Route path="home" element={<Home />} />
                 <Route path="settings" element={<Settings />} />
                 <Route path="diary" element={<Diary />} />
-                <Route path="dog-info" element={<DogInfo />} />
+                <Route path="dog-info" element={<DogInfo />}>
+                    <Route path="register" element={<Register />}></Route>
+                </Route>
                 <Route path="community" element={<Community />} />
             </Routes>
         </>

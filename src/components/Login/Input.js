@@ -1,6 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Input = (props) => {
+    return (
+        <>
+            {props.password ? (
+                <PasswordInput
+                    name={props.name}
+                    value={props.value}
+                    onChange={props.onChange}
+                    onBlur={props.onBlur}
+                    placeholder={props.placeholder}
+                    onKeyPress={props.onKeyPress}
+                    marginBottom={props.marginBottom}
+                />
+            ) : (
+                <InfoInput
+                    name={props.name}
+                    value={props.value}
+                    onChange={props.onChange}
+                    onBlur={props.onBlur}
+                    placeholder={props.placeholder}
+                    onKeyPress={props.onKeyPress}
+                    marginBottom={props.marginBottom}
+                />
+            )}
+        </>
+    );
+};
+export default Input;
 const InfoInput = styled.input.attrs((props) => ({
     marginBottom: props.marginBottom || '3%',
 }))`
@@ -33,32 +61,3 @@ const InfoInput = styled.input.attrs((props) => ({
 const PasswordInput = styled(InfoInput).attrs({
     type: 'password',
 })``;
-
-const Input = (props) => {
-    return (
-        <>
-            {props.password ? (
-                <PasswordInput
-                    name={props.name}
-                    value={props.value}
-                    onChange={props.onChange}
-                    onBlur={props.onBlur}
-                    placeholder={props.placeholder}
-                    onKeyPress={props.onKeyPress}
-                    marginBottom={props.marginBottom}
-                />
-            ) : (
-                <InfoInput
-                    name={props.name}
-                    value={props.value}
-                    onChange={props.onChange}
-                    onBlur={props.onBlur}
-                    placeholder={props.placeholder}
-                    onKeyPress={props.onKeyPress}
-                    marginBottom={props.marginBottom}
-                />
-            )}
-        </>
-    );
-};
-export default Input;

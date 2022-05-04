@@ -17,15 +17,16 @@ export const Step = (props) => {
 };
 
 const Container = styled.div`
-    width: 250px;
+    width: 18%;
     height: 90%;
-    margin-left: 7%;
+    margin-left: 3%;
 
     display: flex;
     flex-direction: row;
 `;
 const TextContainer = styled.div`
     width: 70%;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
@@ -34,5 +35,10 @@ const TextContainer = styled.div`
 `;
 const BarContainer = styled.div`
     width: 25%;
-    margin-top: 22%;
+    height: 100%;
+
+    margin-top: -2%;
+
+    display: flex;
+    justify-content: center;
 `;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import 'assets/styles/DogInfo/_style.scss';
-import { Frame, Tab } from 'components/DogInfo';
+import { CheckInfo, Register, Tab } from 'components/DogInfo';
 
 const Main = () => {
     const [tab, setTab] = useState(0);
@@ -10,7 +10,10 @@ const Main = () => {
             <Nav>
                 <Tab tab={tab} setTab={setTab} />
             </Nav>
-            <Article>{tab === 1 && <Frame />}</Article>
+            <Article>
+                {tab === 0 && <CheckInfo />}
+                {tab === 1 && <Register />}
+            </Article>
         </Container>
     );
 };

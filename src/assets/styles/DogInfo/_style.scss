@@ -28,24 +28,62 @@
         }
     }
 }
+.register-step-bar {
+    .step-check-icon {
+        width: 13px;
+        height: 13px;
 
-.step-check-icon {
-    width: 13px;
-    height: 13px;
+        color: theme.$sub-color;
+        background-color: theme.$sub-color;
+        border: 1.5px solid theme.$sub-color;
+        border-radius: 50%;
 
-    color: theme.$sub-color;
-    background-color: theme.$sub-color;
-    border: 1.5px solid theme.$sub-color;
-    border-radius: 50%;
-
-    &.pre-checked {
-        color: white;
-        background-color: white;
-        border: 2px solid theme.$main-color;
+        &.pre-checked {
+            transition: 0.4s ease-in-out;
+            color: white;
+            background-color: white;
+            border: 2px solid theme.$main-color;
+        }
+        &.checked {
+            transition: 0.4s ease-in-out;
+            border: 1.5px solid theme.$main-color;
+            background-color: white;
+            color: theme.$main-color;
+        }
     }
-    &.checked {
-        border: 1.5px solid theme.$main-color;
-        background-color: white;
-        color: theme.$main-color;
+    .step-bar {
+        background: theme.$step-color;
+        transform: rotate(180deg);
+
+        &.checked {
+            // animation: fillUpDown 2s;
+            // animation-fill-mode: forwards;
+            background: theme.$main-color;
+        }
+    }
+}
+@keyframes fillUpDown {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 100%;
+    }
+}
+
+.page-step1 {
+    .profile-text {
+        font-size: 0.9em;
+        margin-bottom: -8px;
+        color: #686868;
+    }
+    .profile-dsc-text {
+        font-size: 0.8em;
+        color: #68686890;
+    }
+    .profile {
+        width: 250px;
+        height: 250px;
+        background: #68686820;
     }
 }
