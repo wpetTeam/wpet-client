@@ -8,8 +8,8 @@ import {
     ImageContainer,
     Text,
     CommunityContainer,
-} from 'assets/styles/About/style';
-import 'assets/styles/About/_style.scss';
+} from './style';
+import './_style.scss';
 
 const Page3 = () => {
     return (

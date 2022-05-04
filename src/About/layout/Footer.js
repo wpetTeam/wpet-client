@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { SiKakaotalk, SiFacebook, SiInstagram } from 'react-icons/si';
-import { ContactButton } from 'assets/styles/About/style';
-import 'assets/styles/About/_style.scss';
+import { ContactButton } from 'About/styles/style';
+import 'About/styles/_style.scss';
 
 const Container = styled.div`
     width: 94%;

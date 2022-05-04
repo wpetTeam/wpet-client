@@ -1,4 +1,4 @@
-@use '../_theme.scss';
+@use 'assets/styles/_theme.scss';
 @mixin size($width: 14px, $height: 14px, $opacity: 1) {
     width: $width;
     height: $height;
@@ -74,29 +74,4 @@
     margin-top: 4%;
     color: theme.$main-color;
     opacity: 0.6;
-}
-
-/* Component/About/Description/Page3.js */
-.medical-icon {
-    @include size($width: 25px, $height: 25px);
-    padding: 10px;
-    color: theme.$main-color;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-}
-/* Component/About/Pagination.js */
-.button {
-    background-color: transparent;
-    border: transparent;
-
-    .icon {
-        color: theme.$main-color;
-        opacity: 0.5;
-
-        &:hover {
-            cursor: pointer;
-            transition: 0.5s;
-            opacity: 1;
-        }
-    }
 }

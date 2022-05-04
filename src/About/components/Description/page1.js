@@ -1,12 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaPenSquare } from 'react-icons/fa';
-import {
-    Container,
-    TextContainer,
-    ImageContainer,
-    Text,
-} from 'assets/styles/About/style';
+import { Container, TextContainer, ImageContainer, Text } from './style';
 
 const MoreButton = styled.button`
     width: 30%;

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
-import { Footer, Header, Main } from 'layouts/About';
+import { Footer, Header, Main } from './layout';
 
 const Container = styled.div`
     width: 100%;

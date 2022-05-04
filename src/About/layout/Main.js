@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { IoPawSharp } from 'react-icons/io5';
 import { useInterval } from 'utils';
-import { Pagination, Page1, Page2, Page3 } from 'components/About';
-import { Slider, Content, Nav, Aside } from 'assets/styles/About/style';
-import 'assets/styles/About/_style.scss';
+import { Pagination, Page1, Page2, Page3 } from 'About/components';
+import { Slider, Content, Nav, Aside } from 'About/styles/style';
+import 'About/styles/_style.scss';
 
 const Container = styled.div`
     width: 94%;

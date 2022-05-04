@@ -1,5 +1,5 @@
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
-import 'assets/styles/About/_style.scss';
+import 'About/styles/_style.scss';
 
 const Pagination = ({ direction, moveSlide }) => {
     return (

@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Logo from 'assets/images/Logo/text-icon.png';
-import { Button } from 'components/About';
+import { Button } from 'About/components';
 import { Login, Signup } from 'pages';
 import { SignupModal, LoadingModal } from 'components/Login';
-import {
-    LogoText,
-    ButtonContainer,
-    SubContainer,
-} from 'assets/styles/About/style';
+import { LogoText, ButtonContainer, SubContainer } from 'About/styles/style';
 
 const Container = styled.div`
     width: 94%;
