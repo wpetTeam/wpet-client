@@ -30,7 +30,6 @@ const Login = (props) => {
 
     const handleButton = () => {
         props.setShowLogin(false);
-        props.setIsLoading(true);
     };
 
     const handleSignupButton = () => {

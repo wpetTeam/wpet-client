@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Logo from 'assets/images/Logo/text-icon.png';
 import { Button } from 'About/components';
 import { Login, Signup } from 'Login';
-import { SignupModal, LoadingModal } from 'Login/components';
+import { SignupModal } from 'Login/components';
 import { LogoText, ButtonContainer, SubContainer } from 'About/styles/style';
 
 const Container = styled.div`
@@ -22,7 +22,6 @@ const Header = (props) => {
     const [showLogin, setShowLogin] = useState(false);
     const [showSignup, setShowSignup] = useState(false);
     const [isSignupCompleted, setIsSignupCompleted] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
 
     const LoginButtonHandler = () => {
         setShowLogin(true);
@@ -69,7 +68,6 @@ const Header = (props) => {
                     setShowLogin={setShowLogin}
                     setBlur={props.setBlur}
                     setShowSignup={setShowSignup}
-                    setIsLoading={setIsLoading}
                 />
             )}
             {showSignup && (
@@ -85,7 +83,6 @@ const Header = (props) => {
                     setIsSignupCompleted={setIsSignupCompleted}
                 />
             )}
-            {isLoading && <LoadingModal />}
         </Container>
     );
 };
