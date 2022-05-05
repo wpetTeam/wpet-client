@@ -2,16 +2,8 @@ import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import LogoImage from 'assets/images/Logo/text-icon.png';
-import { Input, Button } from 'Login/components';
-import {
-    checkPw,
-    checkEmail,
-    checkName,
-    onKeyPress,
-    uploadPicture,
-    removePicture,
-} from 'utils';
-import { FaPaw } from 'react-icons/fa';
+import { Input, Button, ProfilePicture } from 'Login/components';
+import { checkEmail, checkName, checkPw, onKeyPress } from 'utils';
 import { IoIosClose } from 'react-icons/io';
 import 'Login/styles/_style.scss';
 import {
@@ -20,7 +12,6 @@ import {
     Text,
     SignupContainer,
     Content,
-    UploadPicture,
     Profile,
     Info,
     BoldText,
@@ -72,8 +63,6 @@ const Signup = (props) => {
         }
     }
 
-    var inputRef;
-
     return (
         <ThemeProvider theme={theme}>
             <SignupContainer>
@@ -96,75 +85,12 @@ const Signup = (props) => {
                     </Text>
                     <Content>
                         <Profile>
-                            {profile === '' && (
-                                <>
-                                    <UploadPicture>
-                                        <FaPaw
-                                            size={70}
-                                            className="profile-upload-icon"
-                                            onClick={() => inputRef.click()}
-                                        />
-                                        <input
-                                            type="file"
-                                            accept="image/*"
-                                            name="profile_img"
-                                            onChange={(e) =>
-                                                uploadPicture(e, setProfile)
-                                            }
-                                            ref={(refParam) =>
-                                                (inputRef = refParam)
-                                            }
-                                            hidden={true}
-                                        />
-                                    </UploadPicture>
-                                    <Text className="profile-text">
-                                        [선택] 발바닥을 클릭해, <br /> 프로필
-                                        사진을 업로드해주세요.
-                                    </Text>
-                                </>
-                            )}
-                            {profile !== '' && (
-                                <>
-                                    <img
-                                        src={profile}
-                                        alt="프로필 사진"
-                                        className="profile-picture"
-                                    />
-                                    <div
-                                        style={{
-                                            display: 'flex',
-                                            flexDirection: 'row',
-                                        }}
-                                    >
-                                        <button
-                                            className="profile-button"
-                                            onClick={(e) =>
-                                                removePicture(e, setProfile)
-                                            }
-                                        >
-                                            삭제하기
-                                        </button>
-                                        <button
-                                            className="profile-button"
-                                            onClick={() => inputRef.click()}
-                                        >
-                                            다시 선택하기
-                                        </button>
-                                        <input
-                                            type="file"
-                                            accept="image/*"
-                                            name="profile_img"
-                                            onChange={(e) =>
-                                                uploadPicture(e, setProfile)
-                                            }
-                                            ref={(refParam) =>
-                                                (inputRef = refParam)
-                                            }
-                                            hidden={true}
-                                        />
-                                    </div>
-                                </>
-                            )}
+                            <ProfilePicture
+                                type="signup"
+                                profile={profile}
+                                setProfile={setProfile}
+                                size="200px"
+                            />
                         </Profile>
                         <Info>
                             <Input

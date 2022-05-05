@@ -96,7 +96,7 @@
         @include text($top: 1.9%, $font-size: 0.75em);
     }
     .profile-text {
-        @include text($top: 1.9%, $font-size: 0.75em);
+        @include text($top: 1.9%, $font-size: 0.7em);
         text-align: center;
     }
     .alert-text {
@@ -106,9 +106,6 @@
     }
 }
 .profile-upload-icon {
-    margin-left: 30%;
-    margin-top: 30%;
-
     color: theme.$main-color;
     opacity: 0.5;
 
@@ -117,38 +114,6 @@
         transition: opacity 0.2s ease-in;
         opacity: 0.8;
         cursor: pointer;
-    }
-}
-.profile-picture {
-    @include button(
-        $width: 180px,
-        $height: 180px,
-        $border: 2px dashed theme.$main-color,
-        $border-radius: 50%
-    );
-
-    margin-bottom: 10%;
-}
-.profile-button {
-    @include button(
-        $width: 100px,
-        $height: 30px,
-        $border: 1px solid theme.$main-color,
-        $border-radius: 10px,
-        $font-family: Pretendard Medium
-    );
-
-    margin-left: 2%;
-    margin-right: 2%;
-
-    &:hover {
-        transform: scale(1.01);
-        transition: 0.2s ease-in;
-        cursor: pointer;
-
-        color: black;
-        border: 1.5px solid black;
-        font-family: Pretendard SemiBold;
     }
 }
 

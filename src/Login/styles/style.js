@@ -54,10 +54,8 @@ export const Text = styled.p`
     }
 `;
 export const Picture = styled.div`
-    width: 180px;
-    height: 180px;
-
-    border-radius: 50%;
+    width: 200px;
+    height: 200px;
 `;
 
 /* pages/Login */
@@ -99,12 +97,6 @@ export const Profile = styled(ColumnDiv)`
     height: 100%;
 
     padding-top: 15%;
-`;
-export const UploadPicture = styled(Picture)`
-    margin-bottom: 5%;
-    background: ${({ theme }) => theme.aboutLogoText}20;
-
-    border: 2px dashed ${({ theme }) => theme.aboutLogoText};
 `;
 export const Info = styled.div`
     width: 55%;

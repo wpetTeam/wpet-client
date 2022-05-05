@@ -12,8 +12,7 @@ const Container = styled.button`
     width: 120px;
     height: 35px;
 
-    margin-top: -5%;
-    margin-left: 60%;
+    margin-left: 10px;
 
     background: #f3c5b630;
     border: transparent;

@@ -3,7 +3,11 @@ import styled from 'styled-components';
 export const Input = (props) => {
     return (
         <Container>
-            <Form width={props.width} text={props.text} />
+            <Form
+                width={props.width}
+                text={props.text}
+                placeholder={props.placeholder}
+            />
             {props.text && <Text>{props.text}</Text>}
         </Container>
     );

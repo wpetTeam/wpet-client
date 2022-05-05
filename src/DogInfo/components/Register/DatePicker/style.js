@@ -17,7 +17,7 @@ export const Container = styled.div`
 export const Text = styled.p`
     font-family: Pretendard;
     font-size: 1em;
-    color: #68686895;
+    color: #00000095;
 `;
 
 export const SelectContainer = styled.button`
@@ -27,10 +27,15 @@ export const SelectContainer = styled.button`
     margin-right: 5px;
 
     background: transparent;
-    border: 1px solid #bdbdbd95;
+    border: 1px solid #bdbdbd;
     border-radius: 4px;
 
     text-align: center;
+
+    &:focus {
+        cursor: pointer;
+        border: 1.5px solid ${({ theme }) => theme.aboutLogoText};
+    }
 `;
 
 export const OptionContainer = styled.div`

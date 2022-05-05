@@ -13,7 +13,7 @@ export const Icon = (props) => {
             id: 2,
             name: 'dog-info',
             icon: <DogInfo size={23} />,
-            text: '반려견 건강 정보',
+            text: '나의 반려견',
         },
         {
             id: 3,
