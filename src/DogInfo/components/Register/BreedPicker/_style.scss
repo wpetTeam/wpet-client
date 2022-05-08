@@ -27,3 +27,18 @@
         color: black;
     }
 }
+.breed-modal {
+    .close-icon {
+        color: #c4c4c4;
+
+        &:hover {
+            cursor: pointer;
+            color: #858585;
+        }
+    }
+    .delete-icon {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

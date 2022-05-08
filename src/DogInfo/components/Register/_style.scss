@@ -1,25 +1,44 @@
 @use 'assets/styles/_theme.scss';
-
-.add-breed {
-    width: 20%;
+@mixin display-row($justify-content: center) {
     display: flex;
     flex-direction: row;
-
-    justify-content: center;
     align-items: center;
-    color: #686868;
-    .icon {
-        width: 15px;
-        height: 15px;
+    justify-content: $justify-content;
+}
 
-        &:hover {
-            transform: scale(1.05);
-            cursor: pointer;
-            color: theme.$main-color;
+.page-step2 {
+    .step2-header {
+        @include display-row($justify-content: space-between);
+        width: 80%;
+    }
+    .add-breed {
+        @include display-row();
+        .more-icon {
+            padding: 10px;
+            background-color: theme.$sub-color;
+            color: theme.$dashboard-color;
+            border-radius: 4px;
+        }
+        .more-button {
+            border: 1px solid theme.$sub-color;
+            &:hover {
+                transition: 0.2s;
+                cursor: pointer;
+                font-weight: 800;
+            }
         }
     }
-    .text {
-        margin-left: 5%;
-        font-size: 0.85em;
+    .check-breed {
+        @include display-row($justify-content: flex-start);
+        width: 70%;
+        .delete-icon {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+    .next-button {
+        width: 30%;
+        @include display-row();
     }
 }

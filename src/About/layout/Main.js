@@ -39,12 +39,6 @@ const Main = (props) => {
         }
     }, [props.isBlur]);
 
-    const resetInterval = useInterval(() => {
-        if (slideIndex === pageSlider.length) {
-            setSlideIndex(1);
-        } else setSlideIndex(slideIndex + 1);
-    }, delay);
-
     useInterval(
         () => {
             if (slideIndex === pageSlider.length) {
@@ -57,18 +51,15 @@ const Main = (props) => {
     const nextSlide = () => {
         if (slideIndex !== pageSlider.length) {
             setSlideIndex(slideIndex + 1);
-            resetInterval();
         }
     };
     const prevSlide = () => {
         if (slideIndex !== 1) {
             setSlideIndex(slideIndex - 1);
-            resetInterval();
         }
     };
     const movePaw = (index) => {
         setSlideIndex(index);
-        resetInterval();
     };
 
     return (

@@ -79,6 +79,7 @@ const Step1 = (props) => {
                 </Info>
             </InputContainer>
             <Footer>
+                <div></div>
                 <SubmitButton
                     text="다음 단계"
                     setStep={props.setStep}

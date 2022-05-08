@@ -50,6 +50,7 @@ export const Button = styled.button`
     background: transparent;
     border: 1px solid #bdbdbd;
     border-radius: 4px;
+
     &:hover,
     &:focus {
         transition: 0.1s ease-in-out;
@@ -77,4 +78,17 @@ export const Footer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+`;
+export const PlusButton = styled.button`
+    height: 34px;
+
+    margin-left: -1%;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    background: transparent;
+    border-radius: 4px;
+
+    color: ${({ theme }) => theme.aboutLogoText};
+    font-size: 0.7em;
 `;
