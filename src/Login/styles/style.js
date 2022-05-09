@@ -110,14 +110,14 @@ export const Info = styled.div`
 
 /* component/Login/Modal */
 export const ModalContainer = styled(Container)`
-    width: 10%;
-    height: 30%;
+    width: 20%;
+    height: 40%;
 
     left: 45%;
-    top: 33%;
+    top: 25%;
 `;
 export const ModalFrame = styled(Frame)`
-    width: 360px;
+    width: 460px;
 `;
 
 /* component/Login/LoadingModal */

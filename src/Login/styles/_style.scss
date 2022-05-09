@@ -1,25 +1,6 @@
 @use 'assets/styles/_theme.scss';
 
 /*common*/
-@mixin close-icon {
-    width: 27px;
-    height: 27px;
-
-    margin-top: -2%;
-
-    &:hover {
-        cursor: pointer;
-        transform: scale(1.05);
-        transition: 0.2s ease-in-out;
-        color: theme.$main-color;
-    }
-}
-@mixin text($top: 0, $bottom: 0, $font-size: 0) {
-    margin-top: $top;
-    margin-bottom: $bottom;
-
-    font-size: $font-size;
-}
 @mixin button(
     $width: 0,
     $height: 0,
@@ -38,6 +19,25 @@
     background: $background;
     border: $border;
     border-radius: $border-radius;
+}
+@mixin close-icon {
+    width: 27px;
+    height: 27px;
+
+    margin-top: -2%;
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+        transition: 0.2s ease-in-out;
+        color: theme.$main-color;
+    }
+}
+@mixin text($top: 0, $bottom: 0, $font-size: 0) {
+    margin-top: $top;
+    margin-bottom: $bottom;
+
+    font-size: $font-size;
 }
 
 /* page/Login */
@@ -116,30 +116,61 @@
         cursor: pointer;
     }
 }
-
 /* components / Modal */
-.complete-icon {
-    width: 45px;
-    height: 45px;
+.signup-modal {
+    .check-icon {
+        width: 45px;
+        height: 45px;
 
-    margin-top: 0px;
+        margin-top: 0px;
 
-    animation-duration: 3.2s;
-    animation-name: fullCheck;
-}
-.thank-text {
-    @include text($top: 15px, $bottom: 5px, $font-size: 1.5em);
-}
-.success-text {
-    @include text($top: 28px, $bottom: 2px, $font-size: 0.95em);
-}
-.move-text {
-    @include text($top: 8px, $font-size: 0.95em);
+        animation-duration: 3.2s;
+        animation-name: fullCheck;
+    }
+    .thank-text {
+        @include text($top: 15px, $bottom: 0, $font-size: 1.5em);
+    }
+    .success-text {
+        @include text($top: 12px, $bottom: 0, $font-size: 0.9em);
 
-    span {
-        font-size: 1.2em;
+        text-align: center;
+        line-height: 1.8em;
+
+        span {
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+    }
+
+    .identification-container {
+        @include text($top: 23px, $bottom: 23px, $font-size: 1.2em);
+        display: flex;
+        flex-direction: row;
+
+        .identify-number {
+            @include button($width: 20px, $height: 20px);
+            margin-right: 10px;
+
+            font-size: 1.2em;
+            text-align: center;
+
+            border-bottom: 2px solid rgba(0, 0, 0, 0.61);
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .move-text {
+        @include text($top: 8px, $font-size: 0.95em);
+
+        span {
+            font-size: 1.2em;
+        }
     }
 }
+
 @keyframes fullCheck {
     from {
         transform: rotate(0deg);
@@ -148,54 +179,5 @@
     to {
         transform: rotate(360deg);
         color: theme.$main-color;
-    }
-}
-
-.loading {
-    .loading-image {
-        width: 180px;
-
-        animation-duration: 2s;
-        animation-name: hideImage;
-
-        opacity: 0.8;
-        transition: 0.2s ease-in-out;
-
-        border-radius: 50%;
-    }
-    .profile-image {
-        transition: 0.2s ease-in-out;
-        animation-duration: 2s;
-        animation-name: showImage;
-
-        border-radius: 50%;
-    }
-}
-@keyframes hideImage {
-    0% {
-        opacity: 0.4;
-    }
-    35% {
-        opacity: 0.6;
-    }
-    65% {
-        opacity: 0.4;
-    }
-    100% {
-        opacity: 0.2;
-    }
-}
-@keyframes showImage {
-    0% {
-        opacity: 0.2;
-    }
-    35% {
-        opacity: 0.6;
-    }
-    65% {
-        opacity: 0.4;
-    }
-    100% {
-        opacity: 0.8;
     }
 }

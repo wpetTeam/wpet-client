@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { BsFillPatchCheckFill } from 'react-icons/bs';
-
 import {
     BoldText,
     ModalContainer,
@@ -11,7 +10,7 @@ import 'Login/styles/_style.scss';
 import { useInterval } from 'utils';
 
 const Modal = (props) => {
-    const [count, setCount] = useState(3);
+    const [count, setCount] = useState(1800);
     const [isRunning, setIsRunning] = useState(true);
     const delay = 1000;
 
@@ -29,15 +28,21 @@ const Modal = (props) => {
     );
 
     return (
-        <ModalContainer>
+        <ModalContainer className="signup-modal">
             <ModalFrame>
-                <BsFillPatchCheckFill className="complete-icon" />
+                <BsFillPatchCheckFill className="check-icon" />
                 <BoldText className="thank-text">Thank you</BoldText>
                 <Text className="success-text">
-                    <span>wpet</span> 의 계정이 성공적으로 생성되었습니다.
+                    본인 확인을 위해 3분 이내에 <br /> 이메일로 발송된{' '}
+                    <span>인증번호 6자리</span>를 입력해주세요.
                 </Text>
+                <div className="identification-container">
+                    {Array.from({ length: 6 }).map((item, idx) => (
+                        <input className="identify-number" maxLength={1} />
+                    ))}
+                </div>
                 <Text className="move-text">
-                    <span>{count} </span>초 후 로그인 화면으로 이동합니다.
+                    남은 인증시간 : <span> {count} </span>초
                 </Text>
             </ModalFrame>
         </ModalContainer>
