@@ -1,0 +1,81 @@
+@use 'assets/styles/_theme.scss';
+
+@mixin weather-select($color, $background) {
+    padding: 5px;
+    color: $color;
+    background: $background;
+}
+
+.write-container {
+    .title-text {
+        width: 10%;
+
+        font-weight: 600;
+        text-align: center;
+    }
+    .background-color-picker {
+        position: fixed;
+        right: 8%;
+
+        z-index: 1000;
+    }
+    .complete-button {
+        width: 20%;
+        height: 60%;
+
+        background: transparentize(whitesmoke, 0.2);
+        border: transparent;
+        border-radius: 3px;
+    }
+}
+
+.weather-picker {
+    .weather-icon {
+        width: 25px;
+        height: 25px;
+
+        margin-left: 3px;
+        margin-right: 3px;
+
+        color: rgb(187, 187, 187);
+        border-radius: 50%;
+
+        &:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+        &.sunny {
+            @include weather-select($color: yellow, $background: orange);
+        }
+        &.cloudy {
+            @include weather-select(
+                $color: rgb(198, 198, 198),
+                $background: black
+            );
+        }
+        &.sunny-cloudy {
+            @include weather-select(
+                $color: rgb(72, 95, 104),
+                $background: rgb(199, 199, 199)
+            );
+        }
+        &.thunder {
+            @include weather-select(
+                $color: yellow,
+                $background: rgb(0, 0, 105)
+            );
+        }
+        &.snow {
+            @include weather-select($color: white, $background: firebrick);
+        }
+        &.rainy {
+            @include weather-select(
+                $color: rgb(46, 144, 180),
+                $background: rgb(184, 193, 196)
+            );
+        }
+        &.rainbow {
+            @include weather-select($color: red, $background: orange);
+        }
+    }
+}

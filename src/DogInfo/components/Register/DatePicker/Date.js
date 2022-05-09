@@ -1,6 +1,6 @@
-import { SelectContainer, OptionContainer, Option } from './style';
+import { SelectContainer, OptionContainer, Option } from './styles/style';
 import React from 'react';
-import { DateCalender } from './date.const';
+import { DateCalender } from './const/date.const';
 
 export const Date = (props) => {
     const handleButton = () => {

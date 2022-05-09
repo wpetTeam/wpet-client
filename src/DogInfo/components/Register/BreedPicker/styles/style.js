@@ -90,8 +90,8 @@ export const Result = styled.div`
     width: fit-content;
     height: 5%;
 
-    margin-bottom: 1.5%;
-    margin-right: 1.5%;
+    margin-bottom: 5px;
+    margin-right: 5px;
     padding: 3.5%;
 
     font-size: 0.83em;

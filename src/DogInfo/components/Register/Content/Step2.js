@@ -9,10 +9,10 @@ import {
     Header,
     Footer,
     PlusButton,
-} from './style';
-import 'DogInfo/components/Register/_style.scss';
+} from './styles/style';
+import './styles/_style.scss';
 import BreedModal from '../BreedPicker/BreedModal';
-import { SelectItem } from 'DogInfo/components/Register/BreedPicker/style';
+import { SelectItem } from 'DogInfo/components/Register/BreedPicker/styles/style';
 import { handleDeleteBreed } from '../BreedPicker/handlePicker';
 
 const Step2 = (props) => {

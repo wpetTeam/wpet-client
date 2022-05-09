@@ -5,8 +5,8 @@ export const StepText = (props) => {
     const StepText = [
         { id: 1, step: 'step 1', description: '반려견 기본 정보' },
         { id: 2, step: 'step 2', description: '반려견 종 선택' },
-        { id: 3, step: 'step 3 (선택)', description: '반려견 생활 정보' },
-        { id: 4, step: 'step 4 (선택)', description: '반려견 건강 정보' },
+        { id: 3, step: 'step 3 (선택)', description: '반려견 건강 정보' },
+        { id: 4, step: 'step 4 (선택)', description: '반려견 생활 정보' },
         { id: 5, step: 'step 5 (선택)', description: '반려견 생활 정보' },
     ];
     return (

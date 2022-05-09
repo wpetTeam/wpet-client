@@ -4,3 +4,30 @@ $login-color: #f4e7e3;
 $dashboard-color: #fffcfb;
 $dashboard-icon-color: #d6a291;
 $step-color: #d6a29180;
+
+@mixin nav-icon {
+    transition: 0.4s ease-in-out;
+
+    width: 20px;
+    height: 20px;
+
+    padding: 10px;
+    margin-bottom: 4px;
+
+    border-radius: 10%;
+    border: 1.5px solid $sub-color;
+    color: $main-color;
+
+    &.select {
+        background: $main-color;
+        color: $dashboard-color;
+        border: 1.5px solid $main-color;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background: $main-color;
+        color: $dashboard-color;
+        border: 1.5px solid $main-color;
+    }
+}

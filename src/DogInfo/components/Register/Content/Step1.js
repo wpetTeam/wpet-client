@@ -1,5 +1,5 @@
-import { Input } from 'DogInfo/components/Register/Input';
 import React, { useState } from 'react';
+import { Input } from 'DogInfo/components/Register/Input';
 import DatePicker from '../DatePicker';
 import { SubmitButton } from '../SubmitButton';
 import {
@@ -11,7 +11,7 @@ import {
     Label,
     Button,
     Footer,
-} from './style.js';
+} from './styles/style';
 import { ProfilePicture } from 'Login/components';
 
 const Step1 = (props) => {

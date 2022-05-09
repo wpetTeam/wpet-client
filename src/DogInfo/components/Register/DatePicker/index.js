@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Text } from './style';
+import { Container, Text } from './styles/style';
 import { Month } from './Month';
 import { Date } from './Date';
 

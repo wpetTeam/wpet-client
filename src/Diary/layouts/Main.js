@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import 'DogInfo/styles/_style.scss';
-import { CheckInfo, Register, Tab } from 'DogInfo/components';
 import { Container, Nav, Article } from 'assets/styles/tabStyle';
+import 'Diary/styles/_style.scss';
+import { ReadDiary, Tab, WriteDiary } from 'Diary/components';
 
 const Main = () => {
     const [tab, setTab] = useState(0);
     return (
-        <Container className="dog-info">
+        <Container className="diary">
             <Nav>
                 <Tab tab={tab} setTab={setTab} />
             </Nav>
             <Article>
-                {tab === 0 && <CheckInfo />}
-                {tab === 1 && <Register />}
+                {tab === 0 && <ReadDiary />}
+                {tab === 1 && <WriteDiary />}
             </Article>
         </Container>
     );

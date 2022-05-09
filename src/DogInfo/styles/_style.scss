@@ -2,30 +2,7 @@
 
 .dog-info {
     .dog-info-nav {
-        transition: 0.4s ease-in-out;
-
-        width: 20px;
-        height: 20px;
-
-        padding: 10px;
-        margin-bottom: 4px;
-
-        border-radius: 10%;
-        border: 1.5px solid theme.$sub-color;
-        color: theme.$main-color;
-
-        &.select {
-            background: theme.$main-color;
-            color: theme.$dashboard-color;
-            border: 1.5px solid theme.$main-color;
-        }
-
-        &:hover {
-            cursor: pointer;
-            background: theme.$main-color;
-            color: theme.$dashboard-color;
-            border: 1.5px solid theme.$main-color;
-        }
+        @include theme.nav-icon();
     }
 }
 .register-step-bar {
@@ -56,29 +33,7 @@
         transform: rotate(180deg);
 
         &.checked {
-            // animation: fillUpDown 2s;
-            // animation-fill-mode: forwards;
             background: theme.$main-color;
         }
-    }
-}
-@keyframes fillUpDown {
-    0% {
-        height: 0;
-    }
-    100% {
-        height: 100%;
-    }
-}
-
-.page-step1 {
-    .profile-text {
-        font-size: 0.9em;
-        margin-bottom: -8px;
-        color: #686868;
-    }
-    .profile-dsc-text {
-        font-size: 0.8em;
-        color: #68686890;
     }
 }

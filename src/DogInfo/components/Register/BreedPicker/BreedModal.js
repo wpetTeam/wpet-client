@@ -10,9 +10,9 @@ import {
     Result,
     SelectContainer,
     SelectItem,
-} from './style';
-import './_style.scss';
-import { Breed } from './breed.const';
+} from './styles/style';
+import './styles/_style.scss';
+import { Breed } from './const/breed.const';
 import { handleBreedPicker, handleDeleteBreed } from './handlePicker';
 
 const BreedModal = (props) => {
@@ -34,7 +34,7 @@ const BreedModal = (props) => {
         <ModalContainer className="breed-modal">
             <Header>
                 <p style={{ fontSize: '1.12em' }}>
-                    반려견 종을 검색해 추가하세요 🔍
+                    반려견 종을 검색해 추가하세요.
                 </p>
                 <IoCloseSharp
                     size={26}

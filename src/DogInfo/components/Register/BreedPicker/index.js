@@ -1,8 +1,8 @@
 import React from 'react';
-import { PickerContainer, Select, ImageDiv, TextDiv } from './style';
-import { Breed } from './breed.const';
+import { PickerContainer, Select, ImageDiv, TextDiv } from './styles/style';
+import { Breed } from './const/breed.const';
 import { handleBreedPicker, breedNameHandler } from './handlePicker';
-import './_style.scss';
+import './styles/_style.scss';
 
 const BreedPicker = (props) => {
     return (

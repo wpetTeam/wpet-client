@@ -1,0 +1,7 @@
+@use 'assets/styles/_theme.scss';
+
+.diary {
+    .diary-nav {
+        @include theme.nav-icon();
+    }
+}

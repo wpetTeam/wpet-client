@@ -1,0 +1,5 @@
+@use 'assets/styles/_theme.scss';
+
+.community-nav {
+    @include theme.nav-icon();
+}

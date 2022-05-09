@@ -6,6 +6,18 @@
     justify-content: $justify-content;
 }
 
+.page-step1 {
+    .profile-text {
+        font-size: 0.9em;
+        margin-bottom: -8px;
+        color: #686868;
+    }
+    .profile-dsc-text {
+        font-size: 0.8em;
+        color: #68686890;
+    }
+}
+
 .page-step2 {
     .step2-header {
         @include display-row($justify-content: space-between);
