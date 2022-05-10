@@ -17,15 +17,11 @@ import { CustomNav } from './CustomNav';
 import { HexColorPicker } from 'react-colorful';
 
 const WriteDiary = () => {
-    const [date, setDate] = useState('');
     const [weather, setWeather] = useState('');
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-
     const [color, setColor] = useState('#f3c5b670');
     const [selectColor, setSelectColor] = useState(false);
-
-    console.log(date, weather, title, content);
 
     return (
         <WriteContainer className="write-container" backgroundColor={color}>
@@ -35,7 +31,7 @@ const WriteDiary = () => {
             <JournalContainer className="journal-container">
                 <Journal className="journal-main">
                     <DateWeather>
-                        <Today setDate={setDate} color={color} />
+                        <Today color={color} />
                         <Weather weather={weather} setWeather={setWeather} />
                     </DateWeather>
                     <Title>
@@ -43,7 +39,8 @@ const WriteDiary = () => {
                         <Input
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            placeholder="20자 이내로 작성해주세요"
+                            placeholder="30자 이내로 작성해주세요"
+                            maxLength={30}
                             color={color}
                         />
                     </Title>

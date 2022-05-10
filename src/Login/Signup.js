@@ -17,15 +17,31 @@ import {
     BoldText,
 } from 'Login/styles/style.js';
 
+function checkInput(name, email, password, setErrorMessage) {
+    let isError = false;
+    if (checkName(name) === false) isError = true;
+    if (checkEmail(email) === false) isError = true;
+    if (checkPw(password) === false) isError = true;
+
+    setErrorMessage({
+        name: checkName(name) ? '' : '이름의 글자수를 확인해주세요.',
+        email: checkEmail(email) ? '' : '올바른 이메일 형식이 아닙니다.',
+        password: checkPw(password)
+            ? ''
+            : '알파벳, 숫자를 포함한 8~13자로 생성해주세요.',
+    });
+    return isError;
+}
+
 const Signup = (props) => {
     const [profile, setProfile] = useState('');
-
     const [info, setInfo] = useState({
         name: '',
         email: '',
         password: '',
         passwordConfirm: '',
     });
+
     const [errorMessage, setErrorMessage] = useState({
         name: '',
         email: '',
@@ -40,28 +56,40 @@ const Signup = (props) => {
         });
     }
 
-    function handleButton() {
-        let isError = false;
+    const handleButton = async () => {
+        var isError = checkInput(
+            info.name,
+            info.email,
+            info.password,
+            setErrorMessage,
+        );
 
-        if (checkName(info.name) === false) isError = true;
-        if (checkEmail(info.email) === false) isError = true;
-        if (checkPw(info.password) === false) isError = true;
+        if (isError) return;
 
-        setErrorMessage({
-            name: checkName(info.name) ? '' : '이름의 글자수를 확인해주세요.',
-            email: checkEmail(info.email)
-                ? ''
-                : '올바른 이메일 형식이 아닙니다.',
-            password: checkPw(info.password)
-                ? ''
-                : '알파벳, 숫자를 포함한 8~13자로 생성해주세요.',
+        const result = await fetch('http://localhost:3000/api/user/create', {
+            headers: {
+                'Content-type': 'application/json',
+                Accept: 'application/json',
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                email: info.email,
+                pw: info.password,
+                nickName: info.name,
+                profilePicture: profile,
+            }),
         });
 
-        if (isError === false) {
+        if (result.status === 200) {
+            /* 인증번호 발송 -> signup modal 이 열리게 */
             props.setShowSignup(false);
             props.setIsSignupCompleted(true);
+        } else if (result.status === 403) {
+            /* 이미 계정이 존재하는 사용자 -> 인증 페이지만 띄어주기 */
+        } else if (result.status === 409) {
+            /* 중복 검사에서 걸린 경우 - 메세지 확인 (닉네임 중복, 이메일 중복, 이메일 + 닉네임 중복) -> 다시 회원가입하라고 */
         }
-    }
+    };
 
     return (
         <ThemeProvider theme={theme}>

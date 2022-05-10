@@ -144,22 +144,6 @@
 
     .identification-container {
         @include text($top: 23px, $bottom: 23px, $font-size: 1.2em);
-        display: flex;
-        flex-direction: row;
-
-        .identify-number {
-            @include button($width: 20px, $height: 20px);
-            margin-right: 10px;
-
-            font-size: 1.2em;
-            text-align: center;
-
-            border-bottom: 2px solid rgba(0, 0, 0, 0.61);
-
-            &:focus {
-                outline: none;
-            }
-        }
     }
 
     .move-text {

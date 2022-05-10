@@ -113,7 +113,7 @@ export const ModalContainer = styled(Container)`
     width: 20%;
     height: 40%;
 
-    left: 45%;
+    left: 40%;
     top: 25%;
 `;
 export const ModalFrame = styled(Frame)`

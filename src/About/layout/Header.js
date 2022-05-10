@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Logo from 'assets/images/Logo/text-icon.png';
 import { Button } from 'About/components';
 import { Login, Signup } from 'Login';
-import { SignupModal } from 'Login/components';
+import { Identification } from 'Login/components';
 import { LogoText, ButtonContainer, SubContainer } from 'About/styles/style';
 
 const Container = styled.div`
@@ -78,7 +78,7 @@ const Header = (props) => {
                 />
             )}
             {isSignupCompleted && (
-                <SignupModal
+                <Identification
                     setShowLogin={setShowLogin}
                     setIsSignupCompleted={setIsSignupCompleted}
                 />
