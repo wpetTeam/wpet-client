@@ -1,6 +1,9 @@
 /* 파일 업로드 */
 export function uploadPicture(e, setPicture) {
     if (e.target.files[0]) {
+        console.log(typeof e.target.files[0]);
+        console.log(e.target.files[0]);
+        console.log(JSON.stringify(e.target.files[0]));
         setPicture(e.target.files[0]);
     } else {
         setPicture('');

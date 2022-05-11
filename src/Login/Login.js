@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import LogoImage from 'assets/images/Logo/text-icon.png';
@@ -17,7 +18,7 @@ import 'Login/styles/_style.scss';
 const Login = (props) => {
     const [user, setUser] = useState({
         email: '',
-        password: '',
+        pw: '',
     });
 
     function handleChange(e) {
@@ -28,8 +29,19 @@ const Login = (props) => {
         });
     }
 
-    const handleButton = () => {
-        props.setShowLogin(false);
+    const handleButton = async () => {
+        const res = await fetch('http://localhost:3000/api/user/login', {
+            headers: {
+                'Content-type': 'application/json',
+            },
+            method: 'POST',
+            body: user,
+        });
+        if (res.status === 200) {
+            props.setShowLogin(false);
+        } else {
+            alert('실패');
+        }
     };
 
     const handleSignupButton = () => {
@@ -63,8 +75,8 @@ const Login = (props) => {
                         onKeyPress={(e) => onKeyPress(e, handleButton)}
                     />
                     <Input
-                        name="password"
-                        value={user.password}
+                        name="pw"
+                        value={user.pw}
                         onChange={handleChange}
                         placeholder="비밀번호"
                         password

@@ -6,6 +6,7 @@ import 'Login/styles/_style.scss';
 
 export const ProfilePicture = (props) => {
     var inputRef;
+
     return (
         <>
             {props.profile === '' && (

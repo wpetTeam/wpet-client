@@ -10,8 +10,10 @@ import {
     Journal,
     FinishButton,
 } from 'Diary/styles/style';
+
 import Today from './Today';
 import Weather from './Weather';
+
 import { Content } from './Content';
 import { CustomNav } from './CustomNav';
 import { HexColorPicker } from 'react-colorful';
@@ -20,6 +22,7 @@ const WriteDiary = () => {
     const [weather, setWeather] = useState('');
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+
     const [color, setColor] = useState('#f3c5b670');
     const [selectColor, setSelectColor] = useState(false);
 

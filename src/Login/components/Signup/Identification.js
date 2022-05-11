@@ -13,7 +13,6 @@ const Modal = (props) => {
     const [count, setCount] = useState(180);
     const [isRunning, setIsRunning] = useState(true);
     const delay = 1000;
-    var identification_number = '';
 
     useInterval(
         () => {

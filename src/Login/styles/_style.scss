@@ -23,9 +23,7 @@
 @mixin close-icon {
     width: 27px;
     height: 27px;
-
     margin-top: -2%;
-
     &:hover {
         cursor: pointer;
         transform: scale(1.05);
@@ -144,6 +142,9 @@
 
     .identification-container {
         @include text($top: 23px, $bottom: 23px, $font-size: 1.2em);
+
+        .number {
+        }
     }
 
     .move-text {
