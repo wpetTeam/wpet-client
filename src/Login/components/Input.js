@@ -29,10 +29,11 @@ const Input = (props) => {
     );
 };
 export default Input;
+
 const InfoInput = styled.input.attrs((props) => ({
     marginBottom: props.marginBottom || '3%',
 }))`
-    width: 220px;
+    width: 240px;
     height: 33px;
 
     padding-left: 3%;

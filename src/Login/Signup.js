@@ -3,7 +3,8 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import LogoImage from 'assets/images/Logo/text-icon.png';
 import { Input, Button, ProfilePicture } from 'Login/components';
-import { onKeyPress, API, checkUserInfo } from 'utils';
+import { onKeyPress, checkUserInfo } from 'utils';
+import { handleSignup } from './apis';
 import { IoIosClose } from 'react-icons/io';
 import 'Login/styles/_style.scss';
 import {
@@ -38,8 +39,7 @@ const Signup = (props) => {
             [e.target.name]: value,
         });
     }
-
-    const handleButton = async () => {
+    const handleButton = () => {
         if (checkUserInfo(info.nickName, info.email, info.pw, setErrorMessage))
             return;
 
@@ -50,12 +50,14 @@ const Signup = (props) => {
             profilePicture: profile,
         };
 
-        await API.post('/user/create', userData)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => console.log(error.response));
+        handleSignup(
+            userData,
+            props.setEmail,
+            props.setShowSignup,
+            props.setShowEmailAuth,
+        );
     };
+
     return (
         <ThemeProvider theme={theme}>
             <SignupContainer>
@@ -113,7 +115,7 @@ const Signup = (props) => {
                                 name="pw"
                                 value={info.pw}
                                 onChange={handleChange}
-                                placeholder="비밀번호 (알파벳, 숫자를 포함한 8~13자)"
+                                placeholder="비밀번호 (알파벳,숫자,특수문자를 포함한 8~13자)"
                                 onKeyPress={(e) => onKeyPress(e, handleButton)}
                                 marginBottom="4%"
                             />
@@ -137,7 +139,7 @@ const Signup = (props) => {
                                 )}
                             <Button
                                 name="submit"
-                                text="Complete!"
+                                text="인증번호 받기"
                                 marginTop="6%"
                                 onClick={handleButton}
                             />

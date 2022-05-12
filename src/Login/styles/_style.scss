@@ -114,44 +114,84 @@
         cursor: pointer;
     }
 }
-/* components / Modal */
-.signup-modal {
-    .check-icon {
-        width: 45px;
-        height: 45px;
 
-        margin-top: 0px;
+/* components / EmailAuth */
+.auth-modal {
+    .header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
 
-        animation-duration: 3.2s;
-        animation-name: fullCheck;
+        margin-top: 10px;
+
+        .sending-icon {
+            width: 20px;
+            height: 20px;
+
+            margin-right: 10px;
+
+            animation-duration: 3.2s;
+            animation-name: fullCheck;
+        }
+        .header-text {
+            @include text($top: 0, $bottom: 0, $font-size: 1.3em);
+        }
     }
-    .thank-text {
-        @include text($top: 15px, $bottom: 0, $font-size: 1.5em);
-    }
-    .success-text {
-        @include text($top: 12px, $bottom: 0, $font-size: 0.9em);
 
+    .main {
+        @include text($top: 15px, $bottom: 40px, $font-size: 0.9em);
         text-align: center;
-        line-height: 1.8em;
 
-        span {
-            font-size: 1.2em;
-            font-weight: 600;
+        .desc-text {
+            line-height: 1.5em;
+        }
+        .auth-container {
+            height: 40px;
+            align-items: baseline;
+
+            .auth-input {
+                @include text($top: 10px, $bottom: 50px, $font-size: 1.1em);
+
+                width: 200px;
+                margin-right: 10px;
+
+                text-align: center;
+                color: theme.$main-color;
+                font-weight: 700;
+
+                border: transparent;
+                background: transparent;
+                border-bottom: 2.5px solid theme.$main-color;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+            .compare-button {
+                padding: 7px;
+                background: transparent;
+                border: 1px solid theme.$main-color;
+                border-radius: 4px;
+            }
         }
     }
 
-    .identification-container {
-        @include text($top: 23px, $bottom: 23px, $font-size: 1.2em);
+    .footer {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
 
-        .number {
+        .time-text {
+            @include text($top: 8px, $font-size: 0.85em);
+            margin-right: 10px;
+
+            span {
+                font-size: 1.2em;
+            }
         }
-    }
-
-    .move-text {
-        @include text($top: 8px, $font-size: 0.95em);
-
-        span {
-            font-size: 1.2em;
+        .resend-button {
+            padding: 5px;
         }
     }
 }

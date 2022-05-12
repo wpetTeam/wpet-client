@@ -76,12 +76,12 @@ const ColumnDiv = styled.div`
 
 export const SignupContainer = styled(Container)`
     left: 26%;
-    width: 50%;
+    width: 52%;
 
     transition: 0.4s ease-in-out;
 `;
 export const SignupFrame = styled(Frame)`
-    width: 556px;
+    width: 570px;
 `;
 export const Content = styled.div`
     width: 90%;

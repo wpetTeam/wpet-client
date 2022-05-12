@@ -1,6 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SiKakaotalk } from 'react-icons/si';
+const Button = (props) => {
+    return (
+        <>
+            {props.kakao ? (
+                <SubmitButton className="kakao" onClick={props.onClick}>
+                    <SiKakaotalk size={18} style={{ marginRight: '3%' }} />
+                    카카오톡 간편 로그인
+                </SubmitButton>
+            ) : (
+                <SubmitButton
+                    onClick={props.onClick}
+                    marginTop={props.marginTop}
+                    name={props.name}
+                >
+                    {props.text}
+                </SubmitButton>
+            )}
+        </>
+    );
+};
+export default Button;
 
 const SubmitButton = styled.button.attrs(
     (props) => ({
@@ -8,7 +29,7 @@ const SubmitButton = styled.button.attrs(
     }),
     { type: 'button' },
 )`
-    width: 230px;
+    width: 240px;
     height: 37px;
 
     margin-top: ${(props) => props.marginTop};
@@ -44,25 +65,3 @@ const SubmitButton = styled.button.attrs(
         }
     }
 `;
-
-const Button = (props) => {
-    return (
-        <>
-            {props.kakao ? (
-                <SubmitButton className="kakao" onClick={props.onClick}>
-                    <SiKakaotalk size={18} style={{ marginRight: '3%' }} />
-                    카카오톡 간편 로그인
-                </SubmitButton>
-            ) : (
-                <SubmitButton
-                    onClick={props.onClick}
-                    marginTop={props.marginTop}
-                    name={props.name}
-                >
-                    {props.text}
-                </SubmitButton>
-            )}
-        </>
-    );
-};
-export default Button;

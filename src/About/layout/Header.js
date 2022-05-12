@@ -3,25 +3,16 @@ import styled from 'styled-components';
 import Logo from 'assets/images/Logo/text-icon.png';
 import { Button } from 'About/components';
 import { Login, Signup } from 'Login';
-import { Identification } from 'Login/components';
 import { LogoText, ButtonContainer, SubContainer } from 'About/styles/style';
-
-const Container = styled.div`
-    width: 94%;
-    height: 11%;
-    margin-bottom: 1%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-`;
+import { EmailAuthModal } from 'Login/components';
 
 const logo = <img src={Logo} alt="로고" width={60} height={60}></img>;
 
 const Header = (props) => {
     const [showLogin, setShowLogin] = useState(false);
     const [showSignup, setShowSignup] = useState(false);
-    const [isSignupCompleted, setIsSignupCompleted] = useState(false);
+    const [showEmailAuth, setShowEmailAuth] = useState(false);
+    const [email, setEmail] = useState('');
 
     const LoginButtonHandler = () => {
         setShowLogin(true);
@@ -65,22 +56,25 @@ const Header = (props) => {
             </SubContainer>
             {showLogin && (
                 <Login
-                    setShowLogin={setShowLogin}
                     setBlur={props.setBlur}
+                    setShowLogin={setShowLogin}
                     setShowSignup={setShowSignup}
                 />
             )}
             {showSignup && (
                 <Signup
-                    setShowSignup={setShowSignup}
                     setBlur={props.setBlur}
-                    setIsSignupCompleted={setIsSignupCompleted}
+                    setShowSignup={setShowSignup}
+                    setShowLogin={setShowLogin}
+                    setShowEmailAuth={setShowEmailAuth}
+                    setEmail={setEmail}
                 />
             )}
-            {isSignupCompleted && (
-                <Identification
+            {showEmailAuth && (
+                <EmailAuthModal
                     setShowLogin={setShowLogin}
-                    setIsSignupCompleted={setIsSignupCompleted}
+                    setShowEmailAuth={setShowEmailAuth}
+                    email={email}
                 />
             )}
         </Container>
@@ -88,3 +82,13 @@ const Header = (props) => {
 };
 
 export default Header;
+
+const Container = styled.div`
+    width: 94%;
+    height: 11%;
+    margin-bottom: 1%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+`;

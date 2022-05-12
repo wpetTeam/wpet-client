@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useCookies } from 'react-cookie';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import LogoImage from 'assets/images/Logo/text-icon.png';
@@ -66,7 +65,6 @@ const Login = (props) => {
                     <BoldText className="welcome-text">
                         Welcome to <span>wpet !</span>
                     </BoldText>
-
                     <Input
                         name="email"
                         value={user.email}

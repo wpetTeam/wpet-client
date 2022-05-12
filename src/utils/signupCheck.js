@@ -8,7 +8,8 @@ function checkName(name) {
 
 /* 비밀번호 : 알파벳, 숫자를 포함한 8~13자*/
 function checkPw(pw) {
-    var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,13}$/;
+    var regExp =
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,13}$/;
     return regExp.test(pw);
 }
 
