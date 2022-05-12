@@ -115,8 +115,33 @@
     }
 }
 
+@mixin authButton {
+    padding: 6px;
+    color: gray;
+    font-weight: 600;
+    border: 1.5px solid transparent;
+    background: theme.$step-color;
+    box-shadow: 0.5px 0.5px;
+    border-radius: 8px;
+
+    &:hover {
+        transform: scale(1.02);
+        color: black;
+        cursor: pointer;
+    }
+}
+
 /* components / EmailAuth */
 .auth-modal {
+    .close-icon {
+        color: gray;
+        &:hover {
+            transform: scale(1.15);
+            transition: 0.2s;
+            cursor: pointer;
+            color: theme.$main-color;
+        }
+    }
     .header {
         display: flex;
         flex-direction: row;
@@ -126,13 +151,11 @@
         margin-top: 10px;
 
         .sending-icon {
-            width: 20px;
-            height: 20px;
-
             margin-right: 10px;
 
-            animation-duration: 3.2s;
+            animation-duration: 4s;
             animation-name: fullCheck;
+            animation-iteration-count: infinite;
         }
         .header-text {
             @include text($top: 0, $bottom: 0, $font-size: 1.3em);
@@ -151,13 +174,13 @@
             align-items: baseline;
 
             .auth-input {
-                @include text($top: 10px, $bottom: 50px, $font-size: 1.1em);
+                @include text($top: 10px, $bottom: 50px, $font-size: 1.2em);
 
                 width: 200px;
                 margin-right: 10px;
+                padding-bottom: 5px;
 
                 text-align: center;
-                color: theme.$main-color;
                 font-weight: 700;
 
                 border: transparent;
@@ -169,10 +192,7 @@
                 }
             }
             .compare-button {
-                padding: 7px;
-                background: transparent;
-                border: 1px solid theme.$main-color;
-                border-radius: 4px;
+                @include authButton();
             }
         }
     }
@@ -191,7 +211,7 @@
             }
         }
         .resend-button {
-            padding: 5px;
+            @include authButton();
         }
     }
 }

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { SiMinutemailer } from 'react-icons/si';
-import { ModalContainer, ModalFrame, Text } from 'Login/styles/style.js';
+import { IoIosClose } from 'react-icons/io';
+import { Eclipse, AuthContainer, AuthFrame, Text } from 'Login/styles/style.js';
 import 'Login/styles/_style.scss';
 import { useInterval } from 'utils';
-import { handleAuthCompare } from 'Login/apis';
+import { handleAuthCompare, sendAuthMail } from 'Login/apis';
 
 const EmailAuthModal = (props) => {
     const [authCode, setAuthCode] = useState('');
@@ -14,8 +15,6 @@ const EmailAuthModal = (props) => {
     useInterval(
         () => {
             if (count === 0) {
-                // props.setShowEmailAuth(false);
-                //props.setShowLogin(true);
                 setIsRunning(false);
             } else {
                 setCount(count - 1);
@@ -28,11 +27,34 @@ const EmailAuthModal = (props) => {
         setAuthCode(e.target.value);
     };
 
+    const handleResendAuth = () => {
+        sendAuthMail(
+            props.email,
+            props.setEmail,
+            props.setShowSignup,
+            props.setShowEmailAuth,
+            1,
+        );
+        setCount(180);
+        setIsRunning(true);
+    };
+
     return (
-        <ModalContainer className="auth-modal">
-            <ModalFrame>
+        <AuthContainer className="auth-modal">
+            <Eclipse>
+                <IoIosClose
+                    className="close-icon"
+                    size={30}
+                    style={{ padding: '10px' }}
+                    onClick={() => {
+                        props.setShowEmailAuth(false);
+                        props.setBlur(false);
+                    }}
+                />
+            </Eclipse>
+            <AuthFrame>
                 <div className="header">
-                    <SiMinutemailer className="sending-icon" />
+                    <SiMinutemailer className="sending-icon" size={20} />
                     <Text className="header-text">본인 확인</Text>
                 </div>
                 <div className="main">
@@ -68,10 +90,17 @@ const EmailAuthModal = (props) => {
                     <Text className="time-text">
                         남은 인증시간 : <span> {count} </span>초
                     </Text>
-                    <button className="resend-button">재전송</button>
+                    {count === 0 && (
+                        <button
+                            className="resend-button"
+                            onClick={handleResendAuth}
+                        >
+                            재전송
+                        </button>
+                    )}
                 </div>
-            </ModalFrame>
-        </ModalContainer>
+            </AuthFrame>
+        </AuthContainer>
     );
 };
 export default EmailAuthModal;

@@ -72,9 +72,12 @@ const Header = (props) => {
             )}
             {showEmailAuth && (
                 <EmailAuthModal
+                    setBlur={props.setBlur}
+                    setShowSignup={setShowSignup}
                     setShowLogin={setShowLogin}
                     setShowEmailAuth={setShowEmailAuth}
                     email={email}
+                    setEmail={setEmail}
                 />
             )}
         </Container>

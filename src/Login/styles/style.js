@@ -109,15 +109,15 @@ export const Info = styled.div`
 `;
 
 /* component/Login/Modal */
-export const ModalContainer = styled(Container)`
+export const AuthContainer = styled(Container)`
     width: 20%;
-    height: 40%;
+    height: 45%;
 
     left: 40%;
-    top: 25%;
+    top: 20%;
 `;
-export const ModalFrame = styled(Frame)`
-    width: 460px;
+export const AuthFrame = styled(Frame)`
+    width: 400px;
 `;
 
 /* component/Login/LoadingModal */

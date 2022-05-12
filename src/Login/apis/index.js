@@ -11,11 +11,13 @@ export const handleSignup = async (
         .then((response) => {
             if (response.status === 200) {
                 const authEmail = { email: userData.email };
+                var flag = 0;
                 sendAuthMail(
                     authEmail,
                     setEmail,
                     setShowSignup,
                     setShowEmailAuth,
+                    flag,
                 );
             }
         })
@@ -28,14 +30,20 @@ export const sendAuthMail = async (
     setEmail,
     setShowSignup,
     setShowEmailAuth,
+    flag,
 ) => {
     await API.post('/user/sendauthemail', email)
         .then((res) => {
             console.log(res);
             if (res.status === 200) {
-                setEmail(email.email);
-                setShowSignup(false);
-                setShowEmailAuth(true);
+                if (flag === 0) {
+                    setEmail(email.email);
+                    setShowSignup(false);
+                    setShowEmailAuth(true);
+                } else {
+                    setEmail(email);
+                    alert('send');
+                }
             } else if (res.status === 403) {
                 alert('you already signup');
             }
