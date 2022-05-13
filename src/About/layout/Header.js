@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Logo from 'assets/images/Logo/text-icon.png';
 import { Button } from 'About/components';
-import { Login, Signup } from 'Login';
+import { Login, Signup } from 'pages';
 import { LogoText, ButtonContainer, SubContainer } from 'About/styles/style';
-import { EmailAuthModal } from 'Login/components';
+import { EmailAuthModal } from 'Signup/components';
 
 const logo = <img src={Logo} alt="로고" width={60} height={60}></img>;
 

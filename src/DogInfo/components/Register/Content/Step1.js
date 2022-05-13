@@ -12,7 +12,7 @@ import {
     Button,
     Footer,
 } from './styles/style';
-import { ProfilePicture } from 'Login/components';
+import { ProfilePicture } from 'Signup/components';
 
 const Step1 = (props) => {
     const [petProfile, setPetProfile] = useState('');

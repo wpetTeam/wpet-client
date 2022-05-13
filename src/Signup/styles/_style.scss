@@ -1,0 +1,136 @@
+@use 'assets/styles/_theme.scss' as theme;
+@use 'assets/styles/common/_loginSignup.scss' as common;
+
+/* page/Signup */
+.signup {
+    .close-icon {
+        @include common.close-icon();
+        margin-left: 90%;
+    }
+    .welcome-text {
+        @include common.text($top: 3%, $font-size: 1.7em);
+    }
+    .sub-text {
+        @include common.text($top: 1.9%, $font-size: 0.75em);
+    }
+    .profile-text {
+        @include common.text($top: 1.9%, $font-size: 0.7em);
+        text-align: center;
+    }
+    .alert-text {
+        @include common.text($top: -2.1%, $bottom: '0.5%', $font-size: 0.7em);
+        margin-left: 2%;
+        color: firebrick;
+    }
+}
+.profile-upload-icon {
+    color: theme.$main-color;
+    opacity: 0.5;
+
+    &:hover {
+        transform: scale(1.03);
+        transition: opacity 0.2s ease-in;
+        opacity: 0.8;
+        cursor: pointer;
+    }
+}
+
+/* components / EmailAuth */
+.auth-modal {
+    .close-icon {
+        color: gray;
+        &:hover {
+            transform: scale(1.15);
+            transition: 0.2s;
+            cursor: pointer;
+            color: theme.$main-color;
+        }
+    }
+    .header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        margin-top: 10px;
+
+        .sending-icon {
+            margin-right: 10px;
+
+            animation-duration: 4s;
+            animation-name: fullCheck;
+            animation-iteration-count: infinite;
+        }
+        .header-text {
+            @include common.text($top: 0, $bottom: 0, $font-size: 1.3em);
+        }
+    }
+
+    .main {
+        @include common.text($top: 15px, $bottom: 40px, $font-size: 0.9em);
+        text-align: center;
+
+        .desc-text {
+            line-height: 1.5em;
+        }
+        .auth-container {
+            height: 40px;
+            align-items: baseline;
+
+            .auth-input {
+                @include common.text(
+                    $top: 10px,
+                    $bottom: 50px,
+                    $font-size: 1.2em
+                );
+
+                width: 200px;
+                margin-right: 10px;
+                padding-bottom: 5px;
+
+                text-align: center;
+                font-weight: 700;
+
+                border: transparent;
+                background: transparent;
+                border-bottom: 2.5px solid theme.$main-color;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+            .compare-button {
+                @include common.authButton();
+            }
+        }
+    }
+
+    .footer {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+
+        .time-text {
+            @include common.text($top: 8px, $font-size: 0.85em);
+            margin-right: 10px;
+
+            span {
+                font-size: 1.2em;
+            }
+        }
+        .resend-button {
+            @include common.authButton();
+        }
+    }
+}
+
+@keyframes fullCheck {
+    from {
+        transform: rotate(0deg);
+        color: theme.$sub-color;
+    }
+    to {
+        transform: rotate(360deg);
+        color: theme.$main-color;
+    }
+}

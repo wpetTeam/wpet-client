@@ -1,0 +1,53 @@
+@use 'assets/styles/_theme.scss';
+
+@mixin button(
+    $width: 0,
+    $height: 0,
+    $border: transparent,
+    $border-radius: 0,
+    $background: transparent,
+    $font-family: Strawberry Muffins,
+    $color: theme.$main-color
+) {
+    width: $width;
+    height: $height;
+
+    font-family: $font-family;
+    color: $color;
+
+    background: $background;
+    border: $border;
+    border-radius: $border-radius;
+}
+@mixin close-icon {
+    width: 27px;
+    height: 27px;
+    margin-top: -2%;
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+        transition: 0.2s ease-in-out;
+        color: theme.$main-color;
+    }
+}
+@mixin text($top: 0, $bottom: 0, $font-size: 0) {
+    margin-top: $top;
+    margin-bottom: $bottom;
+
+    font-size: $font-size;
+}
+@mixin authButton {
+    padding: 6px;
+    color: gray;
+    font-weight: 600;
+    border: 1.5px solid transparent;
+    background: theme.$step-color;
+    box-shadow: 0.5px 0.5px;
+    border-radius: 8px;
+
+    &:hover {
+        transform: scale(1.02);
+        color: black;
+        cursor: pointer;
+    }
+}

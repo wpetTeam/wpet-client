@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { IoIosClose } from 'react-icons/io';
+
 import { theme } from 'assets/styles/theme';
 import LogoImage from 'assets/images/Logo/text-icon.png';
-import { Input, Button, ProfilePicture } from 'Login/components';
-import { onKeyPress, checkUserInfo } from 'utils';
+import { Input, Button } from 'Login/components';
+import { ProfilePicture } from 'Signup/components';
+import { onKeyPress } from 'utils';
+import { checkUserInfo } from 'utils/signupCheck';
 import { handleSignup } from './apis';
-import { IoIosClose } from 'react-icons/io';
-import 'Login/styles/_style.scss';
+import { Eclipse, Text, BoldText } from 'assets/styles/common/loginSignup';
 import {
-    Eclipse,
-    SignupFrame,
-    Text,
-    SignupContainer,
+    Container,
+    Frame,
     Content,
     Profile,
     Info,
-    BoldText,
-} from 'Login/styles/style.js';
+} from 'Signup/styles/style.js';
+import 'Signup/styles/_style.scss';
 
 const Signup = (props) => {
     const [profile, setProfile] = useState('');
@@ -60,11 +61,11 @@ const Signup = (props) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <SignupContainer>
+            <Container className="signup-container">
                 <Eclipse>
                     <img src={LogoImage} width={50} height={50} alt="로고" />
                 </Eclipse>
-                <SignupFrame className="signup">
+                <Frame className="signup">
                     <IoIosClose
                         className="close-icon"
                         onClick={() => {
@@ -145,8 +146,8 @@ const Signup = (props) => {
                             />
                         </Info>
                     </Content>
-                </SignupFrame>
-            </SignupContainer>
+                </Frame>
+            </Container>
         </ThemeProvider>
     );
 };

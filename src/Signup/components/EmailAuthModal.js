@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { SiMinutemailer } from 'react-icons/si';
 import { IoIosClose } from 'react-icons/io';
-import { Eclipse, AuthContainer, AuthFrame, Text } from 'Login/styles/style.js';
-import 'Login/styles/_style.scss';
+
 import { useInterval } from 'utils';
-import { handleAuthCompare, sendAuthMail } from 'Login/apis';
+import { handleAuthCompare, sendAuthMail } from 'Signup/apis';
+import { Eclipse, Text } from 'assets/styles/common/loginSignup';
+import { AuthContainer, AuthFrame } from 'Signup/styles/style.js';
+import 'Login/styles/_style.scss';
 
 const EmailAuthModal = (props) => {
     const [authCode, setAuthCode] = useState('');

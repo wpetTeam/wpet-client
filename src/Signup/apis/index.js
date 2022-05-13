@@ -9,6 +9,7 @@ export const handleSignup = async (
 ) => {
     await API.post('/user/create', userData)
         .then((response) => {
+            console.log('signup', response);
             if (response.status === 200) {
                 const authEmail = { email: userData.email };
                 var flag = 0;
@@ -34,7 +35,7 @@ export const sendAuthMail = async (
 ) => {
     await API.post('/user/sendauthemail', email)
         .then((res) => {
-            console.log(res);
+            console.log('email auth', res);
             if (res.status === 200) {
                 if (flag === 0) {
                     setEmail(email.email);
