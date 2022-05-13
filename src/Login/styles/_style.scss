@@ -37,6 +37,21 @@
 
     font-size: $font-size;
 }
+@mixin authButton {
+    padding: 6px;
+    color: gray;
+    font-weight: 600;
+    border: 1.5px solid transparent;
+    background: theme.$step-color;
+    box-shadow: 0.5px 0.5px;
+    border-radius: 8px;
+
+    &:hover {
+        transform: scale(1.02);
+        color: black;
+        cursor: pointer;
+    }
+}
 
 /* page/Login */
 .login {
@@ -111,22 +126,6 @@
         transform: scale(1.03);
         transition: opacity 0.2s ease-in;
         opacity: 0.8;
-        cursor: pointer;
-    }
-}
-
-@mixin authButton {
-    padding: 6px;
-    color: gray;
-    font-weight: 600;
-    border: 1.5px solid transparent;
-    background: theme.$step-color;
-    box-shadow: 0.5px 0.5px;
-    border-radius: 8px;
-
-    &:hover {
-        transform: scale(1.02);
-        color: black;
         cursor: pointer;
     }
 }

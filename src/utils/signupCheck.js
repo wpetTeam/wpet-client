@@ -16,7 +16,7 @@ function checkPw(pw) {
 /* 이메일 : _@_._ + 중복체크*/
 function checkEmail(email) {
     var regExp =
-        /^[0-9a-zA-Z]([-_]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+        /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
     return regExp.test(email);
 }
 
