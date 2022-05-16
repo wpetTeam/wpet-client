@@ -1,44 +1,129 @@
 @use 'assets/styles/_theme.scss' as theme;
 @use 'assets/styles/common/_loginSignup.scss' as common;
 
+@mixin background-opacity($color, $opacity: 0.3) {
+    background: $color; /* The Fallback */
+    background: rgba($color, $opacity);
+}
+@mixin font-opacity($color, $opacity: 0.3) {
+    color: $color;
+    color: rgba($color, $opacity);
+}
+
 .login {
     .close-icon {
         @include common.close-icon();
         margin-left: 80%;
     }
     .welcome-text {
-        @include common.text($top: 5%, $bottom: 12%, $font-size: 1.7em);
+        @include common.text($top: 0, $bottom: 10%, $font-size: 1.7em);
+    }
+    .error-text {
+        @include common.text($top: -2%, $bottom: 3%, $font-size: 0.7em);
+        margin-left: 35%;
+        text-align: right;
+        color: firebrick;
+        font-weight: 600;
     }
     .or-text {
-        @include common.text($top: 3%, $font-size: 1em);
+        @include common.text($top: 3%, $bottom: -1%, $font-size: 1em);
     }
     .pw-text {
-        @include common.text($top: -1%, $font-size: 0.7em);
-        margin-left: -30%;
+        @include common.text($top: 3%, $bottom: -2.5%, $font-size: 0.7em);
+        font-family: 'Elice Digital Baeum', sans-serif;
+        &:hover {
+            cursor: pointer;
+            text-decoration: 1px underline black;
+            font-weight: 600;
+        }
     }
     .signup-text {
         @include common.text($top: 7%, $font-size: 0.8em);
         width: 90%;
         text-align: center;
-
         button {
-            @include common.button(
-                $width: fit-content,
-                $height: fit-content,
-                $border: 1.5px solid theme.$main-color,
-                $border-radius: 20px
+            @include common.authButton(
+                $padding: 4px,
+                $color: theme.$main-color
             );
-
-            margin-right: 1%;
-            padding: 2.5px 6px;
-
-            &:hover {
-                transition: 0.1s ease-in;
-                cursor: pointer;
-
-                color: black;
-                border: 1.5px solid black;
-            }
+            font-family: Strawberry Muffins;
+            margin-left: 3px;
+            margin-right: 3px;
         }
+    }
+}
+
+.findpw-modal {
+    .close-icon {
+        @include common.closeIcon();
+    }
+    .header {
+        .header-text {
+            font-family: 'Elice Digital Baeum', sans-serif;
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+    }
+    .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .desc-text {
+            font-size: 0.85em;
+            margin-top: -2%;
+            margin-bottom: 12%;
+        }
+    }
+    .footer {
+        margin-top: -1%;
+    }
+}
+
+.input-component {
+    display: flex;
+    flex-direction: column-reverse;
+
+    input {
+        width: 240px;
+        height: 33px;
+
+        padding-left: 3%;
+        margin-bottom: 4%;
+
+        background: transparent;
+
+        border: 1.5px solid theme.$main-color;
+        border-radius: 5px;
+
+        &::placeholder {
+            @include font-opacity(theme.$main-color, 0.7);
+            font-size: 0.9em;
+            letter-spacing: 0;
+        }
+        &:focus {
+            @include background-opacity(theme.$main-color, 0.1);
+            transition: 0.3s ease-in-out;
+            outline: none;
+            border: 2.5px solid theme.$main-color;
+        }
+        &:focus::placeholder {
+            color: transparent;
+        }
+    }
+    input[type='password'] {
+        letter-spacing: 0.2em;
+    }
+    label {
+        font-size: 0em;
+        margin-bottom: 2px;
+    }
+
+    input:focus + label {
+        transition: 0.05s ease;
+        font-size: 0.7em;
+    }
+    .error-input {
+        border: 2.5px solid firebrick;
     }
 }

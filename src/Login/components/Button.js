@@ -29,7 +29,7 @@ const SubmitButton = styled.button.attrs(
     }),
     { type: 'button' },
 )`
-    width: 240px;
+    width: 250px;
     height: 37px;
 
     margin-top: ${(props) => props.marginTop};
@@ -39,15 +39,17 @@ const SubmitButton = styled.button.attrs(
     justify-content: center;
 
     background: ${({ theme }) => theme.aboutLogoText}98;
-    font-family: Strawberry Muffins;
+    font-family: 'Elice Digital Baeum', sans-serif;
+    font-weight: 600;
     font-size: 1.1em;
     color: ${({ theme }) => theme.loginBackground};
 
     border: transparent;
-    border-radius: 20px;
+    border-radius: 5px;
+    box-shadow: 1.5px 1.5px #868686;
 
     &:hover {
-        transform: scale(1.02);
+        transform: scale(1.01);
         transition: 0.3s ease-in-out;
         cursor: pointer;
 

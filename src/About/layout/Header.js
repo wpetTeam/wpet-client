@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import Logo from 'assets/images/Logo/text-icon.png';
-import { Button } from 'About/components';
 import { Login, Signup } from 'pages';
-import { LogoText, ButtonContainer, SubContainer } from 'About/styles/style';
+import { Button } from 'About/components';
 import { EmailAuthModal } from 'Signup/components';
+import { FindPassword } from 'Login/components';
+import { LogoText, ButtonContainer, SubContainer } from 'About/styles/style';
 
 const logo = <img src={Logo} alt="로고" width={60} height={60}></img>;
 
@@ -12,6 +14,7 @@ const Header = (props) => {
     const [showLogin, setShowLogin] = useState(false);
     const [showSignup, setShowSignup] = useState(false);
     const [showEmailAuth, setShowEmailAuth] = useState(false);
+    const [showFindPw, setShowFindPw] = useState(false);
     const [email, setEmail] = useState('');
 
     const LoginButtonHandler = () => {
@@ -59,6 +62,7 @@ const Header = (props) => {
                     setBlur={props.setBlur}
                     setShowLogin={setShowLogin}
                     setShowSignup={setShowSignup}
+                    setShowFindPw={setShowFindPw}
                 />
             )}
             {showSignup && (
@@ -78,6 +82,12 @@ const Header = (props) => {
                     setShowEmailAuth={setShowEmailAuth}
                     email={email}
                     setEmail={setEmail}
+                />
+            )}
+            {showFindPw && (
+                <FindPassword
+                    setBlur={props.setBlur}
+                    setShowFindPw={setShowFindPw}
                 />
             )}
         </Container>

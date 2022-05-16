@@ -36,9 +36,9 @@
 
     font-size: $font-size;
 }
-@mixin authButton {
-    padding: 6px;
-    color: gray;
+@mixin authButton($padding: 6px, $color: gray) {
+    padding: $padding;
+    color: $color;
     font-weight: 600;
     border: 1.5px solid transparent;
     background: theme.$step-color;
@@ -47,7 +47,17 @@
 
     &:hover {
         transform: scale(1.02);
+        transition: 0.1s;
         color: black;
         cursor: pointer;
+    }
+}
+@mixin closeIcon {
+    color: gray;
+    &:hover {
+        transform: scale(1.15);
+        transition: 0.2s;
+        cursor: pointer;
+        color: theme.$main-color;
     }
 }

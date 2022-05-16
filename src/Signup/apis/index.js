@@ -9,7 +9,7 @@ export const handleSignup = async (
 ) => {
     await API.post('/user/create', userData)
         .then((response) => {
-            console.log('signup', response);
+            console.log('>>> [SIGNUP] SUCCESS', response.data.email);
             if (response.status === 200) {
                 const authEmail = { email: userData.email };
                 var flag = 0;
@@ -22,7 +22,11 @@ export const handleSignup = async (
                 );
             }
         })
-        .catch((error) => console.log(error.response));
+        .catch((error) => {
+            console.error('>>> [SIGNUP] ERROR', error.message);
+            /* 409 : 이미 계정 있는 사람 */
+            /* 403 : 이메일 인증을 하지 않음 -> 이메일 인증 페이지 */
+        });
 };
 
 /* 인증번호 보내기 */

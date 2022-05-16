@@ -77,6 +77,7 @@ const Container = styled.div`
     &.select {
         transform: scale(1.05);
         color: ${({ theme }) => theme.aboutLogoText};
+        border: transprent;
         font-weight: bold;
     }
     &.none {

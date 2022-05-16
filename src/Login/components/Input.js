@@ -1,64 +1,38 @@
 import React from 'react';
-import styled from 'styled-components';
+import '../styles/_style.scss';
 
 const Input = (props) => {
     return (
         <>
             {props.password ? (
-                <PasswordInput
-                    name={props.name}
-                    value={props.value}
-                    onChange={props.onChange}
-                    onBlur={props.onBlur}
-                    placeholder={props.placeholder}
-                    onKeyPress={props.onKeyPress}
-                    marginBottom={props.marginBottom}
-                />
+                <div className="input-component pw">
+                    <input
+                        type="password"
+                        name={props.name}
+                        value={props.value}
+                        onChange={props.onChange}
+                        onBlur={props.onBlur}
+                        placeholder={props.placeholder}
+                        onKeyPress={props.onKeyPress}
+                        className={props.isError ? 'error-input' : ''}
+                    />
+                    <label htmlFor={props.name}>{props.placeholder}</label>
+                </div>
             ) : (
-                <InfoInput
-                    name={props.name}
-                    value={props.value}
-                    onChange={props.onChange}
-                    onBlur={props.onBlur}
-                    placeholder={props.placeholder}
-                    onKeyPress={props.onKeyPress}
-                    marginBottom={props.marginBottom}
-                />
+                <div className="input-component">
+                    <input
+                        name={props.name}
+                        value={props.value}
+                        onChange={props.onChange}
+                        onBlur={props.onBlur}
+                        placeholder={props.placeholder}
+                        onKeyPress={props.onKeyPress}
+                        className={props.isError ? 'error-input' : ''}
+                    />
+                    <label htmlFor={props.name}>{props.placeholder}</label>
+                </div>
             )}
         </>
     );
 };
 export default Input;
-
-const InfoInput = styled.input.attrs((props) => ({
-    marginBottom: props.marginBottom || '3%',
-}))`
-    width: 240px;
-    height: 33px;
-
-    padding-left: 3%;
-    margin-bottom: ${(props) => props.marginBottom};
-
-    background: transparent;
-
-    border: 1.5px solid ${({ theme }) => theme.aboutLogoText}80;
-    border-radius: 8px;
-
-    &::placeholder {
-        font-size: 0.9em;
-        color: ${({ theme }) => theme.aboutLogoText}80;
-    }
-    &:focus {
-        transition: 0.1s ease-in;
-        outline: none;
-        background: ${({ theme }) => theme.aboutLogoText}05;
-        border: 2.5px solid ${({ theme }) => theme.aboutLogoText};
-    }
-    &:focus::placeholder {
-        color: transparent;
-    }
-`;
-
-const PasswordInput = styled(InfoInput).attrs({
-    type: 'password',
-})``;

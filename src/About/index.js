@@ -8,14 +8,14 @@ const Container = styled.div`
     height: 100%;
 
     padding: 2% 3%;
-    
+
     transition: 0.4s ease-in-out;
     background: ${({ theme }) => theme.aboutBackground};
 
     &.isBlur {
         transition: 0.4s ease-in-out;
-        background: ${({ theme }) => theme.aboutLogoText}90;
-        );
+        background: ${({ theme }) => theme.aboutLogoText}99;
+        )
     }
 `;
 const About = () => {

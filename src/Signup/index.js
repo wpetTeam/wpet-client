@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { IoIosClose } from 'react-icons/io';
+import { Icon } from '@iconify/react';
 
 import { theme } from 'assets/styles/theme';
 import LogoImage from 'assets/images/Logo/text-icon.png';
 import { Input, Button } from 'Login/components';
 import { ProfilePicture } from 'Signup/components';
 import { onKeyPress } from 'utils';
-import { checkUserInfo } from 'utils/signupCheck';
+import { CheckPwDetail, checkUserInfo } from 'Signup/utils/signupCheck';
 import { handleSignup } from './apis';
 import { Eclipse, Text, BoldText } from 'assets/styles/common/loginSignup';
 import {
@@ -27,10 +28,15 @@ const Signup = (props) => {
         pw: '',
         passwordConfirm: '',
     });
-    const [errorMessage, setErrorMessage] = useState({
+    const [errMessage, setErrMessage] = useState({
         name: '',
         email: '',
-        password: '',
+        pw: '',
+    });
+    const [pwErrorCheck, setPwErrorCheck] = useState({
+        number: false,
+        symbol: false,
+        length: false,
     });
 
     function handleChange(e) {
@@ -39,18 +45,31 @@ const Signup = (props) => {
             ...info,
             [e.target.name]: value,
         });
+        if (e.target.name === 'pw') {
+            setPwErrorCheck({
+                ...pwErrorCheck,
+                number: CheckPwDetail(value, 0),
+                symbol: CheckPwDetail(value, 1),
+                length: CheckPwDetail(value, 2),
+            });
+        }
+        setErrMessage({
+            ...errMessage,
+            name: '',
+            email: '',
+            pw: '',
+        });
     }
-    const handleButton = () => {
-        if (checkUserInfo(info.nickName, info.email, info.pw, setErrorMessage))
-            return;
 
+    const handleButton = () => {
+        if (checkUserInfo(info.nickName, info.email, info.pw, setErrMessage))
+            return;
         const userData = {
             nickName: info.nickName,
             email: info.email,
             pw: info.pw,
             profilePicture: profile,
         };
-
         handleSignup(
             userData,
             props.setEmail,
@@ -94,22 +113,22 @@ const Signup = (props) => {
                                 value={info.nickName}
                                 onChange={handleChange}
                                 placeholder="닉네임 (1~15자)"
-                                marginBottom="4%"
                                 onKeyPress={(e) => onKeyPress(e, handleButton)}
+                                isError={errMessage.name !== '' ? true : false}
                             />
                             <Text className="alert-text">
-                                {errorMessage.name}
+                                {errMessage.name}
                             </Text>
                             <Input
                                 name="email"
                                 value={info.email}
                                 onChange={handleChange}
                                 placeholder="이메일"
-                                marginBottom="4%"
                                 onKeyPress={(e) => onKeyPress(e, handleButton)}
+                                isError={errMessage.email !== '' ? true : false}
                             />
                             <Text className="alert-text">
-                                {errorMessage.email}
+                                {errMessage.email}
                             </Text>
                             <Input
                                 password
@@ -118,18 +137,48 @@ const Signup = (props) => {
                                 onChange={handleChange}
                                 placeholder="비밀번호 (알파벳,숫자,특수문자를 포함한 8~13자)"
                                 onKeyPress={(e) => onKeyPress(e, handleButton)}
-                                marginBottom="4%"
+                                isError={errMessage.pw !== '' ? true : false}
                             />
-                            <Text className="alert-text">
-                                {errorMessage.password}
-                            </Text>
+                            {info.pw.length !== 0 && (
+                                <div className="pw-check-component">
+                                    <div
+                                        className={
+                                            pwErrorCheck.number
+                                                ? 'pw-check done '
+                                                : 'pw-check'
+                                        }
+                                    >
+                                        <Icon icon="bi:check-all" />
+                                        <p className="text">숫자</p>
+                                    </div>
+                                    <div
+                                        className={
+                                            pwErrorCheck.symbol
+                                                ? 'pw-check done '
+                                                : 'pw-check'
+                                        }
+                                    >
+                                        <Icon icon="bi:check-all" />
+                                        <p className="text">특수문자</p>
+                                    </div>
+                                    <div
+                                        className={
+                                            pwErrorCheck.length
+                                                ? 'pw-check done '
+                                                : 'pw-check'
+                                        }
+                                    >
+                                        <Icon icon="bi:check-all" />
+                                        <p className="text">길이</p>
+                                    </div>
+                                </div>
+                            )}
                             <Input
                                 password
                                 name="passwordConfirm"
                                 value={info.passwordConfirm}
                                 onChange={handleChange}
                                 placeholder="비밀번호 확인"
-                                marginBottom="4%"
                                 onKeyPress={(e) => onKeyPress(e, handleButton)}
                             />
                             {info.passwordConfirm !== '' &&
@@ -140,7 +189,7 @@ const Signup = (props) => {
                                 )}
                             <Button
                                 name="submit"
-                                text="인증번호 받기"
+                                text="본인 인증"
                                 marginTop="6%"
                                 onClick={handleButton}
                             />

@@ -1,5 +1,6 @@
 @use 'assets/styles/_theme.scss' as theme;
 @use 'assets/styles/common/_loginSignup.scss' as common;
+@use 'Login/styles/_style.scss' as login;
 
 /* page/Signup */
 .signup {
@@ -8,7 +9,7 @@
         margin-left: 90%;
     }
     .welcome-text {
-        @include common.text($top: 3%, $font-size: 1.7em);
+        @include common.text($top: 0, $font-size: 1.7em);
     }
     .sub-text {
         @include common.text($top: 1.9%, $font-size: 0.75em);
@@ -21,6 +22,29 @@
         @include common.text($top: -2.1%, $bottom: '0.5%', $font-size: 0.7em);
         margin-left: 2%;
         color: firebrick;
+    }
+    .pw-check-component {
+        margin-top: -7.7%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        .pw-check {
+            @include login.font-opacity(gray, 0.9);
+            margin-right: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            .text {
+                font-size: 0.66em;
+                font-weight: 600;
+            }
+        }
+        .done {
+            color: theme.$main-color;
+            font-weight: 800;
+            font-size: 1.1em;
+        }
     }
 }
 .profile-upload-icon {
@@ -38,13 +62,7 @@
 /* components / EmailAuth */
 .auth-modal {
     .close-icon {
-        color: gray;
-        &:hover {
-            transform: scale(1.15);
-            transition: 0.2s;
-            cursor: pointer;
-            color: theme.$main-color;
-        }
+        @include common.closeIcon();
     }
     .header {
         display: flex;

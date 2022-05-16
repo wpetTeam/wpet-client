@@ -1,4 +1,13 @@
 @use 'assets/styles/_theme.scss';
+
+@mixin profile-dropdown() {
+    transition: 0.4s;
+    cursor: pointer;
+    color: theme.$main-color;
+    background-color: transparent;
+    box-shadow: 1px 1px 0px 0px theme.$sub-color;
+}
+
 .home-header {
     .logo-text {
         color: theme.$main-color;
@@ -11,6 +20,7 @@
         border-radius: 50%;
         border: 2px double #c4c4c4;
     }
+
     .user-name-text {
         font-size: 0.85em;
         span {
@@ -22,15 +32,14 @@
         margin-left: 5px;
 
         color: theme.$dashboard-color;
-
         border-radius: 50%;
         background-color: theme.$main-color;
 
         &:hover {
-            transition: 0.4s;
-            cursor: pointer;
-            color: theme.$main-color;
-            background-color: transparent;
+            @include profile-dropdown();
         }
+    }
+    .open-dropdown {
+        @include profile-dropdown();
     }
 }

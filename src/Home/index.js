@@ -1,13 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { theme } from 'assets/styles/theme';
 import styled, { ThemeProvider } from 'styled-components';
 import { Header, Main } from 'Home/layouts';
+import { API } from 'utils';
 
 const Home = () => {
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        const getAuth = async () => {
+            await API.get('/user/auth', {
+                withCredentials: true,
+            })
+                .then((res) => {
+                    console.log('>>> [HOME] ✅ SUCCESS', res.data);
+                    if (res.status === 200) {
+                        setUser(res.data);
+                    }
+                })
+                .catch((err) =>
+                    console.log('>>> [HOME] ❌ ERROR', err.message),
+                );
+        };
+        getAuth();
+    }, []);
+
+    useEffect(() => {}, [user]);
+
     return (
         <ThemeProvider theme={theme}>
             <Container>
-                <Header></Header>
+                <Header user={user}></Header>
                 <Main></Main>
             </Container>
         </ThemeProvider>

@@ -10,16 +10,17 @@ const ColumnDiv = styled.div`
 /* 회원가입 : Signup */
 export const Container = styled(CommonContainer)`
     left: 26%;
-    width: 52%;
 
-    transition: 0.4s ease-in-out;
+    width: 49%;
+    height: 65%;
 `;
 export const Frame = styled(CommonFrame)`
     width: 570px;
+    height: 100%;
 `;
 export const Content = styled.div`
     width: 90%;
-    height: 75%;
+    height: 70%;
 
     display: flex;
     flex-direction: row;
