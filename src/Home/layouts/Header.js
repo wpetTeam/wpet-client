@@ -1,27 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
-import { BoldText, Logo, Nav } from 'Home/styles/style';
-import { Icon, UserProfile } from 'Home/components';
+import { NavIcon, UserProfile } from 'Home/components';
 import logo from 'assets/images/Logo/text-icon.png';
 import 'Home/styles/_style.scss';
+import { API } from 'utils';
 
-const Header = (props) => {
-    const LogoImage = <img src={logo} alt="로고" width={55} height={55} />;
+const Header = () => {
+    const [user, setUser] = useState({});
 
+    useEffect(() => {
+        const getAuth = async () => {
+            await API.get('/user/auth', {
+                withCredentials: true,
+            })
+                .then((res) => {
+                    console.log('>>> [HOME] ✅ SUCCESS', res.data);
+                    if (res.status === 200) {
+                        setUser(res.data);
+                    }
+                })
+                .catch((err) =>
+                    console.log('>>> [HOME] ❌ ERROR', err.message),
+                );
+        };
+        getAuth();
+    }, []);
+
+    useEffect(() => {}, [user]);
     return (
         <HeaderContainer className="home-header">
-            <Logo>
-                {LogoImage}
-                <BoldText className="logo-text">wpet</BoldText>
-            </Logo>
-            <Nav>
-                <Icon name="diary" isShow />
-                <Icon name="dog-info" isShow />
-                <Icon name="community" isShow />
-                <Icon name="settings" isShow />
-            </Nav>
-            <UserProfile user={props.user} logo={logo} />
+            <NavIcon />
+            <UserProfile user={user} logo={logo} />
         </HeaderContainer>
     );
 };

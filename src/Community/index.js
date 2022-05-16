@@ -1,7 +1,8 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
-import { Header, Main } from 'Community/layouts';
+import { Main } from 'Community/layouts';
+import { Header } from 'Home/layouts';
 
 const Diary = () => {
     return (
