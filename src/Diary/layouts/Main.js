@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Nav, Article } from 'assets/styles/tabStyle';
+import { Container, Nav, Article } from 'assets/styles/common/tabStyle';
 import 'Diary/styles/_style.scss';
 import { ReadDiary, Tab, WriteDiary } from 'Diary/components';
 

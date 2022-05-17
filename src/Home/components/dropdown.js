@@ -47,7 +47,7 @@ const Button = styled.div`
     text-align: center;
 
     border: 2px solid ${({ theme }) => theme.aboutBackground};
-    background: transparent;
+    background: ${({ theme }) => theme.dashboardBackground};
     box-shadow: 3px 3px 0px 0px ${({ theme }) => theme.aboutBackground}70;
 
     &:hover {

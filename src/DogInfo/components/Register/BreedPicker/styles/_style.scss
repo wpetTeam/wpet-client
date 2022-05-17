@@ -1,28 +1,23 @@
 @use 'assets/styles/_theme.scss';
+@use 'assets/styles/common/_common.scss' as common;
 
 .breed-option {
+    @include common.flex-column();
+    @include common.font(
+        theme.$main-color,
+        theme.$description-font,
+        0.65em,
+        500
+    );
+    @include common.shape(transparent, 1px solid theme.$main-color, 4px);
     margin-right: 1%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 0.65em;
-    color: theme.$main-color;
-
-    background: transparent;
-    border: 1px solid theme.$main-color;
-    border-radius: 4px;
 
     &:hover,
     &.select {
-        cursor: pointer;
-        transition: 0.2s ease-in;
-        border: 2px solid theme.$main-color;
-        background: theme.$sub-color;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-            rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        @include common.hover-event();
+        @include common.shape(theme.$sub-color, 3px solid theme.$main-color, 0);
+
+        box-shadow: 3px 3px 0px 0px transparentize(theme.$main-color, 0.5);
         font-weight: 700;
         color: black;
     }

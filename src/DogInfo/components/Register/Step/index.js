@@ -5,7 +5,7 @@ import { StepBar } from './StepBar';
 
 export const Step = (props) => {
     return (
-        <Container>
+        <Container className="step-continer">
             <TextContainer>
                 <StepText step={props.step} />
             </TextContainer>
@@ -36,8 +36,6 @@ const TextContainer = styled.div`
 const BarContainer = styled.div`
     width: 25%;
     height: 100%;
-
-    margin-top: -2%;
 
     display: flex;
     justify-content: center;

@@ -11,6 +11,7 @@ export const NavIcon = () => {
     const HOME_URL = 'http://localhost:5000/home';
 
     const DIARY_URL = 'http://localhost:5000/diary';
+    const DIARY_WRITE_URL = 'http://localhost:5000/diary/write';
     const DOGINFO_URL = 'http://localhost:5000/dog-info';
     const COMMUNITY_URL = 'http://localhost:5000/community';
     const SETTINGS_URL = 'http://localhost:5000/settings';
@@ -32,6 +33,14 @@ export const NavIcon = () => {
                 </Nav>
             )}
             {current_location === DIARY_URL && (
+                <Nav>
+                    <Icon name="diary" isSelect />
+                    <Icon name="dog-info" />
+                    <Icon name="community" />
+                    <Icon name="settings" />
+                </Nav>
+            )}
+            {current_location === DIARY_WRITE_URL && (
                 <Nav>
                     <Icon name="diary" isSelect />
                     <Icon name="dog-info" />

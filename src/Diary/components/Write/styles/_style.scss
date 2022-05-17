@@ -1,4 +1,5 @@
 @use 'assets/styles/_theme.scss';
+@use 'assets/styles/common/_common.scss' as common;
 
 @mixin weather-select($color, $background) {
     padding: 5px;
@@ -7,32 +8,72 @@
 }
 
 .write-container {
-    .title-text {
-        width: 10%;
+    .picture-container {
+        width: 50%;
 
-        font-weight: 600;
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .journal-container {
+        width: 50%;
+
+        display: flex;
+        flex-direction: column;
+
+        .title-text {
+            @include common.font(black, theme.$function-font, 1em, 600);
+            width: 10%;
+            margin-left: 1%;
+            text-align: center;
+        }
+        .input-text {
+            @include common.size(85%, 100%);
+            @include common.shape();
+            font-size: 1.1em;
+            &:focus {
+                outline: none;
+            }
+            &::placeholder {
+                font-size: 0.85em;
+                color: gray;
+            }
+        }
     }
     .background-color-picker {
         position: fixed;
         right: 8%;
-
         z-index: 1000;
     }
     .complete-button {
-        width: 20%;
-        height: 60%;
+        @include common.size(20%, 60%);
+        @include common.shape(
+            transparent,
+            2px solid transparentize(theme.$main-color, 0.7),
+            0
+        );
 
-        background: transparentize(whitesmoke, 0.2);
-        border: transparent;
-        border-radius: 3px;
+        font-family: theme.$function-font;
+        box-shadow: 4px 4px 0px 0px transparentize(theme.$main-color, 0.7);
+
+        &:hover {
+            @include common.hover-event();
+
+            border: 2.5px solid theme.$main-color;
+            box-shadow: 4.5px 4.5px 0px 0px
+                transparentize(theme.$main-color, 0.5);
+            font-weight: 600;
+        }
     }
 }
 
 .weather-picker {
+    width: 50%;
+    text-align: center;
+    border-radius: 10px;
+
     .weather-icon {
-        width: 25px;
-        height: 25px;
+        @include common.size(25px, 25px);
 
         margin-left: 3px;
         margin-right: 3px;

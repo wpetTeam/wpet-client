@@ -13,7 +13,7 @@ import './_style.scss';
 
 const Page2 = () => {
     return (
-        <Container>
+        <Container className="about-2-container">
             <ImageContainer></ImageContainer>
             <TextContainer>
                 <Text className="concept">

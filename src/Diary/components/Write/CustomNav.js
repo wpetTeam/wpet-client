@@ -17,17 +17,16 @@ export const CustomNav = (props) => {
         </CustomContainer>
     );
 };
-
 const CustomContainer = styled.div`
     width: 3%;
     height: fit-content;
+
     margin-left: 1%;
     padding: 0.8% 0.1%;
 
     border: 2px solid ${({ theme }) => theme.aboutLogoText}90;
     border-radius: 20px;
 `;
-
 const CustomButton = styled.button`
     width: 100%;
     height: 6%;

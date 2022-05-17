@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Today = (props) => {
+export const Today = (props) => {
     var day_name = ['월', '화', '수', '목', '금', '토', '일'];
     var current_day = new Date();
 
@@ -20,8 +20,6 @@ const Today = (props) => {
     );
 };
 
-export default Today;
-
 const Container = styled.div`
     width: 47%;
     height: 100%;
@@ -31,12 +29,12 @@ const Container = styled.div`
 `;
 const Text = styled.p`
     font-size: 1em;
-    color: gray;
 
     & span {
-        font-family: Pretendard Medium;
         margin-left: 3px;
         margin-right: 1.5px;
+
+        font-family: 'Elice Digital Baeum', sans-serif;
         font-size: 1.3em;
         color: ${(props) => props.color};
     }

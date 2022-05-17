@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { HiOutlineBookOpen as Diary } from 'react-icons/hi';
 import { FaDog as DogInfo } from 'react-icons/fa';
 import { GiDogHouse as Community } from 'react-icons/gi';

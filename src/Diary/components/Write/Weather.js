@@ -1,15 +1,13 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
-import styled from 'styled-components';
-import './style/_style.scss';
+import './styles/_style.scss';
 
-const Weather = (props) => {
+export const Weather = (props) => {
     const handleWeather = (weather_value) => {
         props.setWeather(weather_value);
     };
-
     return (
-        <Container className="weather-picker">
+        <div className="weather-picker">
             <Icon
                 icon="fluent:weather-sunny-16-filled"
                 className={
@@ -73,13 +71,6 @@ const Weather = (props) => {
                 }
                 onClick={() => handleWeather('cloudy')}
             />
-        </Container>
+        </div>
     );
 };
-export default Weather;
-
-const Container = styled.div`
-    width: 50%;
-    text-align: center;
-    border-radius: 10px;
-`;

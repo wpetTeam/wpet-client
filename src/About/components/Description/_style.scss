@@ -1,38 +1,54 @@
 @use 'assets/styles/_theme.scss';
-@mixin size($width: 14px, $height: 14px, $opacity: 1) {
-    width: $width;
-    height: $height;
-    opacity: $opacity;
+@use 'assets/styles/common/_common.scss' as common;
+
+/* Page1.js*/
+.about-1-container {
+    .about-text {
+        .more-info-btn {
+            @include common.size(30%, 4.5vh);
+            @include common.shape(rgba(255, 255, 255, 0.3), transparent, 10px);
+
+            margin-top: 4.5%;
+
+            &:hover {
+                @include common.hover-event();
+                background-color: rgba(255, 255, 255, 0.6);
+            }
+        }
+    }
 }
 
-/* Component/About/Description/Page2.js */
-.info-icon {
-    margin-right: 4%;
-    margin-top: 4%;
-    color: theme.$main-color;
-    opacity: 0.6;
+/* Page2.js */
+.about-2-container {
+    .info-icon {
+        margin-right: 4%;
+        margin-top: 4%;
+
+        color: theme.$main-color;
+        opacity: 0.6;
+    }
 }
 
-/* Component/About/Description/Page3.js */
-.medical-icon {
-    @include size($width: 25px, $height: 25px);
-    padding: 10px;
-    color: theme.$main-color;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-}
-/* Component/About/Pagination.js */
-.button {
-    background-color: transparent;
-    border: transparent;
+/* Page3.js */
+.about-3-container {
+    .medical-icon {
+        @include common.size(25px, 25px);
+        @include common.shape(rgba(255, 255, 255, 0.5), transparent, 50%);
 
-    .icon {
+        padding: 10px;
+        color: theme.$main-color;
+    }
+}
+
+/* Pagination.js */
+.about-pagination-button {
+    @include common.shape();
+    .pagination-icon {
         color: theme.$main-color;
         opacity: 0.5;
 
         &:hover {
-            cursor: pointer;
-            transition: 0.5s;
+            @include common.hover-event();
             opacity: 1;
         }
     }

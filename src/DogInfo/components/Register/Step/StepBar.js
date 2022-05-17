@@ -6,10 +6,10 @@ import 'DogInfo/styles/_style.scss';
 export const StepBar = (props) => {
     return (
         <Container className="register-step-bar">
-            {Array.from({ length: 9 }).map((item, idx) => (
+            {Array.from({ length: 5 }).map((item, idx) => (
                 <>
                     {(idx + 1) % 2 === 0 && (
-                        <BarDiv
+                        <div
                             key={(idx + 10) % 230}
                             className={
                                 props.step * 2 > idx + 1
@@ -38,16 +38,8 @@ export const StepBar = (props) => {
 };
 
 const Container = styled.div`
-    height: 100%;
+    height: 63%;
+
+    margin-top: 110%;
     margin-left: 8%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`;
-
-const BarDiv = styled.div`
-    width: 2px;
-    height: 15%;
 `;

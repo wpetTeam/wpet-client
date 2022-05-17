@@ -1,8 +1,8 @@
 @use 'assets/styles/_theme.scss';
+@use 'assets/styles/common/_common.scss' as common;
 
 @mixin profile-dropdown() {
-    transition: 0.4s;
-    cursor: pointer;
+    @include common.hover-event();
     color: theme.$main-color;
     background-color: transparent;
     box-shadow: 1px 1px 0px 0px theme.$sub-color;
@@ -14,26 +14,28 @@
         font-size: 1.4em;
     }
     .user-profile-picture {
-        width: 40px;
-        height: 40px;
+        @include common.size(40px, 40px);
+        @include common.shape(theme.$dashboard-color, 2px double #c4c4c4, 50%);
+
         margin-right: 10px;
-        border-radius: 50%;
-        border: 2px double #c4c4c4;
     }
 
     .user-name-text {
         font-size: 0.85em;
         span {
-            color: theme.$main-color;
-            font-weight: 900;
+            @include common.font(
+                theme.$main-color,
+                theme.$function-font,
+                1em,
+                700
+            );
         }
     }
     .user-profile-info {
-        margin-left: 5px;
+        @include common.shape(theme.$main-color, transparent, 50%);
 
+        margin-left: 5px;
         color: theme.$dashboard-color;
-        border-radius: 50%;
-        background-color: theme.$main-color;
 
         &:hover {
             @include profile-dropdown();

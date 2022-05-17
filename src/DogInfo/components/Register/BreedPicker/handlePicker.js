@@ -1,3 +1,4 @@
+/* 종 선택 */
 export const handleBreedPicker = (name, breed, setBreed) => {
     if (breed.length < 3) {
         if (!breed.includes(name)) {
@@ -9,10 +10,12 @@ export const handleBreedPicker = (name, breed, setBreed) => {
     }
 };
 
+/* 종 삭제 */
 export const handleDeleteBreed = (name, breed, setBreed) => {
     setBreed(breed.filter((item, idx) => idx !== breed.indexOf(name)));
 };
 
+/* 종 디스플레이 설정 */
 export const breedNameHandler = (name) => {
     var blank_index = name.indexOf(' ');
     if (blank_index !== -1 && name.length >= 7) {

@@ -13,7 +13,7 @@ import './_style.scss';
 
 const Page3 = () => {
     return (
-        <Container>
+        <Container className="about-3-container">
             <TextContainer>
                 <Text className="concept">
                     <GiDogHouse size={18} style={{ marginRight: '2%' }} />

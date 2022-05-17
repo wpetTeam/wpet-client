@@ -14,7 +14,10 @@ const Header = () => {
                 withCredentials: true,
             })
                 .then((res) => {
-                    console.log('>>> [HOME] ✅ SUCCESS', res.data);
+                    if (window.location.href === 'http://localhost:5000/home') {
+                        console.log('>>> [HOME] ✅ SUCCESS', res.data);
+                    }
+
                     if (res.status === 200) {
                         setUser(res.data);
                     }
@@ -25,8 +28,8 @@ const Header = () => {
         };
         getAuth();
     }, []);
-
     useEffect(() => {}, [user]);
+
     return (
         <HeaderContainer className="home-header">
             <NavIcon />

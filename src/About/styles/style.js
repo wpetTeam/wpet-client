@@ -31,8 +31,7 @@ export const LogoText = styled.p`
     margin-left: -1%;
 
     font-size: 0.75em;
-    font-family: Pretendard Medium;
-
+    font-family: ${({ theme }) => theme.descriptionFont};
     color: ${({ theme }) => theme.aboutLogoText};
 `;
 export const ButtonContainer = styled.div`
@@ -60,7 +59,7 @@ export const ContactButton = styled.button`
     width: 100px;
     height: 30px;
 
-    font-family: Strawberry Muffins;
+    font-family: ${({ theme }) => theme.englishFont};
     font-size: 1em;
     color: ${({ theme }) => theme.aboutLogoText};
 

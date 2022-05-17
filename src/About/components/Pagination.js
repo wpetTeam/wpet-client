@@ -4,12 +4,18 @@ import 'About/styles/_style.scss';
 const Pagination = ({ direction, moveSlide }) => {
     return (
         <>
-            <button onClick={moveSlide} className="button">
+            <button onClick={moveSlide} className="about-pagination-button">
                 {direction === 'next' && (
-                    <MdKeyboardArrowRight size={45} className="icon" />
+                    <MdKeyboardArrowRight
+                        size={45}
+                        className="pagination-icon"
+                    />
                 )}
                 {direction === 'prev' && (
-                    <MdKeyboardArrowLeft size={45} className="icon" />
+                    <MdKeyboardArrowLeft
+                        size={45}
+                        className="pagination-icon"
+                    />
                 )}
             </button>
         </>

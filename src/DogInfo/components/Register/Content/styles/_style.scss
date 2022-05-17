@@ -1,10 +1,5 @@
 @use 'assets/styles/_theme.scss';
-@mixin display-row($justify-content: center) {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: $justify-content;
-}
+@use 'assets/styles/common/_common.scss' as common;
 
 .page-step1 {
     .profile-text {
@@ -18,39 +13,80 @@
     }
 }
 
+@mixin icon-shadow($color: theme.$main-color, $opacity: 0.5) {
+    color: $color;
+    box-shadow: 3px 3px 0px 0px transparentize(theme.$main-color, $opacity);
+}
+@mixin icon-border-shadow($border: 1px solid theme.$sub-color, $opacity) {
+    border: $border;
+    box-shadow: 3px 3px 0px 0px transparentize(theme.$main-color, $opacity);
+}
+
 .page-step2 {
     .step2-header {
-        @include display-row($justify-content: space-between);
+        @include common.flex-row($justify-content: space-between);
         width: 80%;
     }
     .add-breed {
-        @include display-row();
+        @include common.flex-row();
+
         .more-icon {
+            @include common.shape(theme.$sub-color, transparent, 4px);
+            @include icon-shadow(theme.$dashboard-color, 0.5);
+
             padding: 10px;
-            background-color: theme.$sub-color;
-            color: theme.$dashboard-color;
-            border-radius: 4px;
+            &:hover,
+            &.open {
+                @include common.hover-event();
+                @include icon-shadow(theme.$main-color, 0.3);
+            }
         }
         .more-button {
-            border: 1px solid theme.$sub-color;
-            &:hover {
-                transition: 0.2s;
-                cursor: pointer;
-                font-weight: 800;
+            @include icon-border-shadow(1px solid theme.$sub-color, 0.5);
+            &:hover,
+            &.open {
+                @include common.hover-event();
+                @include icon-border-shadow(1px solid theme.$main-color, 0.2);
+                font-weight: 700;
             }
+        }
+        .more-button:hover + .more-icon {
+            @include icon-shadow(theme.$main-color, 0.2);
         }
     }
     .check-breed {
-        @include display-row($justify-content: flex-start);
+        @include common.flex-row($justify-content: flex-start);
         width: 70%;
         .delete-icon {
             &:hover {
-                cursor: pointer;
+                @include common.hover-event();
             }
         }
     }
     .next-button {
+        @include common.flex-row();
         width: 30%;
-        @include display-row();
+    }
+}
+
+.next-btn {
+    @include common.size(120px, 35px);
+    @include common.shape(
+        transparent,
+        2.5px solid transparentize(theme.$sub-color, 0.2),
+        0
+    );
+
+    margin-left: 10px;
+    color: theme.$dark-gray-color;
+    box-shadow: 4px 4px 0px 0px transparentize(theme.$sub-color, 0.5);
+
+    &:hover {
+        @include common.hover-event();
+        @include icon-border-shadow(2.5px solid theme.$main-color, 0.6);
+
+        transform: scale(1.01);
+        color: black;
+        font-weight: 800;
     }
 }

@@ -25,14 +25,19 @@ const Step2 = (props) => {
                 <Text>
                     반려견 종을 선택해주세요. 최대 3개까지 선택 가능합니다.
                 </Text>
-                <div className="add-breed">
-                    <IoPawSharp size={15} className="more-icon" />
+                <div className="add-breed" onClick={() => setShowModal(true)}>
                     <PlusButton
-                        className="more-button"
-                        onClick={() => setShowModal(true)}
+                        className={
+                            showModal ? 'more-button open' : 'more-button'
+                        }
                     >
                         찾는 반려견 종이 없어요!
                     </PlusButton>
+                    <IoPawSharp
+                        size={15}
+                        htmlFor="more-button"
+                        className={showModal ? 'more-icon open' : 'more-icon'}
+                    />
                 </div>
             </Header>
             <BreedArticle>
@@ -53,18 +58,11 @@ const Step2 = (props) => {
                         </SelectItem>
                     ))}
                 </div>
-                <div className="next-button">
-                    <SubmitButton
-                        text="끝내기"
-                        setStep={props.setStep}
-                        step={props.step}
-                    />
-                    <SubmitButton
-                        text="다음 단계"
-                        setStep={props.setStep}
-                        step={props.step}
-                    />
-                </div>
+                <SubmitButton
+                    text="다음 단계"
+                    setStep={props.setStep}
+                    step={props.step}
+                />
             </Footer>
             {showModal && (
                 <BreedModal

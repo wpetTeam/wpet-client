@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container } from 'Diary/styles/style';
+import { CommonContainer } from 'Diary/styles/style';
 
 const ReadDiary = () => {
-    return <Container></Container>;
+    return <CommonContainer></CommonContainer>;
 };
 export default ReadDiary;

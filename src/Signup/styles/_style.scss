@@ -1,40 +1,37 @@
 @use 'assets/styles/_theme.scss' as theme;
-@use 'assets/styles/common/_loginSignup.scss' as common;
+@use 'assets/styles/common/_loginSignup.scss' as s_common;
+@use 'assets/styles/common/_common.scss' as common;
 @use 'Login/styles/_style.scss' as login;
 
 /* page/Signup */
 .signup {
     .close-icon {
-        @include common.close-icon();
+        @include s_common.close-icon();
         margin-left: 90%;
     }
     .welcome-text {
-        @include common.text($top: 0, $font-size: 1.7em);
+        @include s_common.text($top: 0, $font-size: 1.7em);
     }
     .sub-text {
-        @include common.text($top: 1.9%, $font-size: 0.75em);
+        @include s_common.text($top: 1.9%, $font-size: 0.75em);
     }
     .profile-text {
-        @include common.text($top: 1.9%, $font-size: 0.7em);
+        @include s_common.text($top: 1.9%, $font-size: 0.7em);
         text-align: center;
     }
     .alert-text {
-        @include common.text($top: -2.1%, $bottom: '0.5%', $font-size: 0.7em);
+        @include s_common.text($top: -2.1%, $bottom: '0.5%', $font-size: 0.7em);
         margin-left: 2%;
         color: firebrick;
     }
     .pw-check-component {
+        @include common.flex-row($justify-content: flex-start);
         margin-top: -7.7%;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
 
         .pw-check {
             @include login.font-opacity(gray, 0.9);
+            @include common.flex-row();
             margin-right: 20px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
             .text {
                 font-size: 0.66em;
                 font-weight: 600;
@@ -62,13 +59,10 @@
 /* components / EmailAuth */
 .auth-modal {
     .close-icon {
-        @include common.closeIcon();
+        @include s_common.closeIcon();
     }
     .header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
+        @include common.flex-row();
 
         margin-top: 10px;
 
@@ -80,12 +74,12 @@
             animation-iteration-count: infinite;
         }
         .header-text {
-            @include common.text($top: 0, $bottom: 0, $font-size: 1.3em);
+            @include s_common.text($top: 0, $bottom: 0, $font-size: 1.3em);
         }
     }
 
     .main {
-        @include common.text($top: 15px, $bottom: 40px, $font-size: 0.9em);
+        @include s_common.text($top: 15px, $bottom: 40px, $font-size: 0.9em);
         text-align: center;
 
         .desc-text {
@@ -96,11 +90,12 @@
             align-items: baseline;
 
             .auth-input {
-                @include common.text(
+                @include s_common.text(
                     $top: 10px,
                     $bottom: 50px,
                     $font-size: 1.2em
                 );
+                @include common.shape();
 
                 width: 200px;
                 margin-right: 10px;
@@ -108,9 +103,6 @@
 
                 text-align: center;
                 font-weight: 700;
-
-                border: transparent;
-                background: transparent;
                 border-bottom: 2.5px solid theme.$main-color;
 
                 &:focus {
@@ -118,18 +110,15 @@
                 }
             }
             .compare-button {
-                @include common.authButton();
+                @include s_common.authButton();
             }
         }
     }
 
     .footer {
-        display: flex;
-        flex-direction: row;
-        align-items: baseline;
-
+        @include common.flex-row($align-items: baseline);
         .time-text {
-            @include common.text($top: 8px, $font-size: 0.85em);
+            @include s_common.text($top: 8px, $font-size: 0.85em);
             margin-right: 10px;
 
             span {
@@ -137,7 +126,7 @@
             }
         }
         .resend-button {
-            @include common.authButton();
+            @include s_common.authButton();
         }
     }
 }

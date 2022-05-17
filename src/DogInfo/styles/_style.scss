@@ -1,34 +1,39 @@
 @use 'assets/styles/_theme.scss';
+@use 'assets/styles/common/_tabStyle.scss' as tabStyle;
+@use 'assets/styles/common/_common.scss' as common;
 
 .dog-info {
     .dog-info-nav {
-        @include theme.nav-icon();
+        @include tabStyle.nav-icon();
     }
 }
+
 .register-step-bar {
+    @include common.flex-column(space-between, center);
+
     .step-check-icon {
-        width: 13px;
-        height: 13px;
+        @include common.size(13px, 13px);
+        @include common.shape(
+            theme.$sub-color,
+            1.5px solid theme.$sub-color,
+            50%
+        );
 
         color: theme.$sub-color;
-        background-color: theme.$sub-color;
-        border: 1.5px solid theme.$sub-color;
-        border-radius: 50%;
 
         &.pre-checked {
+            @include common.shape(white, 2px solid theme.$main-color, 50%);
             transition: 0.4s ease-in-out;
             color: white;
-            background-color: white;
-            border: 2px solid theme.$main-color;
         }
         &.checked {
+            @include common.shape(white, 1.5px solid theme.$main-color, 50%);
             transition: 0.4s ease-in-out;
-            border: 1.5px solid theme.$main-color;
-            background-color: white;
             color: theme.$main-color;
         }
     }
     .step-bar {
+        @include common.size(2px, 42%);
         background: theme.$step-color;
         transform: rotate(180deg);
 

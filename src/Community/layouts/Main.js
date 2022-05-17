@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Nav, Article } from 'assets/styles/tabStyle';
+import { Container, Nav, Article } from 'assets/styles/common/tabStyle';
 import 'DogInfo/styles/_style.scss';
 import { Tab } from 'Community/components';
 

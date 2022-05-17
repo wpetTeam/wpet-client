@@ -1,33 +1,27 @@
+// 색상
 $main-color: #aa5b42;
 $sub-color: #f3c5b6;
 $login-color: #f4e7e3;
 $dashboard-color: #fffcfb;
 $dashboard-icon-color: #d6a291;
 $step-color: #d6a29180;
+$gray-color: #c4c4c4;
+$dark-gray-color: #686868;
 
-@mixin nav-icon {
-    transition: 0.4s ease-in-out;
+$kakao-color: #ffe600;
+$facebook-color: #1877fe;
+$insta-color: linear-gradient(
+    45deg,
+    #405de6,
+    #5851db,
+    #833ab4,
+    #c13584,
+    #e1306c,
+    #fd1d1d
+);
 
-    width: 20px;
-    height: 20px;
-
-    padding: 10px;
-    margin-bottom: 4px;
-
-    border-radius: 10%;
-    border: 1.5px solid $sub-color;
-    color: $main-color;
-
-    &.select {
-        background: $main-color;
-        color: $dashboard-color;
-        border: 1.5px solid $main-color;
-    }
-
-    &:hover {
-        cursor: pointer;
-        background: $main-color;
-        color: $dashboard-color;
-        border: 1.5px solid $main-color;
-    }
-}
+// 폰트
+$description-font: Pretendard Medium;
+$description-font-bold: Pretendard SemiBold;
+$function-font: 'Elice Digital Baeum', sans-serif;
+$english-font: Strawberry Muffins;

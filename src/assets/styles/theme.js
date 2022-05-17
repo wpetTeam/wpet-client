@@ -7,7 +7,15 @@ const colors = {
     step: '#D6A29180',
 };
 
+const font = {
+    description: 'Pretendard Medium',
+    descriptionBold: 'Pretendard SemiBold',
+    function: 'Elice Digital Baeum, sans-serif',
+    english: 'Strawberry Muffins',
+};
+
 export const theme = {
+    /* 색상 */
     aboutBackground: colors.sub,
     aboutLogoText: colors.main,
 
@@ -16,4 +24,10 @@ export const theme = {
     dashboardIcon: colors.icon,
 
     dogInfoStepText: colors.step,
+
+    /* 폰트 */
+    descriptionFont: font.description,
+    descriptionBoldFont: font.descriptionBold,
+    functionFont: font.function,
+    englishFont: font.english,
 };
