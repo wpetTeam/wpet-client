@@ -1,38 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Container,
     Text,
     InputContainer,
     Profile,
     Info,
-    Label,
+    Footer,
 } from './styles/style.js';
-import { Input } from 'DogInfo/components/Register/Input';
+import logo from 'assets/images/sample.jpg';
+import { Button } from '../Button.js';
 
-const Step3 = () => {
+const Step3 = (props) => {
+    const [dogInfo] = useState({
+        name: '임미남',
+        profilePicture: '',
+        birth: '2014.09.14',
+        gender: '남',
+        breeds: ['말티즈', '페키니즈', '푸들'],
+    });
     return (
-        <Container>
-            <Text>아래의 항목을 입력해주세요</Text>
-            <p>전부 다 입력하지 않아도 괜찮습니다.</p>
+        <Container className="page-step3">
+            <Text>작성한 반려견 정보를 확인해주세요.</Text>
             <InputContainer>
                 <Profile>
-                    <Label>반려견 몸무게</Label>
-                    <Input width="80px" text="kg" />
-                    <Label>현재 복용중인 약이 있나요?</Label>
-                    <div>
-                        <div>
-                            <Label>약 명</Label>
-                            <Input width="230px" />
+                    <img
+                        className="dog-picture"
+                        src={logo}
+                        alt="pictureSection"
+                        width={230}
+                    />
+                </Profile>
+                <Info className="dog-info-container">
+                    <div className="dog-info-sub">
+                        <div className="dog-info name">
+                            반려견 이름 <span>{dogInfo.name}</span>
                         </div>
-                        <Label>복용 횟수</Label>
-                        <div>
-                            <Input width="40px" text="일에" />
-                            <Input width="40px" text="번" />
+                        <div className="dog-info gender">
+                            반려견 성별 <span>{dogInfo.gender}</span>
                         </div>
                     </div>
-                </Profile>
-                <Info></Info>
+                    <div className="dog-info birth">
+                        반려견 출생년월 <span>{dogInfo.birth}</span>
+                    </div>
+                    <div className="dog-info breed">
+                        반려견 종{' '}
+                        <div className="dog-info-breeds">
+                            {dogInfo.breeds.map((item) => (
+                                <span className="breed">{item}</span>
+                            ))}
+                        </div>
+                    </div>
+                </Info>
             </InputContainer>
+            <Footer>
+                <div></div>
+                <Button
+                    text="확인 완료 및 등록"
+                    setStep={props.setStep}
+                    step={props.step}
+                />
+            </Footer>
         </Container>
     );
 };

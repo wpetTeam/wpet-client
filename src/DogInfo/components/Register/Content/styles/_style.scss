@@ -14,12 +14,12 @@
 }
 
 @mixin icon-shadow($color: theme.$main-color, $opacity: 0.5) {
+    @include common.shadow(3px, theme.$main-color, $opacity);
     color: $color;
-    box-shadow: 3px 3px 0px 0px transparentize(theme.$main-color, $opacity);
 }
 @mixin icon-border-shadow($border: 1px solid theme.$sub-color, $opacity) {
+    @include common.shadow(3px, theme.$main-color, $opacity);
     border: $border;
-    box-shadow: 3px 3px 0px 0px transparentize(theme.$main-color, $opacity);
 }
 
 .page-step2 {
@@ -33,8 +33,8 @@
         .more-icon {
             @include common.shape(theme.$sub-color, transparent, 4px);
             @include icon-shadow(theme.$dashboard-color, 0.5);
-
             padding: 10px;
+
             &:hover,
             &.open {
                 @include common.hover-event();
@@ -76,10 +76,10 @@
         2.5px solid transparentize(theme.$sub-color, 0.2),
         0
     );
+    @include common.shadow(4px, theme.$sub-color, 0.5);
 
     margin-left: 10px;
     color: theme.$dark-gray-color;
-    box-shadow: 4px 4px 0px 0px transparentize(theme.$sub-color, 0.5);
 
     &:hover {
         @include common.hover-event();
@@ -88,5 +88,69 @@
         transform: scale(1.01);
         color: black;
         font-weight: 800;
+    }
+}
+
+@mixin span-style {
+    @include common.font(black, theme.$description-font, 1.5em, 600);
+    @include common.shape(transparent, 2px solid black, 0);
+    @include common.shadow(3px, black, 0.2);
+
+    padding: 5px;
+    margin-top: 0.5%;
+    letter-spacing: 0.1em;
+}
+
+.page-step3 {
+    .dog-picture {
+        @include common.shape(transparent, 4px solid black, 0);
+        @include common.shadow(7px, black, 0.2);
+        padding: 5px;
+        margin-top: 7.5%;
+        margin-left: -8%;
+    }
+    .dog-info-container {
+        .dog-info-sub {
+            @include common.flex-row(center, flex-start);
+        }
+
+        .dog-info {
+            @include common.size(100%, 25%);
+            @include common.flex-column(center, flex-start);
+
+            font-size: 0.75em;
+            color: theme.$dark-gray-color;
+            margin-bottom: 1%;
+
+            .dog-info-breeds {
+                @include common.size(100%, 100%);
+
+                margin-top: 1.6%;
+                padding-top: 0.5%;
+
+                .breed {
+                    @include span-style();
+                    margin-right: 2%;
+                }
+            }
+        }
+        .gender {
+            span {
+                @include common.size(24px, 35px);
+                text-align: center;
+            }
+        }
+
+        .birth {
+            margin-bottom: 5%;
+        }
+
+        .name,
+        .birth,
+        .gender {
+            span {
+                @include span-style();
+            }
+        }
     }
 }

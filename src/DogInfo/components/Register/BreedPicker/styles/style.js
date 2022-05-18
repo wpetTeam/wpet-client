@@ -43,8 +43,7 @@ export const ModalContainer = styled(colDiv)`
     height: 75%;
 
     background: white;
-    border: 3px solid #c4c4c4;
-    border-radius: 5px;
+    border: 5px solid #686868;
 `;
 export const Header = styled(rowDiv)`
     height: 10%;
@@ -66,22 +65,22 @@ export const Footer = styled(colDiv)`
     padding-left: 5%;
 `;
 export const Input = styled.input`
-    width: 80%;
+    width: 85%;
     height: 12%;
-
-    margin-bottom: 6%;
+    margin-top: -4%;
+    margin-bottom: 8%;
     padding-left: 2%;
 
     border: 1.5px solid #00000080;
     border-radius: 4px;
 
     &:focus {
-        border: 2px solid ${({ theme }) => theme.aboutLogoText};
+        border: 2px solid #686868;
         outline: none;
     }
 `;
 export const SearchResult = styled(rowDiv)`
-    height: 70%;
+    height: 75%;
 
     flex-wrap: wrap;
     overflow: auto;

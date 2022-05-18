@@ -9,31 +9,30 @@
         0.65em,
         500
     );
-    @include common.shape(transparent, 1px solid theme.$main-color, 4px);
+    @include common.shape(transparent, 0.8px solid theme.$main-color, 0);
     margin-right: 1%;
 
     &:hover,
     &.select {
         @include common.hover-event();
-        @include common.shape(theme.$sub-color, 3px solid theme.$main-color, 0);
-
-        box-shadow: 3px 3px 0px 0px transparentize(theme.$main-color, 0.5);
+        @include common.shape(transparent, 3px solid black, 0);
+        @include common.shadow(4px, black, 0.2);
         font-weight: 700;
         color: black;
     }
 }
+
 .breed-modal {
     .close-icon {
         color: #c4c4c4;
-
         &:hover {
-            cursor: pointer;
-            color: #858585;
+            @include common.hover-event();
+            color: theme.$dark-gray-color;
         }
     }
     .delete-icon {
         &:hover {
-            cursor: pointer;
+            @include common.hover-event();
         }
     }
 }

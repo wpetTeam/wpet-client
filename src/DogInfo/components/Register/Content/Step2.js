@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import BreedPicker from '../BreedPicker';
 import { IoPawSharp, IoCloseSharp } from 'react-icons/io5';
-import { SubmitButton } from '../SubmitButton';
+import { Button } from '../Button';
 import {
     Container,
     Text,
@@ -58,7 +58,7 @@ const Step2 = (props) => {
                         </SelectItem>
                     ))}
                 </div>
-                <SubmitButton
+                <Button
                     text="다음 단계"
                     setStep={props.setStep}
                     step={props.step}

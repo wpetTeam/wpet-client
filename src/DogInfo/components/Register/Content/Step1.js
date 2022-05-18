@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Input } from 'DogInfo/components/Register/Input';
 import DatePicker from '../DatePicker';
-import { SubmitButton } from '../SubmitButton';
+import { Button as SubmitButton } from '../Button';
 import {
     Text,
     Container,

@@ -5,6 +5,7 @@ const colors = {
     dashboard: '#FFFCFB',
     icon: '#D6A291',
     step: '#D6A29180',
+    gray: '#686868',
 };
 
 const font = {
@@ -16,6 +17,7 @@ const font = {
 
 export const theme = {
     /* 색상 */
+    grayColor: colors.gray,
     aboutBackground: colors.sub,
     aboutLogoText: colors.main,
 

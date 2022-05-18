@@ -1,6 +1,6 @@
 import 'DogInfo/components/Register/Content/styles/_style.scss';
 
-export const SubmitButton = (props) => {
+export const Button = (props) => {
     return (
         <button
             className="next-btn"

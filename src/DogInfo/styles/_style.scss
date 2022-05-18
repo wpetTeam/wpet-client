@@ -10,7 +10,6 @@
 
 .register-step-bar {
     @include common.flex-column(space-between, center);
-
     .step-check-icon {
         @include common.size(13px, 13px);
         @include common.shape(

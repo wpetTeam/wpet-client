@@ -45,15 +45,15 @@ const SubmitButton = styled.button.attrs(
     color: ${({ theme }) => theme.loginBackground};
 
     border: transparent;
-    border-radius: 5px;
-    box-shadow: 1.5px 1.5px #868686;
+    box-shadow: 5px 5px 0px 0px ${({ theme }) => theme.aboutLogoText}50;
 
     &:hover {
         transform: scale(1.01);
-        transition: 0.3s ease-in-out;
+        transition: 0.4s ease-in-out;
         cursor: pointer;
 
         background: ${({ theme }) => theme.aboutLogoText};
+        box-shadow: 2px 2px 0px 0px ${({ theme }) => theme.aboutLogoText}80;
     }
 
     &.kakao {
