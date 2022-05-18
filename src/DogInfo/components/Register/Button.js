@@ -4,7 +4,8 @@ export const Button = (props) => {
     return (
         <button
             className="next-btn"
-            onClick={() => props.setStep(props.step + 1)}
+            onClick={props.onClick}
+            // onClick={() => props.setStep(props.step + 1)}
         >
             {props.text}
         </button>

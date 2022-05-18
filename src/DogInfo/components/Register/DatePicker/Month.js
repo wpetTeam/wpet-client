@@ -13,19 +13,22 @@ export const Month = (props) => {
     };
 
     return (
-        <>
+        <React.Fragment>
             <SelectContainer onClick={handleButton}>
                 {props.month}
             </SelectContainer>
             {props.showMonth && (
                 <OptionContainer>
                     {MonthCalender.map((item, idx) => (
-                        <Option onClick={() => handlePicker(item)}>
+                        <Option
+                            key={(idx % 30) + 29098}
+                            onClick={() => handlePicker(item)}
+                        >
                             {item}
                         </Option>
                     ))}
                 </OptionContainer>
             )}
-        </>
+        </React.Fragment>
     );
 };

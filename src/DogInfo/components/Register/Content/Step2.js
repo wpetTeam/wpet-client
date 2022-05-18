@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BreedPicker from '../BreedPicker';
 import { IoPawSharp, IoCloseSharp } from 'react-icons/io5';
 import { Button } from '../Button';
@@ -17,18 +17,27 @@ import { handleDeleteBreed } from '../BreedPicker/handlePicker';
 
 const Step2 = (props) => {
     const [breed, setBreed] = useState([]);
-    const [showModal, setShowModal] = useState(false);
+    const [showsModal, setShowsModal] = useState(false);
+
+    const handleButton = () => {
+        props.setPetInfo({
+            ...props.petInfo,
+            breed: breed,
+        });
+        if (breed.length >= 1) props.setStep(props.step + 1);
+        else alert('1개 이상 선택하세요');
+    };
 
     return (
         <Container className="page-step2">
             <Header className="step2-header">
-                <Text>
+                <Text style={{ color: 'black' }}>
                     반려견 종을 선택해주세요. 최대 3개까지 선택 가능합니다.
                 </Text>
-                <div className="add-breed" onClick={() => setShowModal(true)}>
+                <div className="add-breed" onClick={() => setShowsModal(true)}>
                     <PlusButton
                         className={
-                            showModal ? 'more-button open' : 'more-button'
+                            showsModal ? 'more-button open' : 'more-button'
                         }
                     >
                         찾는 반려견 종이 없어요!
@@ -36,7 +45,7 @@ const Step2 = (props) => {
                     <IoPawSharp
                         size={15}
                         htmlFor="more-button"
-                        className={showModal ? 'more-icon open' : 'more-icon'}
+                        className={showsModal ? 'more-icon open' : 'more-icon'}
                     />
                 </div>
             </Header>
@@ -58,17 +67,13 @@ const Step2 = (props) => {
                         </SelectItem>
                     ))}
                 </div>
-                <Button
-                    text="다음 단계"
-                    setStep={props.setStep}
-                    step={props.step}
-                />
+                <Button text="다음 단계" onClick={handleButton} />
             </Footer>
-            {showModal && (
+            {showsModal && (
                 <BreedModal
                     breed={breed}
                     setBreed={setBreed}
-                    setShowModal={setShowModal}
+                    setShowModal={setShowsModal}
                 />
             )}
         </Container>

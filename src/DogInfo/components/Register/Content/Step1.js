@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Input } from 'DogInfo/components/Register/Input';
 import DatePicker from '../DatePicker';
 import { Button as SubmitButton } from '../Button';
@@ -9,19 +9,37 @@ import {
     Profile,
     Info,
     Label,
-    Button,
     Footer,
 } from './styles/style';
 import { ProfilePicture } from 'Signup/components';
 
 const Step1 = (props) => {
-    const [petProfile, setPetProfile] = useState('');
     const [month, setMonth] = useState('');
     const [date, setDate] = useState('');
+    const [gender, setGender] = useState('');
+
+    function handleChange(e) {
+        props.setPetInfo({
+            ...props.petInfo,
+            [e.target.name]: e.target.value,
+        });
+    }
+
+    const HandleButton = () => {
+        props.setPetInfo({
+            ...props.petInfo,
+            month: month,
+            date: date,
+            gender: gender,
+        });
+        props.setStep(props.step + 1);
+    };
+
+    console.log(props.petInfo);
 
     return (
         <Container className="page-step1">
-            <Text>
+            <Text style={{ color: 'black' }}>
                 아래의 항목을 입력해주세요
                 <span className="profile-dsc-text">(*는 필수사항입니다)</span>
             </Text>
@@ -34,14 +52,19 @@ const Step1 = (props) => {
                     <div className="profile">
                         <ProfilePicture
                             size="250px"
-                            setProfile={setPetProfile}
-                            profile={petProfile}
+                            setProfile={props.setPicture}
+                            profile={props.picture}
                         />
                     </div>
                 </Profile>
                 <Info>
                     <Label>반려견 이름*</Label>
-                    <Input width="230px" />
+                    <Input
+                        name="petName"
+                        value={props.petInfo.petName}
+                        onChange={handleChange}
+                        width="230px"
+                    />
                     <Label>반려견 출생년월* </Label>
                     <div
                         style={{
@@ -50,8 +73,14 @@ const Step1 = (props) => {
                             alignItems: 'center',
                         }}
                     >
-                        <Input width="80px" text="년" />
-                        {/* <Input width="30px" text="월" />*/}
+                        <Input
+                            name="year"
+                            value={props.petInfo.year}
+                            onChange={handleChange}
+                            width="80px"
+                            text="년"
+                            maxLength={4}
+                        />
                         <DatePicker
                             text="월"
                             type="month"
@@ -73,18 +102,32 @@ const Step1 = (props) => {
                             flexDirection: 'row',
                         }}
                     >
-                        <Button>남</Button>
-                        <Button>여</Button>
+                        <button
+                            className={
+                                gender === '남'
+                                    ? 'gender-btn select'
+                                    : 'gender-btn'
+                            }
+                            onClick={() => setGender('남')}
+                        >
+                            남
+                        </button>
+                        <button
+                            className={
+                                gender === '여'
+                                    ? 'gender-btn select'
+                                    : 'gender-btn'
+                            }
+                            onClick={() => setGender('여')}
+                        >
+                            여
+                        </button>
                     </div>
                 </Info>
             </InputContainer>
             <Footer>
                 <div></div>
-                <SubmitButton
-                    text="다음 단계"
-                    setStep={props.setStep}
-                    step={props.step}
-                />
+                <SubmitButton text="다음 단계" onClick={HandleButton} />
             </Footer>
         </Container>
     );

@@ -40,27 +40,6 @@ export const Label = styled.label`
     font-size: 0.75em;
     color: #686868;
 `;
-export const Button = styled.button`
-    width: 35px;
-    height: 35px;
-
-    margin-right: 4px;
-    color: #686868;
-
-    background: transparent;
-    border: 1px solid #bdbdbd;
-    border-radius: 4px;
-
-    &:hover,
-    &:focus {
-        transition: 0.1s ease-in-out;
-        cursor: pointer;
-        outline: none;
-        border: 1.5px solid ${({ theme }) => theme.aboutLogoText};
-        color: ${({ theme }) => theme.aboutLogoText};
-        font-weight: 700;
-    }
-`;
 
 export const Header = styled.div`
     width: 100%;

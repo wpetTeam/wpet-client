@@ -2,15 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
 import 'DogInfo/styles/_style.scss';
+import uuid from 'react-uuid';
 
 export const StepBar = (props) => {
     return (
         <Container className="register-step-bar">
             {Array.from({ length: 5 }).map((item, idx) => (
-                <>
+                <React.Fragment key={uuid()}>
                     {(idx + 1) % 2 === 0 && (
                         <div
-                            key={(idx + 10) % 230}
                             className={
                                 props.step * 2 > idx + 1
                                     ? 'step-bar checked'
@@ -20,7 +20,6 @@ export const StepBar = (props) => {
                     )}
                     {(idx + 1) % 2 === 1 && (
                         <Icon
-                            key={(idx + 10) % 230}
                             icon="bi:check-circle-fill"
                             className={
                                 props.step * 2 - 1 === idx + 1
@@ -31,7 +30,7 @@ export const StepBar = (props) => {
                             }
                         />
                     )}
-                </>
+                </React.Fragment>
             ))}
         </Container>
     );

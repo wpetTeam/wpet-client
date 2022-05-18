@@ -10,10 +10,10 @@ const Container = styled.div`
 `;
 
 export const BoldText = styled.p`
-    font-family: ${({ theme }) => theme.$englishFont};
+    font-family: Strawberry Muffins;
 `;
 export const Text = styled.p`
-    font-family: ${({ theme }) => theme.$englishFont};
+    font-family: Elice Digital Baeum, sans-serif;
 `;
 
 export const Logo = styled(Container)``;

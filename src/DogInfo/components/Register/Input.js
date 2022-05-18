@@ -4,6 +4,10 @@ export const Input = (props) => {
     return (
         <Container>
             <Form
+                name={props.name}
+                value={props.value}
+                onChange={props.onChange}
+                maxLength={props.maxLength}
                 width={props.width}
                 text={props.text}
                 placeholder={props.placeholder}
@@ -28,7 +32,7 @@ const Container = styled.div`
 const Form = styled.input.attrs((props) => ({
     width: props.width,
     textAlign: props.text ? 'center' : 'left',
-    paddingLeft: props.text ? '0' : '4px',
+    paddingLeft: props.text ? '0' : '10px',
 }))`
     width: ${(props) => props.width};
     height: 30px;
@@ -41,7 +45,9 @@ const Form = styled.input.attrs((props) => ({
 
     text-align: ${(props) => props.textAlign};
     font-family: Pretendard Medium;
-    color: #00000095;
+    color: black;
+    font-weight: 700;
+    letter-spacing: 0.1em;
 
     &:focus {
         outline: none;

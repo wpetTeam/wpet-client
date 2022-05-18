@@ -11,21 +11,17 @@ import logo from 'assets/images/sample.jpg';
 import { Button } from '../Button.js';
 
 const Step3 = (props) => {
-    const [dogInfo] = useState({
-        name: '임미남',
-        profilePicture: '',
-        birth: '2014.09.14',
-        gender: '남',
-        breeds: ['말티즈', '페키니즈', '푸들'],
-    });
+    console.log(props.petInfo);
     return (
         <Container className="page-step3">
-            <Text>작성한 반려견 정보를 확인해주세요.</Text>
+            <Text className="title-text">
+                작성한 반려견 정보를 확인해주세요.
+            </Text>
             <InputContainer>
                 <Profile>
                     <img
                         className="dog-picture"
-                        src={logo}
+                        src={props.picture === '' ? logo : props.picture}
                         alt="pictureSection"
                         width={230}
                     />
@@ -33,19 +29,25 @@ const Step3 = (props) => {
                 <Info className="dog-info-container">
                     <div className="dog-info-sub">
                         <div className="dog-info name">
-                            반려견 이름 <span>{dogInfo.name}</span>
+                            <p>반려견 이름</p>{' '}
+                            <span>{props.petInfo.petName}</span>
                         </div>
                         <div className="dog-info gender">
-                            반려견 성별 <span>{dogInfo.gender}</span>
+                            <p>반려견 성별</p>{' '}
+                            <span>{props.petInfo.gender}</span>
                         </div>
                     </div>
                     <div className="dog-info birth">
-                        반려견 출생년월 <span>{dogInfo.birth}</span>
+                        <p>반려견 출생년월</p>{' '}
+                        <span>
+                            {props.petInfo.year}.{props.petInfo.month}.
+                            {props.petInfo.date}.
+                        </span>
                     </div>
                     <div className="dog-info breed">
-                        반려견 종{' '}
+                        <p>반려견 종</p>
                         <div className="dog-info-breeds">
-                            {dogInfo.breeds.map((item) => (
+                            {props.petInfo.breed.map((item) => (
                                 <span className="breed">{item}</span>
                             ))}
                         </div>

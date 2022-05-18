@@ -29,6 +29,7 @@ export const SelectContainer = styled.button`
     background: transparent;
     border: 1px solid #bdbdbd;
     border-radius: 4px;
+    font-weight: 700;
 
     text-align: center;
 
