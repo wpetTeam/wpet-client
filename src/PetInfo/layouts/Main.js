@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import 'DogInfo/styles/_style.scss';
-import { CheckInfo, Register, Tab } from 'DogInfo/components';
+import 'PetInfo/styles/_style.scss';
+import { CheckInfo, Register, Tab } from 'PetInfo/components';
 import { Container, Nav, Article } from 'assets/styles/common/tabStyle';
 
 const Main = () => {

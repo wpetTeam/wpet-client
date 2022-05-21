@@ -12,7 +12,7 @@ export const NavIcon = () => {
 
     const DIARY_URL = 'http://localhost:5000/diary';
     const DIARY_WRITE_URL = 'http://localhost:5000/diary/write';
-    const DOGINFO_URL = 'http://localhost:5000/dog-info';
+    const PETINFO_URL = 'http://localhost:5000/pet-info';
     const COMMUNITY_URL = 'http://localhost:5000/community';
     const SETTINGS_URL = 'http://localhost:5000/settings';
 
@@ -27,7 +27,7 @@ export const NavIcon = () => {
             {current_location === HOME_URL && (
                 <Nav>
                     <Icon name="diary" isShow />
-                    <Icon name="dog-info" isShow />
+                    <Icon name="pet-info" isShow />
                     <Icon name="community" isShow />
                     <Icon name="settings" isShow />
                 </Nav>
@@ -35,7 +35,7 @@ export const NavIcon = () => {
             {current_location === DIARY_URL && (
                 <Nav>
                     <Icon name="diary" isSelect />
-                    <Icon name="dog-info" />
+                    <Icon name="pet-info" />
                     <Icon name="community" />
                     <Icon name="settings" />
                 </Nav>
@@ -43,15 +43,15 @@ export const NavIcon = () => {
             {current_location === DIARY_WRITE_URL && (
                 <Nav>
                     <Icon name="diary" isSelect />
-                    <Icon name="dog-info" />
+                    <Icon name="pet-info" />
                     <Icon name="community" />
                     <Icon name="settings" />
                 </Nav>
             )}
-            {current_location === DOGINFO_URL && (
+            {current_location === PETINFO_URL && (
                 <Nav>
                     <Icon name="diary" />
-                    <Icon name="dog-info" isSelect />
+                    <Icon name="pet-info" isSelect />
                     <Icon name="community" />
                     <Icon name="settings" />
                 </Nav>
@@ -59,7 +59,7 @@ export const NavIcon = () => {
             {current_location === COMMUNITY_URL && (
                 <Nav>
                     <Icon name="diary" />
-                    <Icon name="dog-info" />
+                    <Icon name="pet-info" />
                     <Icon name="community" isSelect />
                     <Icon name="settings" />
                 </Nav>
@@ -67,7 +67,7 @@ export const NavIcon = () => {
             {current_location === SETTINGS_URL && (
                 <Nav>
                     <Icon name="diary" />
-                    <Icon name="dog-info" />
+                    <Icon name="pet-info" />
                     <Icon name="community" />
                     <Icon name="settings" isSelect />
                 </Nav>

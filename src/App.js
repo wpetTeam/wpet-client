@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { About, Home, Diary, Community, Settings, DogInfo } from 'pages';
-import { Register } from 'DogInfo/components';
+import { Register } from 'PetInfo/components';
 import { WriteDiary } from 'Diary/components';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
                 <Route path="diary" element={<Diary />}>
                     <Route path="write" element={<WriteDiary />} />
                 </Route>
-                <Route path="dog-info" element={<DogInfo />}>
+                <Route path="pet-info" element={<DogInfo />}>
                     <Route path="register" element={<Register />} />
                 </Route>
                 <Route path="community" element={<Community />} />

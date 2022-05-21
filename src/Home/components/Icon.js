@@ -12,7 +12,7 @@ export const Icon = (props) => {
         { id: 1, name: 'diary', icon: <Diary size={23} />, text: '다이어리' },
         {
             id: 2,
-            name: 'dog-info',
+            name: 'pet-info',
             icon: <DogInfo size={23} />,
             text: '나의 반려견',
         },

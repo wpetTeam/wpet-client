@@ -1,0 +1,155 @@
+@use 'assets/styles/_theme.scss' as theme;
+@use 'assets/styles/common/_common.scss' as common;
+
+.petinfo-header {
+    @include common.flex-row(flex-start, center);
+    padding-left: 5%;
+
+    .pet-picture {
+        @include common.shape(
+            theme.$step-color,
+            8px solid theme.$dashboard-color,
+            50%
+        );
+    }
+    .pet-name {
+        @include common.size(100%, 100%);
+        @include common.flex-row(center, center);
+
+        margin-top: -2%;
+
+        .text-area {
+            @include common.size(100%, 100%);
+            @include common.flex-column(center, flex-start);
+            margin: 10% 0 0 4%;
+
+            .petname-text {
+                @include common.size(90%, fit-content);
+                @include common.shape(transparent, transparent, 0);
+
+                color: black;
+                font-size: 1.6em;
+                font-weight: 600;
+
+                &:focus {
+                    outline: none;
+                    border: 1px solid gray;
+                    border-radius: 4px;
+                }
+            }
+            .dday-text {
+                margin: 0 0 0 5%;
+
+                font-size: 0.8em;
+                color: theme.$dark-gray-color;
+            }
+        }
+        .btn-area {
+            @include common.size(120px, 30px);
+            @include common.shape(theme.$step-color, transparent, 2px);
+
+            margin: 10% 10% 0 0;
+            color: theme.$dark-gray-color;
+            font-weight: 700;
+
+            &:hover {
+                @include common.hover-event();
+            }
+        }
+    }
+}
+
+.main-info {
+    @include common.size(100%, 20%);
+    @include common.flex-column(center, flex-start);
+
+    .info-label {
+        margin-bottom: -4%;
+        color: theme.$dark-gray-color;
+        font-size: 0.7em;
+    }
+    .info-text {
+        font-size: 1.1em;
+    }
+    .info-date {
+        @include common.flex-row(flex-start, center);
+        margin-top: 6%;
+        margin-bottom: 3%;
+    }
+    .info-text.gender {
+        @include common.size(100%, 100%);
+        @include common.flex-row(flex-start, center);
+        .gender-text {
+            @include common.size(28px, 24px);
+            @include common.shape(
+                transparent,
+                1px solid theme.$gray-color,
+                4px
+            );
+            padding-top: 4px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        .gender-change {
+            @include common.size(15px, 15px);
+            @include common.shape(
+                transparentize(theme.$step-color, 0.7),
+                transparent,
+                50px
+            );
+            padding: 2px;
+            margin-left: 2%;
+            font-size: 0.8em;
+            color: gray;
+
+            &:hover {
+                @include common.hover-event();
+                background: theme.$step-color;
+            }
+        }
+    }
+    .info-text.breed {
+        @include common.size(100%, 100%);
+        @include common.flex-row(flex-start, center);
+        margin-top: 5%;
+
+        .breed-container {
+            @include common.flex-row(flex-start, flex-start);
+            width: 82%;
+            flex-wrap: wrap;
+
+            .breed-item {
+                @include common.shape(
+                    transparentize(theme.$step-color, 0.7),
+                    transparent,
+                    4px
+                );
+                padding: 6px;
+                margin: 0 3% 1% 0;
+
+                font-size: 0.8em;
+            }
+            .breed-item.update {
+                @include common.shape(
+                    transparent,
+                    1px solid theme.$gray-color,
+                    4px
+                );
+            }
+        }
+        .breed-btn {
+            width: 17%;
+
+            padding: 6px;
+            margin-left: 2%;
+
+            border: transparent;
+            border-radius: 4px;
+
+            &:hover {
+                @include common.hover-event();
+                background-color: transparentize(theme.$dark-gray-color, 0.8);
+            }
+        }
+    }
+}

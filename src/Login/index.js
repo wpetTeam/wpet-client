@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { IoIosClose } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 
 import { theme } from 'assets/styles/theme';
 import LogoImage from 'assets/images/Logo/text-icon.png';

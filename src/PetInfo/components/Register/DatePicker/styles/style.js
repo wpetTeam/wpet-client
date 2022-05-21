@@ -20,18 +20,24 @@ export const Text = styled.p`
     color: #00000095;
 `;
 
-export const SelectContainer = styled.button`
+export const SelectContainer = styled.button.attrs((props) => ({
+    border: props.disabled ? 'transparent' : '1px solid #bdbdbd',
+    fontSize: props.disabled ? '1em' : '0.8em',
+    fontWeight: props.disabled ? '500' : '700',
+}))`
     width: 33px;
     height: 33px;
 
-    margin-right: 5px;
+    margin-right: 2px;
+
+    color: black;
+    text-align: center;
+    font-size: ${(props) => props.fontSize};
+    font-weight: ${(props) => props.fontWeight};
 
     background: transparent;
-    border: 1px solid #bdbdbd;
+    border: ${(props) => props.border};
     border-radius: 4px;
-    font-weight: 700;
-
-    text-align: center;
 
     &:focus {
         cursor: pointer;

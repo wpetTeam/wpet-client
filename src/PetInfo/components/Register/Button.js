@@ -1,4 +1,4 @@
-import 'DogInfo/components/Register/Content/styles/_style.scss';
+import 'PetInfo/components/Register/Content/styles/_style.scss';
 
 export const Button = (props) => {
     return (

@@ -1,39 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { NavIcon, UserProfile } from 'Home/components';
 import logo from 'assets/images/Logo/text-icon.png';
 import 'Home/styles/_style.scss';
-import { API } from 'utils';
 
-const Header = () => {
-    const [user, setUser] = useState({});
-
-    useEffect(() => {
-        const getAuth = async () => {
-            await API.get('/user/auth', {
-                withCredentials: true,
-            })
-                .then((res) => {
-                    if (window.location.href === 'http://localhost:5000/home') {
-                        console.log('>>> [HOME] ✅ SUCCESS', res.data);
-                    }
-
-                    if (res.status === 200) {
-                        setUser(res.data);
-                    }
-                })
-                .catch((err) =>
-                    console.log('>>> [HOME] ❌ ERROR', err.message),
-                );
-        };
-        getAuth();
-    }, []);
-    useEffect(() => {}, [user]);
-
+const Header = (props) => {
     return (
         <HeaderContainer className="home-header">
             <NavIcon />
-            <UserProfile user={user} logo={logo} />
+            <UserProfile user={props.user} logo={logo} />
         </HeaderContainer>
     );
 };

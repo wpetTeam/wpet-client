@@ -62,6 +62,7 @@ const Signup = (props) => {
     }
 
     const handleButton = () => {
+        console.log(profile);
         if (checkUserInfo(info.nickName, info.email, info.pw, setErrMessage))
             return;
         const userData = {

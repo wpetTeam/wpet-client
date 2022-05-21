@@ -19,6 +19,7 @@ const DatePicker = (props) => {
                     setMonth={props.setMonth}
                     showMonth={showMonth}
                     setShowMonth={setShowMonth}
+                    disabled={props.disabled}
                 />
             )}
             {props.type === 'date' && (
@@ -28,6 +29,7 @@ const DatePicker = (props) => {
                     setDate={props.setDate}
                     showDate={showDate}
                     setShowDate={setShowDate}
+                    disabled={props.disabled}
                 />
             )}
             <Text>{props.text}</Text>

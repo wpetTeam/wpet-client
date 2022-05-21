@@ -11,6 +11,7 @@ export const Input = (props) => {
                 width={props.width}
                 text={props.text}
                 placeholder={props.placeholder}
+                disabled={props.disabled}
             />
             {props.text && <Text>{props.text}</Text>}
         </Container>
@@ -33,6 +34,9 @@ const Form = styled.input.attrs((props) => ({
     width: props.width,
     textAlign: props.text ? 'center' : 'left',
     paddingLeft: props.text ? '0' : '10px',
+    border: props.disabled ? 'transparent' : '1px solid #bdbdbd',
+    fontWeight: props.disabled ? '500' : '700',
+    fontSize: props.disabled ? '0.95em' : '0.8em',
 }))`
     width: ${(props) => props.width};
     height: 30px;
@@ -40,14 +44,16 @@ const Form = styled.input.attrs((props) => ({
     margin-right: 5px;
     padding-left: ${(props) => props.paddingLeft};
 
-    border: 1px solid #bdbdbd;
-    border-radius: 4px;
-
     text-align: ${(props) => props.textAlign};
     font-family: Pretendard Medium;
     color: black;
-    font-weight: 700;
+    font-weight: ${(props) => props.fontWeight};
+    font-size: ${(props) => props.fontSize};
     letter-spacing: 0.1em;
+
+    background: transparent;
+    border: ${(props) => props.border};
+    border-radius: 4px;
 
     &:focus {
         outline: none;

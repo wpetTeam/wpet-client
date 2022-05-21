@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import BreedPicker from '../BreedPicker';
 import { IoPawSharp, IoCloseSharp } from 'react-icons/io5';
 import { Button } from '../Button';
@@ -12,7 +12,7 @@ import {
 } from './styles/style';
 import './styles/_style.scss';
 import BreedModal from '../BreedPicker/BreedModal';
-import { SelectItem } from 'DogInfo/components/Register/BreedPicker/styles/style';
+import { SelectItem } from 'PetInfo/components/Register/BreedPicker/styles/style';
 import { handleDeleteBreed } from '../BreedPicker/handlePicker';
 
 const Step2 = (props) => {

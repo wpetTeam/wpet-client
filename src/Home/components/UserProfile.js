@@ -9,7 +9,7 @@ export const UserProfile = (props) => {
 
     return (
         <ProfileNav>
-            <img
+            {/* <img
                 className="user-profile-picture"
                 src={
                     props.user.profilePicture === ''
@@ -17,9 +17,15 @@ export const UserProfile = (props) => {
                         : props.user.profilePicture
                 }
                 alt="사용자 프로필"
+            /> */}
+            <img
+                className="user-profile-picture"
+                src={props.logo}
+                alt="사용자 프로필"
             />
             <Text className="user-name-text">
-                <span>{props.user.nickName}</span> {'  '}님
+                {/* <span>{props.user.nickName}</span> {'  '}님 */}
+                <span>하하</span> {'  '}님
             </Text>
             <DropDownIcon
                 size={16}

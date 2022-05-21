@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Input } from 'DogInfo/components/Register/Input';
+import React, { useState } from 'react';
+import { Input } from 'PetInfo/components/Register/Input';
 import DatePicker from '../DatePicker';
 import { Button as SubmitButton } from '../Button';
 import {

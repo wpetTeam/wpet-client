@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Icon } from '@iconify/react';
-import 'DogInfo/styles/_style.scss';
+import 'PetInfo/styles/_style.scss';
 import { Link } from 'react-router-dom';
 
 export const Tab = (props) => {

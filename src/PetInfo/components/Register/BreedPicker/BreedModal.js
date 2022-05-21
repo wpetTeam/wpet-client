@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { IoCloseSharp } from 'react-icons/io5';
+import uuid from 'react-uuid';
+import { Breed } from './const/breed.const';
+import { handleBreedPicker, handleDeleteBreed } from './handlePicker';
 import {
     ModalContainer,
     Header,
@@ -12,8 +15,6 @@ import {
     SelectItem,
 } from './styles/style';
 import './styles/_style.scss';
-import { Breed } from './const/breed.const';
-import { handleBreedPicker, handleDeleteBreed } from './handlePicker';
 
 const BreedModal = (props) => {
     const [search, setSearch] = useState('');
@@ -21,14 +22,6 @@ const BreedModal = (props) => {
     const filteredBreed = Breed.filter((item) => {
         return item.name.includes(search);
     });
-
-    console.log(
-        filteredBreed.sort(function (a, b) {
-            let a_name = a.name;
-            let b_name = b.name;
-            return a_name === b_name ? 0 : a_name > b_name ? 1 : -1;
-        }),
-    );
 
     return (
         <ModalContainer className="breed-modal">
@@ -60,7 +53,7 @@ const BreedModal = (props) => {
                         })
                         .map((item) => (
                             <Result
-                                key={item.id}
+                                key={uuid()}
                                 onClick={() =>
                                     handleBreedPicker(
                                         item.name,
@@ -78,7 +71,7 @@ const BreedModal = (props) => {
                 <p style={{ fontSize: '0.7em' }}>이미 선택한 견종 (최대 3개)</p>
                 <SelectContainer>
                     {props.breed.map((item) => (
-                        <SelectItem>
+                        <SelectItem key={uuid()}>
                             {item}
                             <IoCloseSharp
                                 className="delete-icon"

@@ -1,27 +1,28 @@
 import { SelectContainer, OptionContainer, Option } from './styles/style';
 import React from 'react';
-import { MonthCalender } from './const/date.const';
+import { DateCalender } from './const/date.const';
 
-export const Month = (props) => {
+export const Date = (props) => {
     const handleButton = () => {
-        props.setShowMonth(!props.showMonth);
+        props.setShowDate(!props.showDate);
     };
 
     const handlePicker = (item) => {
-        props.setShowMonth(false);
-        props.setMonth(item);
+        props.setShowDate(false);
+        props.setDate(item);
     };
+    const dateCalender = DateCalender(props.month);
 
     return (
         <React.Fragment>
-            <SelectContainer onClick={handleButton}>
-                {props.month}
+            <SelectContainer disabled={props.disabled} onClick={handleButton}>
+                {props.date}
             </SelectContainer>
-            {props.showMonth && (
+            {props.showDate && (
                 <OptionContainer>
-                    {MonthCalender.map((item, idx) => (
+                    {dateCalender.map((item, idx) => (
                         <Option
-                            key={(idx % 30) + 29098}
+                            key={(idx % 31) + 22314}
                             onClick={() => handlePicker(item)}
                         >
                             {item}
