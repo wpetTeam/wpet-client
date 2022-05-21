@@ -2,14 +2,16 @@ import uuid from 'react-uuid';
 import { Icon } from '@iconify/react';
 import { Input } from 'PetInfo/components/Register/Input';
 import DatePicker from 'PetInfo/components/Register/DatePicker';
-import { DateCalculator } from '../utils/dateCalculator';
 import logo from 'assets/images/Logo/text-icon.png';
 import './_style.scss';
 
-export function Header({ petInfo, handleUpdateInfo, isUpdate, setIsUpdate }) {
-    const dDay = DateCalculator(petInfo.year, petInfo.month, petInfo.date);
-    console.log(dDay);
-
+export function Header({
+    petInfo,
+    isUpdate,
+    setIsUpdate,
+    dDay,
+    handleUpdateBtn,
+}) {
     return (
         <div className="petinfo-header">
             <img
@@ -25,20 +27,11 @@ export function Header({ petInfo, handleUpdateInfo, isUpdate, setIsUpdate }) {
             />
             <div className="pet-name">
                 <div className="text-area">
-                    <input
-                        className="petname-text"
-                        name="petName"
-                        value={petInfo.petName}
-                        onChange={handleUpdateInfo}
-                        disabled={isUpdate ? false : true}
-                    />
-                    <p className="dday-text">D+2429</p>
+                    <p className="name-text">{petInfo.petName}</p>
+                    <p className="dday-text">D+{dDay}</p>
                 </div>
                 {isUpdate ? (
-                    <button
-                        className="btn-area"
-                        onClick={() => setIsUpdate(false)}
-                    >
+                    <button className="btn-area" onClick={handleUpdateBtn}>
                         수정 완료
                     </button>
                 ) : (
@@ -54,11 +47,19 @@ export function Header({ petInfo, handleUpdateInfo, isUpdate, setIsUpdate }) {
     );
 }
 
-export function PetName({ petInfo }) {
+export function PetName({ petInfo, handleUpdateInfo, isUpdate }) {
     return (
         <div className="main-info">
             <p className="info-label">반려견 이름</p>
-            <p className="info-text">{petInfo.petName}</p>
+            <p className="info-text name">
+                <input
+                    className={isUpdate ? 'name-input update' : 'name-input'}
+                    name="petName"
+                    value={petInfo.petName}
+                    onChange={handleUpdateInfo}
+                    disabled={isUpdate ? false : true}
+                />
+            </p>
         </div>
     );
 }

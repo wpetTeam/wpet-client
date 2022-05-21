@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BreedModal from 'PetInfo/components/Register/BreedPicker/BreedModal';
 import { Header, PetName, PetGender, PetBirth, PetBreed } from './components';
+import { DateCalculator } from './utils/dateCalculator';
 
 const RegisterInfo = (props) => {
     const [isUpdate, setIsUpdate] = useState(false);
@@ -19,6 +20,14 @@ const RegisterInfo = (props) => {
     const [date, setDate] = useState(petInfo.date);
     const [breed, setBreed] = useState(petInfo.petSpecies);
     const [gender, setGender] = useState(petInfo.petSex);
+
+    var updateBeforeDday = DateCalculator(
+        petInfo.year,
+        petInfo.month,
+        petInfo.date,
+    );
+    const [dDay, setDDay] = useState(updateBeforeDday);
+
     const [showsModal, setShowsModal] = useState(false);
 
     const handleUpdateInfo = (e) => {
@@ -39,22 +48,39 @@ const RegisterInfo = (props) => {
     useEffect(() => {
         setPetInfo({
             ...petInfo,
+            month: month,
+            date: date,
             petSpecies: breed,
             petSex: gender,
         });
-    }, [breed, gender]);
+    }, [breed, gender, dDay, month, date]);
+
+    const handleUpdateBtn = () => {
+        var updateAfterDday = DateCalculator(
+            petInfo.year,
+            petInfo.month,
+            petInfo.date,
+        );
+        setDDay(updateAfterDday);
+        setIsUpdate(false);
+    };
 
     return (
         <Component>
             <div className="color-header"></div>
             <Header
                 petInfo={petInfo}
-                handleUpdateInfo={handleUpdateInfo}
+                dDay={dDay}
                 isUpdate={isUpdate}
                 setIsUpdate={setIsUpdate}
+                handleUpdateBtn={handleUpdateBtn}
             />
             <div className="main">
-                <PetName petInfo={petInfo} />
+                <PetName
+                    petInfo={petInfo}
+                    handleUpdateInfo={handleUpdateInfo}
+                    isUpdate={isUpdate}
+                />
                 <PetGender
                     petInfo={petInfo}
                     isUpdate={isUpdate}

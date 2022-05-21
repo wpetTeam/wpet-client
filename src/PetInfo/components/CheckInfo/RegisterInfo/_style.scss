@@ -15,30 +15,23 @@
     .pet-name {
         @include common.size(100%, 100%);
         @include common.flex-row(center, center);
-
         margin-top: -2%;
 
         .text-area {
             @include common.size(100%, 100%);
             @include common.flex-column(center, flex-start);
-            margin: 10% 0 0 4%;
+            margin: 2% 0 0 4%;
 
-            .petname-text {
+            .name-text {
                 @include common.size(90%, fit-content);
                 @include common.shape(transparent, transparent, 0);
 
                 color: black;
                 font-size: 1.6em;
                 font-weight: 600;
-
-                &:focus {
-                    outline: none;
-                    border: 1px solid gray;
-                    border-radius: 4px;
-                }
             }
             .dday-text {
-                margin: 0 0 0 5%;
+                margin: -18% 0 0 1%;
 
                 font-size: 0.8em;
                 color: theme.$dark-gray-color;
@@ -68,17 +61,37 @@
         color: theme.$dark-gray-color;
         font-size: 0.7em;
     }
-    .info-text {
-        font-size: 1.1em;
-    }
     .info-date {
         @include common.flex-row(flex-start, center);
         margin-top: 6%;
         margin-bottom: 3%;
     }
+    .info-text.name {
+        .name-input {
+            @include common.shape();
+            @include common.font(black, theme.$description-font, 1.1em, 500);
+            margin: 1% 0 0 -1.5%;
+        }
+        .name-input.update {
+            @include common.size(230px, 25px);
+            @include common.shape(
+                transparent,
+                1px solid theme.$gray-color,
+                4px
+            );
+            padding: 4px;
+            font-size: 0.85em;
+            font-weight: 700;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
     .info-text.gender {
         @include common.size(100%, 100%);
         @include common.flex-row(flex-start, center);
+        font-size: 1.1em;
+
         .gender-text {
             @include common.size(28px, 24px);
             @include common.shape(
@@ -88,7 +101,8 @@
             );
             padding-top: 4px;
             text-align: center;
-            font-size: 0.9em;
+            font-size: 0.8em;
+            font-weight: 700;
         }
         .gender-change {
             @include common.size(15px, 15px);
