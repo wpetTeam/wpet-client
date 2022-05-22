@@ -7,9 +7,7 @@ const DatePicker = (props) => {
     const [showMonth, setShowMonth] = useState(false);
     const [showDate, setShowDate] = useState(false);
 
-    useEffect(() => {
-        console.log(props.month, props.date);
-    }, [props.month, props.date]);
+    useEffect(() => {}, [props.month, props.date]);
 
     return (
         <Container>

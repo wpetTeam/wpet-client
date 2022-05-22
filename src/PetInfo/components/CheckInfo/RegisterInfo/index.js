@@ -20,15 +20,11 @@ const RegisterInfo = (props) => {
     const [date, setDate] = useState(petInfo.date);
     const [breed, setBreed] = useState(petInfo.petSpecies);
     const [gender, setGender] = useState(petInfo.petSex);
-
-    var updateBeforeDday = DateCalculator(
-        petInfo.year,
-        petInfo.month,
-        petInfo.date,
-    );
-    const [dDay, setDDay] = useState(updateBeforeDday);
-
     const [showsModal, setShowsModal] = useState(false);
+
+    const [dDay, setDDay] = useState(
+        DateCalculator(petInfo.year, petInfo.month, petInfo.date),
+    );
 
     const handleUpdateInfo = (e) => {
         setPetInfo({
@@ -56,12 +52,7 @@ const RegisterInfo = (props) => {
     }, [breed, gender, dDay, month, date]);
 
     const handleUpdateBtn = () => {
-        var updateAfterDday = DateCalculator(
-            petInfo.year,
-            petInfo.month,
-            petInfo.date,
-        );
-        setDDay(updateAfterDday);
+        setDDay(DateCalculator(petInfo.year, petInfo.month, petInfo.date));
         setIsUpdate(false);
     };
 

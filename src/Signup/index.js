@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { IoIosClose } from 'react-icons/io';
-import { Icon } from '@iconify/react';
 
 import { theme } from 'assets/styles/theme';
 import LogoImage from 'assets/images/Logo/text-icon.png';
-import { Input, Button } from 'Login/components';
+import {
+    NameInput,
+    EmailInput,
+    PwInput,
+    PwConfirmationInput,
+} from './components/functions';
+import { Button } from 'Login/components';
 import { ProfilePicture } from 'Signup/components';
 import { onKeyPress } from 'utils';
 import { CheckPwDetail, checkUserInfo } from 'Signup/utils/signupCheck';
@@ -62,7 +67,6 @@ const Signup = (props) => {
     }
 
     const handleButton = () => {
-        console.log(profile);
         if (checkUserInfo(info.nickName, info.email, info.pw, setErrMessage))
             return;
         const userData = {
@@ -70,7 +74,9 @@ const Signup = (props) => {
             email: info.email,
             pw: info.pw,
             profilePicture: profile,
+            location: '',
         };
+        console.log(userData);
         handleSignup(
             userData,
             props.setEmail,
@@ -109,85 +115,34 @@ const Signup = (props) => {
                             />
                         </Profile>
                         <Info>
-                            <Input
-                                name="nickName"
-                                value={info.nickName}
-                                onChange={handleChange}
-                                placeholder="닉네임 (1~15자)"
-                                onKeyPress={(e) => onKeyPress(e, handleButton)}
-                                isError={errMessage.name !== '' ? true : false}
+                            <NameInput
+                                info={info}
+                                errMessage={errMessage}
+                                handleChange={handleChange}
+                                onKeyPress={onKeyPress}
+                                handleButton={handleButton}
                             />
-                            <Text className="alert-text">
-                                {errMessage.name}
-                            </Text>
-                            <Input
-                                name="email"
-                                value={info.email}
-                                onChange={handleChange}
-                                placeholder="이메일"
-                                onKeyPress={(e) => onKeyPress(e, handleButton)}
-                                isError={errMessage.email !== '' ? true : false}
+                            <EmailInput
+                                info={info}
+                                errMessage={errMessage}
+                                handleChange={handleChange}
+                                onKeyPress={onKeyPress}
+                                handleButton={handleButton}
                             />
-                            <Text className="alert-text">
-                                {errMessage.email}
-                            </Text>
-                            <Input
-                                password
-                                name="pw"
-                                value={info.pw}
-                                onChange={handleChange}
-                                placeholder="비밀번호 (알파벳,숫자,특수문자를 포함한 8~13자)"
-                                onKeyPress={(e) => onKeyPress(e, handleButton)}
-                                isError={errMessage.pw !== '' ? true : false}
+                            <PwInput
+                                info={info}
+                                errMessage={errMessage}
+                                pwErrorCheck={pwErrorCheck}
+                                handleChange={handleChange}
+                                onKeyPress={onKeyPress}
+                                handleButton={handleButton}
                             />
-                            {info.pw.length !== 0 && (
-                                <div className="pw-check-component">
-                                    <div
-                                        className={
-                                            pwErrorCheck.number
-                                                ? 'pw-check done '
-                                                : 'pw-check'
-                                        }
-                                    >
-                                        <Icon icon="bi:check-all" />
-                                        <p className="text">숫자</p>
-                                    </div>
-                                    <div
-                                        className={
-                                            pwErrorCheck.symbol
-                                                ? 'pw-check done '
-                                                : 'pw-check'
-                                        }
-                                    >
-                                        <Icon icon="bi:check-all" />
-                                        <p className="text">특수문자</p>
-                                    </div>
-                                    <div
-                                        className={
-                                            pwErrorCheck.length
-                                                ? 'pw-check done '
-                                                : 'pw-check'
-                                        }
-                                    >
-                                        <Icon icon="bi:check-all" />
-                                        <p className="text">길이</p>
-                                    </div>
-                                </div>
-                            )}
-                            <Input
-                                password
-                                name="passwordConfirm"
-                                value={info.passwordConfirm}
-                                onChange={handleChange}
-                                placeholder="비밀번호 확인"
-                                onKeyPress={(e) => onKeyPress(e, handleButton)}
+                            <PwConfirmationInput
+                                info={info}
+                                handleChange={handleChange}
+                                onKeyPress={onKeyPress}
+                                handleButton={handleButton}
                             />
-                            {info.passwordConfirm !== '' &&
-                                info.pw !== info.passwordConfirm && (
-                                    <Text className="alert-text">
-                                        비밀번호가 일치하지 않습니다.
-                                    </Text>
-                                )}
                             <Button
                                 name="submit"
                                 text="본인 인증"

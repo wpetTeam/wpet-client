@@ -106,11 +106,11 @@
 
     &:hover {
         @include common.hover-event();
-        @include icon-border-shadow(2.5px solid theme.$main-color, 0.6);
+        @include icon-border-shadow(2px solid theme.$main-color, 0.2);
 
         transform: scale(1.01);
-        color: black;
-        font-weight: 800;
+        color: theme.$main-color;
+        font-weight: 900;
     }
 }
 
