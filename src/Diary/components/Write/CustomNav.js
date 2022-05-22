@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { MdColorLens as ColorPicker } from 'react-icons/md';
 import { BsFonts as FontPicker } from 'react-icons/bs';
+import { HexColorPicker } from 'react-colorful';
 
 export const CustomNav = (props) => {
     return (
@@ -14,11 +15,18 @@ export const CustomNav = (props) => {
             <CustomButton>
                 <FontPicker size={23} />
             </CustomButton>
+            {props.selectColor && (
+                <HexColorPicker
+                    className="background-color-picker"
+                    color={props.color}
+                    onChange={props.setColor}
+                />
+            )}
         </CustomContainer>
     );
 };
 const CustomContainer = styled.div`
-    width: 3%;
+    width: 100%;
     height: fit-content;
 
     padding: 0.8% 0.1%;

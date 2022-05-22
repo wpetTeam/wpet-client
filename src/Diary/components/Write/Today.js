@@ -9,12 +9,15 @@ export const Today = (props) => {
         month = current_day.getMonth(),
         date = current_day.getDate(),
         day = current_day.getDay();
+    if (day === 0) {
+        day = 7;
+    }
 
     return (
         <Container className="date-generator">
-            <Text color={props.color}>
-                <span>{year}</span>년 <span>{month}</span>월 <span>{date}</span>
-                일 <span> {day_name[day - 1]}</span>요일
+            <Text>
+                <span>{year}</span>년 <span>{month + 1}</span>월
+                <span>{date}</span>일 <span> {day_name[day - 1]}</span>요일
             </Text>
         </Container>
     );
@@ -31,11 +34,7 @@ const Text = styled.p`
     font-size: 1em;
 
     & span {
-        margin-left: 3px;
-        margin-right: 1.5px;
-
-        font-family: 'Elice Digital Baeum', sans-serif;
+        margin: 0 1.5px 0 3px;
         font-size: 1.3em;
-        color: ${(props) => props.color};
     }
 `;
