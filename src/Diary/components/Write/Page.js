@@ -1,29 +1,51 @@
 import React, { useState } from 'react';
 import {
     Container,
-    Picture,
     DateWeather,
     Title,
     Journal,
     Footer,
 } from 'Diary/components/Write/styles/style';
-
-import { Today, Content, Weather, CustomNav } from 'Diary/components/Write';
+import {
+    Today,
+    Content,
+    Weather,
+    CustomNav,
+    DiaryPicture,
+} from 'Diary/components/Write';
 import { HexColorPicker } from 'react-colorful';
 
 const WriteDiary = () => {
+    /* /pet/getnames 에서 반려동물 이름 GET 하기 -> 상단에 체크박스 형식으로 구현(1명일 경우는 X, 2명 이상부터)*/
+    const petList = ['미남', '미녀'];
     const [weather, setWeather] = useState('');
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [picture, setPicture] = useState('');
 
-    const [color, setColor] = useState('#f3c5b670');
+    const [color, setColor] = useState('#ebcfc6');
     const [selectColor, setSelectColor] = useState(false);
 
     return (
-        <Container className="write-container" backgroundColor={color}>
-            <div className="picture-container">
-                <Picture />
+        <Container className="write-container">
+            <div className="write-header">
+                {petList.map((item) => (
+                    <p>{item}</p>
+                ))}
             </div>
+            <div></div>
+            <div className="pic-container">
+                <DiaryPicture
+                    picture={picture}
+                    setPicture={setPicture}
+                    size="460px"
+                    backgroundColor={color}
+                />
+            </div>
+            <CustomNav
+                selectColor={selectColor}
+                setSelectColor={setSelectColor}
+            />
             <div className="journal-container">
                 <Journal className="journal-main">
                     <DateWeather>
@@ -49,10 +71,7 @@ const WriteDiary = () => {
                     <button className="complete-button">작성 완료</button>
                 </Footer>
             </div>
-            <CustomNav
-                selectColor={selectColor}
-                setSelectColor={setSelectColor}
-            />
+
             {selectColor && (
                 <HexColorPicker
                     className="background-color-picker"

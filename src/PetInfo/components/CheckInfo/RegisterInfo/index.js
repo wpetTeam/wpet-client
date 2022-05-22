@@ -5,6 +5,10 @@ import { Header, PetName, PetGender, PetBirth, PetBreed } from './components';
 import { DateCalculator } from './utils/dateCalculator';
 
 const RegisterInfo = (props) => {
+    /* 반려견 정보 POST (petID : props로 받아오기) => /pet/getinfor */
+    /* 반려견 수정 POST => /pet/update */
+    /* 반려견 삭제 POST => /pet/delete */
+
     const [isUpdate, setIsUpdate] = useState(false);
     const [petInfo, setPetInfo] = useState({
         petName: '미남이',
@@ -92,6 +96,9 @@ const RegisterInfo = (props) => {
                     setShowsModal={setShowsModal}
                 />
             </div>
+            {isUpdate && (
+                <p className="delete-text">반려견을 삭제하고 싶어요.</p>
+            )}
             {showsModal && (
                 <BreedModal
                     breed={breed}

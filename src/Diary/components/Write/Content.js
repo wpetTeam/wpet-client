@@ -34,16 +34,6 @@ const Container = styled.div`
     flex-direction: column;
     flex-wrap: no-wrap;
 `;
-
-const Rows = styled.div.attrs((props) => ({
-    end: props.position === 'end' ? 'transparent' : '1px solid #c4c4c4',
-}))`
-    width: 100%;
-    height: 14%;
-
-    border-bottom: ${(props) => props.end};
-    background: transparen;
-`;
 const TextArea = styled.textarea`
     position: absolute;
 
@@ -71,4 +61,13 @@ const TextArea = styled.textarea`
         font-size: 0.8em;
         color: ${(props) => props.color}90;
     }
+`;
+const Rows = styled.div.attrs((props) => ({
+    end: props.position === 'end' ? 'transparent' : '1px solid #c4c4c4',
+}))`
+    width: 100%;
+    height: 14%;
+
+    border-bottom: ${(props) => props.end};
+    background: transparen;
 `;

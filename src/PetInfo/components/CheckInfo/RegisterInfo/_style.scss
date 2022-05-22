@@ -55,6 +55,7 @@
 .main-info {
     @include common.size(100%, 20%);
     @include common.flex-column(center, flex-start);
+    padding-left: 5%;
 
     .info-label {
         margin-bottom: -4%;
@@ -129,7 +130,7 @@
 
         .breed-container {
             @include common.flex-row(flex-start, flex-start);
-            width: 82%;
+            width: 78%;
             flex-wrap: wrap;
 
             .breed-item {
@@ -152,18 +153,29 @@
             }
         }
         .breed-btn {
+            @include common.shape(
+                transparentize(theme.$dark-gray-color, 0.8),
+                transparent,
+                4px
+            );
             width: 17%;
 
             padding: 6px;
-            margin-left: 2%;
-
-            border: transparent;
-            border-radius: 4px;
+            margin-left: 0;
 
             &:hover {
                 @include common.hover-event();
-                background-color: transparentize(theme.$dark-gray-color, 0.8);
+                background-color: lightgray;
             }
         }
+    }
+}
+.delete-text {
+    margin: -2% 0 0 59%;
+    font-size: 0.75em;
+    color: gray;
+    &:hover {
+        @include common.hover-event();
+        text-decoration: underline;
     }
 }

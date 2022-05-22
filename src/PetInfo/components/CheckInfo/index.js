@@ -5,7 +5,7 @@ import './styles/_style.scss';
 import RegisterInfo from './RegisterInfo';
 
 export const CheckInfo = () => {
-    /* 강아지 정보를 받아서 뿌리기 */
+    /* 강아지 정보 배열 GET => /pet/getnames */
     return (
         <Container className="pet-check">
             <div className="section-1">

@@ -8,15 +8,61 @@
 }
 
 .write-container {
-    .picture-container {
-        width: 50%;
+    .pic-container {
+        @include common.size(40%, 100%);
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        .pic-select-yet-component {
+            @include common.size(fit-content, fit-content);
+
+            .pic-upload-icon {
+                @include common.size(45px, 45px);
+                color: theme.$gray-color;
+                &:hover {
+                    @include common.hover-event();
+                    transform: scale(1.02);
+                    color: black;
+                    color: theme.$dark-gray-color;
+                }
+            }
+            .pic-upload-text {
+                @include common.font(gray, theme.$description-font, 0.8em, 500);
+                margin-top: -0.5%;
+                text-align: center;
+            }
+            .pic-upload-icon:hover + .pic-upload-text {
+                @include common.hover-event();
+                transform: scale(1.02);
+                color: theme.$dark-gray-color;
+            }
+        }
+
+        .pic-select-component {
+            @include common.size(fit-content, fit-content);
+
+            .select-btn {
+                @include common.flex-row();
+                .pic-btn {
+                    @include common.size(100px, 30px);
+                    @include common.shape(
+                        transparentize(theme.$gray-color, 0.7),
+                        transparent,
+                        3px
+                    );
+                    margin: 5% 0 0 7px;
+                    color: theme.$dark-gray-color;
+
+                    &:hover {
+                        @include common.hover-event();
+                        background: theme.$gray-color;
+                        color: black;
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
     }
     .journal-container {
-        width: 50%;
+        width: 47%;
 
         display: flex;
         flex-direction: column;

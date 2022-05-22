@@ -4,6 +4,7 @@ import { CommonContainer } from 'Diary/styles/style';
 const RowDiv = styled.div`
     width: 100%;
     height: 10%;
+
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -14,16 +15,7 @@ const RowDiv = styled.div`
 export const Container = styled(CommonContainer)`
     display: flex;
     flex-direction: row;
-
-    background: ${(props) => props.backgroundColor};
-    // box-shadow: 10px 10px 0px 0px ${({ theme }) => theme.aboutLogoText}90;
-`;
-export const Picture = styled.div`
-    width: 100%;
-    height: 100%;
-
-    margin-right: 3%;
-    background: #85858550;
+    justify-content: center;
 `;
 export const Journal = styled.div`
     height: 90%;
