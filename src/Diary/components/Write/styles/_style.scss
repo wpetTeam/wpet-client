@@ -84,7 +84,11 @@
         }
         .journal-container {
             @include common.size(48%, 85%);
-            @include common.shape(whitesmoke, 0.7px solid gray, 0);
+            @include common.shape(
+                transparentize(whitesmoke, 0.7),
+                0.7px solid gray,
+                0
+            );
 
             display: flex;
             flex-direction: column;

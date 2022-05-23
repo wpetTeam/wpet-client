@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { HiOutlineBookOpen as Diary } from 'react-icons/hi';
 import { FaDog as DogInfo } from 'react-icons/fa';
 import { GiDogHouse as Community } from 'react-icons/gi';
-import { RiSettings3Fill as Settings } from 'react-icons/ri';
+import { RiAccountPinCircleFill as MyPage } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
 export const Icon = (props) => {
@@ -22,7 +22,12 @@ export const Icon = (props) => {
             icon: <Community size={23} />,
             text: '커뮤니티',
         },
-        { id: 4, name: 'settings', icon: <Settings size={23} />, text: '설정' },
+        {
+            id: 4,
+            name: 'mypage',
+            icon: <MyPage size={23} />,
+            text: '마이페이지',
+        },
     ];
     return (
         <>

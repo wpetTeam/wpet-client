@@ -1,0 +1,9 @@
+@use 'assets/styles/_theme.scss';
+@use 'assets/styles/common/_tabStyle.scss' as tabStyle;
+@use 'assets/styles/common/_common.scss' as common;
+
+.settings {
+    .settings-nav {
+        @include tabStyle.nav-icon();
+    }
+}

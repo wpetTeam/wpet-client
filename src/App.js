@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { About, Home, Diary, Community, Settings, DogInfo } from 'pages';
 import { Register } from 'PetInfo/components';
 import { WriteDiary } from 'Diary/components';
+import Schedule from 'MyPage/components/Schedule';
 
 function App() {
     return (
@@ -9,7 +10,9 @@ function App() {
             <Routes>
                 <Route exact path="/" element={<About />} />
                 <Route path="home" element={<Home />} />
-                <Route path="settings" element={<Settings />} />
+                <Route path="mypage" element={<Settings />}>
+                    <Route path="account" element={<Schedule />} />
+                </Route>
                 <Route path="diary" element={<Diary />}>
                     <Route path="write" element={<WriteDiary />} />
                 </Route>

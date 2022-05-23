@@ -14,7 +14,7 @@ export const NavIcon = () => {
     const DIARY_WRITE_URL = 'http://localhost:5000/diary/write';
     const PETINFO_URL = 'http://localhost:5000/pet-info';
     const COMMUNITY_URL = 'http://localhost:5000/community';
-    const SETTINGS_URL = 'http://localhost:5000/settings';
+    const MYPAGE_URL = 'http://localhost:5000/mypage';
 
     return (
         <>
@@ -29,7 +29,7 @@ export const NavIcon = () => {
                     <Icon name="diary" isShow />
                     <Icon name="pet-info" isShow />
                     <Icon name="community" isShow />
-                    <Icon name="settings" isShow />
+                    <Icon name="mypage" isShow />
                 </Nav>
             )}
             {current_location === DIARY_URL && (
@@ -37,7 +37,7 @@ export const NavIcon = () => {
                     <Icon name="diary" isSelect />
                     <Icon name="pet-info" />
                     <Icon name="community" />
-                    <Icon name="settings" />
+                    <Icon name="mypage" />
                 </Nav>
             )}
             {current_location === DIARY_WRITE_URL && (
@@ -45,7 +45,7 @@ export const NavIcon = () => {
                     <Icon name="diary" isSelect />
                     <Icon name="pet-info" />
                     <Icon name="community" />
-                    <Icon name="settings" />
+                    <Icon name="mypage" />
                 </Nav>
             )}
             {current_location === PETINFO_URL && (
@@ -53,7 +53,7 @@ export const NavIcon = () => {
                     <Icon name="diary" />
                     <Icon name="pet-info" isSelect />
                     <Icon name="community" />
-                    <Icon name="settings" />
+                    <Icon name="mypage" />
                 </Nav>
             )}
             {current_location === COMMUNITY_URL && (
@@ -61,15 +61,15 @@ export const NavIcon = () => {
                     <Icon name="diary" />
                     <Icon name="pet-info" />
                     <Icon name="community" isSelect />
-                    <Icon name="settings" />
+                    <Icon name="mypage" />
                 </Nav>
             )}
-            {current_location === SETTINGS_URL && (
+            {current_location === MYPAGE_URL && (
                 <Nav>
                     <Icon name="diary" />
                     <Icon name="pet-info" />
                     <Icon name="community" />
-                    <Icon name="settings" isSelect />
+                    <Icon name="mypage" isSelect />
                 </Nav>
             )}
         </>
