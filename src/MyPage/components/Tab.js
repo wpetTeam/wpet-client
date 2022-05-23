@@ -11,7 +11,7 @@ export const Tab = (props) => {
                 <Icon
                     icon="ri:calendar-todo-fill"
                     className={
-                        props.tab === 0 ? 'settings-nav select' : 'settings-nav'
+                        props.tab === 0 ? 'mypage-nav select' : 'mypage-nav'
                     }
                     onClick={() => props.setTab(0)}
                 />
@@ -20,7 +20,7 @@ export const Tab = (props) => {
                 <Icon
                     icon="material-symbols:account-circle"
                     className={
-                        props.tab === 1 ? 'settings-nav select' : 'settings-nav'
+                        props.tab === 1 ? 'mypage-nav select' : 'mypage-nav'
                     }
                     onClick={() => props.setTab(1)}
                 />

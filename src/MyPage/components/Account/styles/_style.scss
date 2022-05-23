@@ -1,0 +1,131 @@
+@use 'assets/styles/_theme.scss' as theme;
+@use 'assets/styles/common/_common.scss' as common;
+
+.myaccount-component {
+    font-family: theme.$description-font;
+    .first-row {
+        @include common.size(30%, 100%);
+        @include common.flex-column(space-around, flex-start);
+        .update-btn {
+            @include common.size(35px, 33px);
+            @include common.shape(theme.$gray-color, transparent, 4px);
+            padding: 2px;
+            &:hover {
+                @include common.hover-event();
+                background: rgba(128, 128, 128, 0.574);
+                font-weight: 600;
+            }
+        }
+        .email-box {
+            @include common.size(90%, fit-content);
+            @include common.flex-column(space-between, flex-start);
+            background: transparentize(theme.$gray-color, 0.9);
+            border-radius: 5px;
+            padding: 5%;
+            .auth-icon {
+                @include common.size(35px, 35px);
+                padding: 8px;
+                border-radius: 50%;
+                margin-bottom: 6%;
+                color: white;
+            }
+            .auth-icon.success {
+                background: green;
+            }
+            .auth-icon.loading {
+                background: theme.$gray-color;
+            }
+            .user-email {
+                @include common.size(100%, 33px);
+                @include common.flex-row(space-between, center);
+                .email-input {
+                    @include common.size(100%, 33px);
+                    @include common.shape(transparent, transparent, 0);
+                    //text-align: center;
+                    font-size: 1.5em;
+                    letter-spacing: 0.02em;
+                    color: black;
+                }
+                .email-input.update {
+                    @include common.shape(transparent, 0.8px solid gray, 4px);
+                    font-size: 1.1em;
+                    padding-left: 2%;
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+            .auth-text {
+                margin-top: 1.5%;
+                font-size: 0.8em;
+            }
+            .authcode-check {
+                margin-top: 4%;
+                .auth-text.update {
+                    color: gray;
+                }
+                .authcode-input {
+                    @include common.size(140px, 33px);
+                    @include common.shape(transparent, 0.3px dotted gray, 4px);
+                    padding-left: 3%;
+                    &:focus {
+                        outline: none;
+                    }
+                }
+                .update-btn.authcode {
+                    margin-left: 4%;
+                }
+            }
+            .auth-text.success {
+                color: green;
+                font-weight: 600;
+            }
+        }
+        .pw-box {
+            @include common.size(85%, fit-content);
+            @include common.flex-column(center, flex-start);
+            background: transparentize(theme.$gray-color, 0.9);
+            border-radius: 4px;
+            font-size: 1.2em;
+            padding: 20px;
+
+            .btn-box {
+                .update-btn.update {
+                    @include common.size(60px, 35px);
+                }
+            }
+        }
+    }
+    .second-row {
+        @include common.size(30%, fit-content);
+        padding: 5%;
+
+        .profile-box {
+            @include common.flex-column(space-between, center);
+            padding: 20px 0;
+            .user-picture {
+                @include common.shape(transparent, transparent, 50%);
+            }
+            .name-box {
+                @include common.flex-row(space-between, center);
+                .name-input {
+                    @include common.size(240px, 40px);
+                    @include common.shape(transparent, transparent, 0);
+                    margin-top: 4%;
+                    text-align: center;
+                    font-size: 1.3em;
+                    color: black;
+                }
+                .update-btn {
+                    @include common.shape(theme.$step-color, transparent, 4px);
+                    padding: 8px;
+                    &:hover {
+                        @include common.hover-event();
+                        background: theme.$dark-step-color;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+}

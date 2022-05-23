@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Tab } from 'MyPage/components';
-import MyAccount from '../components/MyAccount';
 import { Container, Nav, Article } from 'assets/styles/common/tabStyle';
-import Schedule from 'MyPage/components/Schedule';
+import { Schedule, MyAccount } from 'MyPage/components';
 
 const Main = () => {
     const [tab, setTab] = useState(0);
     return (
-        <Container className="settings">
+        <Container className="mypage">
             <Nav>
                 <Tab tab={tab} setTab={setTab} />
             </Nav>

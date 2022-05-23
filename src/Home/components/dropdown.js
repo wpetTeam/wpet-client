@@ -15,10 +15,14 @@ export const Dropdown = () => {
         navigate('/');
     };
 
+    const myAccountHandler = () => {
+        navigate('/mypage');
+    };
+
     return (
         <>
             <Container>
-                <Button>마이 페이지</Button>
+                <Button onClick={myAccountHandler}>나의 계정</Button>
                 <Button onClick={logoutHandler}>로그아웃</Button>
             </Container>
         </>

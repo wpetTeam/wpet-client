@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { About, Home, Diary, Community, Settings, DogInfo } from 'pages';
 import { Register } from 'PetInfo/components';
 import { WriteDiary } from 'Diary/components';
-import Schedule from 'MyPage/components/Schedule';
+import { Schedule } from 'MyPage/components';
 
 function App() {
     return (
