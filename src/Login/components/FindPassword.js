@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { IoIosClose } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
+
 import character from 'assets/images/Logo/findpw-character.png';
 import { Button, Input } from 'Login/components';
 import { Eclipse, Text } from 'assets/styles/common/loginSignup';
@@ -18,9 +20,8 @@ const FindPassword = (props) => {
         await API.post('/user/findpw', userData)
             .then((res) => {
                 console.log('>>> [SENDPW] ✅ SUCCESS');
-                if (res.status === 200) {
-                    alert('발급 완료');
-                }
+                props.setShowFindPw(false);
+                props.setShowLogin(true);
             })
             .catch((err) => console.log('>>> [SENDPW] ❌ ERROR', err.message));
     };

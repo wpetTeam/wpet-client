@@ -88,6 +88,7 @@ const Header = (props) => {
                 <FindPassword
                     setBlur={props.setBlur}
                     setShowFindPw={setShowFindPw}
+                    setShowLogin={setShowLogin}
                 />
             )}
         </Container>
