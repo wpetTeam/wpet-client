@@ -4,7 +4,7 @@
 .myaccount-component {
     font-family: theme.$description-font;
     .first-row {
-        @include common.size(30%, 100%);
+        @include common.size(33%, 100%);
         @include common.flex-column(space-around, flex-start);
         .update-btn {
             @include common.size(35px, 33px);
@@ -23,7 +23,7 @@
             border-radius: 5px;
             padding: 5%;
             .auth-icon {
-                @include common.size(35px, 35px);
+                @include common.size(8%, fit-content);
                 padding: 8px;
                 border-radius: 50%;
                 margin-bottom: 6%;
@@ -39,7 +39,7 @@
                 @include common.size(100%, 33px);
                 @include common.flex-row(space-between, center);
                 .email-input {
-                    @include common.size(100%, 33px);
+                    @include common.size(90%, 33px);
                     @include common.shape(transparent, transparent, 0);
                     //text-align: center;
                     font-size: 1.5em;
@@ -48,8 +48,9 @@
                 }
                 .email-input.update {
                     @include common.shape(transparent, 0.8px solid gray, 4px);
-                    font-size: 1.1em;
+                    font-size: 1.05em;
                     padding-left: 2%;
+                    margin-right: 2%;
                     &:focus {
                         outline: none;
                     }
@@ -82,49 +83,135 @@
             }
         }
         .pw-box {
-            @include common.size(85%, fit-content);
-            @include common.flex-column(center, flex-start);
+            @include common.size(90%, fit-content);
+            @include common.flex-column(center, flex-end);
+            background: transparentize(theme.$gray-color, 0.9);
+            border-radius: 4px;
+            font-size: 1.1em;
+            padding: 20px;
+            .icon {
+                @include common.size(8%, fit-content);
+                margin-bottom: -2%;
+                padding: 8px;
+                background: theme.$sub-color;
+                border-radius: 50%;
+                color: theme.$dashboard-color;
+            }
+            .btn-box {
+                .update-btn.update {
+                    background: transparentize(theme.$sub-color, 0.4);
+                    @include common.size(150px, 35px);
+                }
+            }
+        }
+        .date-box {
+            @include common.size(90%, fit-content);
+            padding: 20px;
             background: transparentize(theme.$gray-color, 0.9);
             border-radius: 4px;
             font-size: 1.2em;
-            padding: 20px;
-
-            .btn-box {
-                .update-btn.update {
-                    @include common.size(60px, 35px);
-                }
+            p {
+                font-size: 0.8em;
             }
         }
     }
     .second-row {
-        @include common.size(30%, fit-content);
+        @include common.size(33%, fit-content);
+        @include common.flex-column(space-between, center);
         padding: 5%;
 
         .profile-box {
             @include common.flex-column(space-between, center);
             padding: 20px 0;
-            .user-picture {
-                @include common.shape(transparent, transparent, 50%);
+            background: transparentize(theme.$gray-color, 0.9);
+            border-radius: 4px;
+
+            .pic-box {
+                @include common.flex-column();
+                .user-pic {
+                    @include common.size(80%, 80%);
+                    @include common.shape(transparent, transparent, 50%);
+                }
+                .user-pic.update {
+                    transform: scale(0.85);
+                    padding: 15px;
+                    border: 8px double theme.$gray-color;
+                }
+                .btn-container {
+                    @include common.flex-row(center, center);
+                    margin-top: -4%;
+                    .btn {
+                        @include common.size(50px, 33px);
+                        @include common.shape(
+                            transparentize(theme.$gray-color, 0.7),
+                            transparent,
+                            4px
+                        );
+                        margin-right: 2%;
+                        &:hover {
+                            @include common.hover-event();
+                            background: theme.$gray-color;
+                            font-weight: 600;
+                        }
+                    }
+                }
             }
             .name-box {
-                @include common.flex-row(space-between, center);
+                @include common.flex-column(center, flex-start);
+                margin-top: 4%;
+
                 .name-input {
                     @include common.size(240px, 40px);
                     @include common.shape(transparent, transparent, 0);
-                    margin-top: 4%;
+
                     text-align: center;
                     font-size: 1.3em;
                     color: black;
                 }
-                .update-btn {
-                    @include common.shape(theme.$step-color, transparent, 4px);
-                    padding: 8px;
-                    &:hover {
-                        @include common.hover-event();
-                        background: theme.$dark-step-color;
-                        font-weight: 600;
+                .name-input.update {
+                    @include common.shape(transparent, 0.8px solid gray, 4px);
+                    font-size: 1.1em;
+                    &:focus {
+                        outline: none;
                     }
                 }
+            }
+            .update-btn {
+                @include common.shape(
+                    transparentize(theme.$gray-color, 0.6),
+                    transparent,
+                    4px
+                );
+                padding: 8px;
+                margin-top: 4%;
+                &:hover {
+                    @include common.hover-event();
+                    background: theme.$gray-color;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+    .third-row {
+        @include common.size(33%, 100%);
+        @include common.flex-column(space-around, flex-start);
+
+        .pet-box {
+            @include common.size(90%, fit-content);
+            padding: 20px;
+            background: transparentize(theme.$gray-color, 0.9);
+            border-radius: 4px;
+        }
+        .community-box {
+            @include common.size(90%, fit-content);
+            @include common.flex-column(center, flex-start);
+            padding: 20px;
+            background: transparentize(theme.$gray-color, 0.9);
+            border-radius: 4px;
+            .icon {
+                @include common.size(8%, fit-content);
+                margin-bottom: 5%;
+                color: rgb(255, 209, 5);
             }
         }
     }
