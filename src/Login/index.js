@@ -51,7 +51,7 @@ const Login = (props) => {
                 }
             })
             .catch((err) => {
-                console.warn('>>> [LOGIN] ❌ ERROR', err.message);
+                console.error('>>> [LOGIN] ❌ ERROR', err);
                 if (err.response.status === 404) {
                     setErrorMsg({
                         ...errorMsg,

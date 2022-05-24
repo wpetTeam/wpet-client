@@ -17,6 +17,8 @@ export const Container = styled(CommonContainer)`
 export const Frame = styled(CommonFrame)`
     width: 570px;
     height: 440px;
+    background: ${(props) => props.background};
+    transition: 0.5s ease-in-out;
 `;
 export const Content = styled.div`
     width: 90%;

@@ -6,6 +6,8 @@ export const handleSignup = async (
     setEmail,
     setShowSignup,
     setShowEmailAuth,
+    setShowsConflict,
+    setConflictMsg,
 ) => {
     await API.post('/user/create', userData)
         .then((response) => {
@@ -22,10 +24,21 @@ export const handleSignup = async (
                 );
             }
         })
-        .catch((error) => {
-            console.error('>>> [SIGNUP] ERROR', error.message);
-            /* 409 : 이미 계정 있는 사람 */
-            /* 403 : 이메일 인증을 하지 않음 -> 이메일 인증 페이지 */
+        .catch((err) => {
+            console.log('>>> [SIGNUP] ❌ ERROR', err.response);
+            if (err.response.status === 409) {
+                var errMsg = err.response.data.message;
+                setShowsConflict(true);
+                if (errMsg === '이메일중복') {
+                    setConflictMsg('이메일');
+                } else if (errMsg === '닉네임중복') {
+                    setConflictMsg('닉네임');
+                } else {
+                    setConflictMsg('닉네임과 이메일');
+                }
+            } else if (err.response.status === 403) {
+                /* 403 : 이메일 인증을 하지 않음 -> 이메일 인증 페이지 */
+            }
         });
 };
 

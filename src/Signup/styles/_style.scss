@@ -4,46 +4,53 @@
 @use 'Login/styles/_style.scss' as login;
 
 /* page/Signup */
-.signup {
-    .close-icon {
-        @include s_common.close-icon();
-        margin-left: 90%;
-    }
-    .welcome-text {
-        @include s_common.text($top: 0, $font-size: 1.7em);
-    }
-    .sub-text {
-        @include s_common.text($top: 1.9%, $font-size: 0.75em);
-    }
-    .profile-text {
-        @include s_common.text($top: 1.9%, $font-size: 0.7em);
-        text-align: center;
-    }
-    .alert-text {
-        @include s_common.text($top: -2.1%, $bottom: '0.5%', $font-size: 0.7em);
-        margin-left: 2%;
-        color: firebrick;
-    }
-    .pw-check-component {
-        @include common.flex-row($justify-content: flex-start);
-        margin-top: -7.7%;
-
-        .pw-check {
-            @include login.font-opacity(gray, 0.9);
-            @include common.flex-row();
-            margin-right: 20px;
-            .text {
-                font-size: 0.66em;
-                font-weight: 600;
-            }
+.signup-container {
+    .signup {
+        .close-icon {
+            @include s_common.close-icon();
+            margin-left: 90%;
         }
-        .done {
-            color: theme.$main-color;
-            font-weight: 800;
-            font-size: 1.1em;
+        .welcome-text {
+            @include s_common.text($top: 0, $font-size: 1.7em);
+        }
+        .sub-text {
+            @include s_common.text($top: 1.9%, $font-size: 0.75em);
+        }
+        .profile-text {
+            @include s_common.text($top: 1.9%, $font-size: 0.7em);
+            text-align: center;
+        }
+        .alert-text {
+            @include s_common.text(
+                $top: -2.1%,
+                $bottom: '0.5%',
+                $font-size: 0.7em
+            );
+            margin-left: 2%;
+            color: firebrick;
+        }
+        .pw-check-component {
+            @include common.flex-row($justify-content: flex-start);
+            margin-top: -7.7%;
+
+            .pw-check {
+                @include login.font-opacity(gray, 0.9);
+                @include common.flex-row();
+                margin-right: 20px;
+                .text {
+                    font-size: 0.66em;
+                    font-weight: 600;
+                }
+            }
+            .done {
+                color: theme.$main-color;
+                font-weight: 800;
+                font-size: 1.1em;
+            }
         }
     }
 }
+
 .profile-upload-icon {
     color: theme.$main-color;
     opacity: 0.5;
@@ -139,5 +146,45 @@
     to {
         transform: rotate(360deg);
         color: theme.$main-color;
+    }
+}
+
+.conflict-modal {
+    top: 15%;
+    z-index: 12345678;
+
+    .eclipse {
+        background: whitesmoke;
+        img {
+            margin: 5px;
+        }
+    }
+    .frame {
+        @include common.size(60%, 40%);
+        @include common.shape(whitesmoke, transparent, 10px);
+        text-align: center;
+
+        margin-top: -25px;
+        padding: 20px;
+        .text {
+            font-size: 0.85em;
+            letter-spacing: 0.02em;
+            line-height: 1.3em;
+            span {
+                font-size: 1.2em;
+                font-weight: 600;
+            }
+        }
+        .btn {
+            @include common.size(90px, 28px);
+            @include common.shape(rgb(229, 227, 227), transparent, 4px);
+            @include common.shadow(4px, gray, 0.5);
+            &:hover {
+                @include common.hover-event();
+                @include common.shape(white, transparent, 4px);
+                @include common.shadow(2px, gray, 0.2);
+                font-weight: 600;
+            }
+        }
     }
 }

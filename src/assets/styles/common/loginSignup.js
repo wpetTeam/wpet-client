@@ -27,14 +27,17 @@ export const CommonFrame = styled.div`
     background-color: ${({ theme }) => theme.loginBackground};
     border-radius: 20px;
 `;
-export const Eclipse = styled.div`
+export const Eclipse = styled.div.attrs((props) => ({
+    background: props.background || 'rgba(244, 231, 227, 1)',
+}))`
     width: 50px;
     height: 50px;
 
-    background: ${({ theme }) => theme.loginBackground};
+    background: ${(props) => props.background};
     border-radius: 50%;
 
     z-index: 2;
+    transition: 0.5s ease-in-out;
 `;
 export const BoldText = styled.p`
     font-family: Strawberry Muffins;

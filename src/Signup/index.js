@@ -10,7 +10,7 @@ import {
     PwConfirmationInput,
 } from './components/functions';
 import { Button } from 'Login/components';
-import { ProfilePicture } from 'Signup/components';
+import { ProfilePicture, ConflictModal } from 'Signup/components';
 import { onKeyPress } from 'utils';
 import { CheckPwDetail, checkUserInfo } from 'Signup/utils/signupCheck';
 import { handleSignup } from './apis';
@@ -42,6 +42,8 @@ const Signup = (props) => {
         symbol: false,
         length: false,
     });
+    const [showsConflict, setShowsConflict] = useState(false);
+    const [conflictMsg, setConflictMsg] = useState('');
     function handleChange(e) {
         const value = e.target.value;
         setInfo({
@@ -78,15 +80,20 @@ const Signup = (props) => {
             props.setEmail,
             props.setShowSignup,
             props.setShowEmailAuth,
+            setShowsConflict,
+            setConflictMsg,
         );
     };
     return (
         <ThemeProvider theme={theme}>
             <Container className="signup-container">
-                <Eclipse>
+                <Eclipse background={showsConflict ? '#f3c5b620' : ''}>
                     <img src={LogoImage} width={50} height={50} alt="로고" />
                 </Eclipse>
-                <Frame className="signup">
+                <Frame
+                    className="signup"
+                    background={showsConflict ? '#f3c5b620' : ''}
+                >
                     <IoIosClose
                         className="close-icon"
                         onClick={() => {
@@ -147,6 +154,12 @@ const Signup = (props) => {
                         </Info>
                     </Content>
                 </Frame>
+                {showsConflict && (
+                    <ConflictModal
+                        setShowsConflict={setShowsConflict}
+                        conflictMsg={conflictMsg}
+                    />
+                )}
             </Container>
         </ThemeProvider>
     );
