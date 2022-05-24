@@ -44,12 +44,11 @@ const AboutButton = styled.button.attrs((props) => ({
     height: 55%;
 
     margin-right: 10%;
-    padding-right: 0;
 
-    background: transparent;
-    border: 2px solid ${({ theme }) => theme.aboutLogoText}95;
-    border-radius: 1px;
-    box-shadow: 3px 3px 0px 0px ${({ theme }) => theme.aboutLogoText}50;
+    background: ${({ theme }) => theme.aboutLogoText}20;
+    border: transparent;
+    border-radius: 9px;
+    box-shadow: 3.5px 3px 0px 0px ${({ theme }) => theme.aboutLogoText}70;
 
     color: ${({ theme }) => theme.aboutLogoText};
     font-family: Strawberry Muffins;
@@ -58,13 +57,16 @@ const AboutButton = styled.button.attrs((props) => ({
     transition: 0.4s ease-in;
 
     &.normal:hover {
-        transition: 0.4s ease-out;
-        width: ${(props) => (props.hoverText === 'Login' ? '95px' : '130px')};
-        border: 2px solid black;
-        color: black;
-        opacity: 0.8;
         cursor: pointer;
-        box-shadow: 4px 4px 0px 0px ${({ theme }) => theme.aboutLogoText};
+        transition: 0.2s;
+
+        width: ${(props) => (props.hoverText === 'Login' ? '95px' : '130px')};
+
+        color: ${({ theme }) => theme.aboutBackground};
+        background: ${({ theme }) => theme.aboutLogoText};
+        border: transparent;
+        box-shadow: 2px 2px 0px 0px ${({ theme }) => theme.aboutLogoText}90;
+        opacity: 0.8;
     }
 
     &.normal:hover span {
@@ -79,10 +81,13 @@ const AboutButton = styled.button.attrs((props) => ({
 
     &.stop {
         transition: 0.4s ease-out;
+
         width: ${(props) => (props.hoverText === 'Login' ? '95px' : '130px')};
-        border: 2px solid black;
-        box-shadow: 4px 4px 0px 0px ${({ theme }) => theme.aboutLogoText};
-        color: black;
+
+        color: ${({ theme }) => theme.aboutLogoText};
+        background: ${({ theme }) => theme.aboutLogoText}90;
+        border: transparent;
+        box-shadow: 2px 2px 0px 0px ${({ theme }) => theme.aboutLogoText};
         opacity: 0.8;
     }
 
