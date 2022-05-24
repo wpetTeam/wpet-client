@@ -10,12 +10,13 @@ export const Container = styled(CommonContainer)`
 `;
 export const Frame = styled(CommonFrame)`
     width: 360px;
+    height: 430px;
 `;
 
 /* 비밀번호 찾기 : FindPassword */
 export const FindPwContainer = styled(CommonContainer)`
     width: 35%;
-    height: 45%;
+    height: 380px;
 
     left: 33.5%;
 `;

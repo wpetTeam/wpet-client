@@ -1,5 +1,6 @@
 @use 'assets/styles/_theme.scss' as theme;
-@use 'assets/styles/common/_loginSignup.scss' as common;
+@use 'assets/styles/common/_loginSignup.scss' as s;
+@use 'assets/styles/common/_common.scss' as common;
 
 @mixin background-opacity($color, $opacity: 0.3) {
     background: $color; /* The Fallback */
@@ -12,24 +13,24 @@
 
 .login {
     .close-icon {
-        @include common.close-icon();
+        @include s.close-icon();
         margin-left: 80%;
     }
     .welcome-text {
-        @include common.text($top: 0, $bottom: 10%, $font-size: 1.7em);
+        @include s.text($top: 0, $bottom: 10%, $font-size: 1.7em);
     }
     .error-text {
-        @include common.text($top: -2%, $bottom: 3%, $font-size: 0.7em);
+        @include s.text($top: -2%, $bottom: 3%, $font-size: 0.7em);
         margin-left: 35%;
         text-align: right;
         color: firebrick;
         font-weight: 600;
     }
     .or-text {
-        @include common.text($top: 3%, $bottom: -1%, $font-size: 1em);
+        @include s.text($top: 3%, $bottom: -1%, $font-size: 1em);
     }
     .pw-text {
-        @include common.text($top: 3%, $bottom: -2.5%, $font-size: 0.7em);
+        @include s.text($top: 3%, $bottom: -2.5%, $font-size: 0.7em);
         font-family: 'Elice Digital Baeum', sans-serif;
         &:hover {
             cursor: pointer;
@@ -38,14 +39,11 @@
         }
     }
     .signup-text {
-        @include common.text($top: 7%, $font-size: 0.8em);
+        @include s.text($top: 7%, $font-size: 0.8em);
         width: 90%;
         text-align: center;
         button {
-            @include common.authButton(
-                $padding: 4px,
-                $color: theme.$main-color
-            );
+            @include s.authButton($padding: 4px, $color: theme.$main-color);
             font-family: Strawberry Muffins;
             margin-left: 3px;
             margin-right: 3px;
@@ -55,13 +53,16 @@
 
 .findpw-modal {
     .close-icon {
-        @include common.closeIcon();
+        @include s.closeIcon();
     }
     .header {
+        @include common.flex-column();
+        font-family: theme.$description-font-bold;
         .header-text {
-            font-family: 'Elice Digital Baeum', sans-serif;
+            margin-top: -1.5%;
             font-size: 1.2em;
-            font-weight: 700;
+            font-weight: 600;
+            letter-spacing: 0.04em;
         }
     }
     .main {
@@ -72,7 +73,7 @@
         .desc-text {
             font-size: 0.85em;
             margin-top: -2%;
-            margin-bottom: 12%;
+            margin-bottom: 8%;
         }
     }
     .footer {

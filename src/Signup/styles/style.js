@@ -12,11 +12,11 @@ export const Container = styled(CommonContainer)`
     left: 26%;
 
     width: 49%;
-    height: 65%;
+    height: 50%;
 `;
 export const Frame = styled(CommonFrame)`
     width: 570px;
-    height: 100%;
+    height: 440px;
 `;
 export const Content = styled.div`
     width: 90%;

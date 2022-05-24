@@ -39,7 +39,6 @@ const SubmitButton = styled.button.attrs(
     justify-content: center;
 
     background: ${({ theme }) => theme.aboutLogoText}98;
-    font-family: 'Elice Digital Baeum', sans-serif;
     font-weight: 600;
     font-size: 1.1em;
     color: ${({ theme }) => theme.loginBackground};

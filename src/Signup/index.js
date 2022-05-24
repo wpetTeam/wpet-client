@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { IoIosClose } from 'react-icons/io';
-
 import { theme } from 'assets/styles/theme';
 import LogoImage from 'assets/images/Logo/text-icon.png';
 import {
@@ -43,7 +42,6 @@ const Signup = (props) => {
         symbol: false,
         length: false,
     });
-
     function handleChange(e) {
         const value = e.target.value;
         setInfo({
@@ -65,7 +63,6 @@ const Signup = (props) => {
             pw: '',
         });
     }
-
     const handleButton = () => {
         if (checkUserInfo(info.nickName, info.email, info.pw, setErrMessage))
             return;
@@ -76,7 +73,6 @@ const Signup = (props) => {
             profilePicture: profile,
             location: '',
         };
-        console.log(userData);
         handleSignup(
             userData,
             props.setEmail,
@@ -84,7 +80,6 @@ const Signup = (props) => {
             props.setShowEmailAuth,
         );
     };
-
     return (
         <ThemeProvider theme={theme}>
             <Container className="signup-container">

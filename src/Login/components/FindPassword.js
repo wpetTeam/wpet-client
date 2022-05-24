@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { IoIosClose } from 'react-icons/io';
-
-import Input from './Input';
+import character from 'assets/images/Logo/findpw-character.png';
+import { Button, Input } from 'Login/components';
 import { Eclipse, Text } from 'assets/styles/common/loginSignup';
 import { FindPwContainer, FindPwFrame } from 'Login/styles/style';
 import { API, onKeyPress } from 'utils';
 import 'Login/styles/_style.scss';
-import Button from './Button';
 
 const FindPassword = (props) => {
     const [email, setEmail] = useState('');
@@ -14,16 +13,16 @@ const FindPassword = (props) => {
     const handleButton = async () => {
         const userData = {
             email: email,
-            nickName: '센세니',
+            nickName: 'KAMEA',
         };
         await API.post('/user/findpw', userData)
             .then((res) => {
-                console.log(res);
+                console.log('>>> [SENDPW] ✅ SUCCESS');
                 if (res.status === 200) {
                     alert('발급 완료');
                 }
             })
-            .catch((err) => console.log(err.respond));
+            .catch((err) => console.log('>>> [SENDPW] ❌ ERROR', err.message));
     };
 
     return (
@@ -41,6 +40,12 @@ const FindPassword = (props) => {
             </Eclipse>
             <FindPwFrame>
                 <div className="header">
+                    <img
+                        src={character}
+                        alt="이미지"
+                        width={100}
+                        height={100}
+                    />
                     <Text className="header-text">
                         비밀번호를 잊어버렸나요?
                     </Text>
