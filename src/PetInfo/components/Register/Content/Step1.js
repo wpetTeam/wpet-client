@@ -12,19 +12,11 @@ import {
     Footer,
 } from './styles/style';
 import { ProfilePicture } from 'Signup/components';
-import { ErrorCheck } from './Step1ErrorCheck';
 
 const Step1 = (props) => {
     const [month, setMonth] = useState('');
     const [date, setDate] = useState('');
     const [gender, setGender] = useState('');
-    const [hasError, setHasError] = useState({
-        name: false,
-        year: false,
-        month: false,
-        date: false,
-        gender: false,
-    });
 
     function handleChange(e) {
         props.setPetInfo({
@@ -40,8 +32,6 @@ const Step1 = (props) => {
             date: date,
             gender: gender,
         });
-        console.log(props.petInfo);
-
         props.setStep(props.step + 1);
     };
 

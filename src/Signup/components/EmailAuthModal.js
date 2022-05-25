@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SiMinutemailer } from 'react-icons/si';
 import { IoIosClose } from 'react-icons/io';
 
@@ -14,6 +14,10 @@ const EmailAuthModal = (props) => {
     const [isRunning, setIsRunning] = useState(true);
     const delay = 1000;
 
+    useEffect(() => {
+        props.setAuthCodeText('');
+    }, []);
+
     useInterval(
         () => {
             if (count === 0) {
@@ -28,7 +32,6 @@ const EmailAuthModal = (props) => {
     const handleAuth = (e) => {
         setAuthCode(e.target.value);
     };
-
     const handleResendAuth = () => {
         sendAuthMail(
             props.email,
@@ -40,6 +43,16 @@ const EmailAuthModal = (props) => {
         setCount(180);
         setIsRunning(true);
     };
+    const handleCompareBtn = () => {
+        handleAuthCompare(
+            props.email,
+            authCode,
+            props.setShowEmailAuth,
+            props.setShowLogin,
+            props.setAuthCodeText,
+        );
+    };
+    console.log(props.authCodeText);
 
     return (
         <AuthContainer className="auth-modal">
@@ -60,28 +73,33 @@ const EmailAuthModal = (props) => {
                     <Text className="header-text">본인 확인</Text>
                 </div>
                 <div className="main">
+                    {props.isNotAuth && (
+                        <p className="already-text">
+                            이미 가입된 회원입니다. 본인 확인을 진행해주세요.
+                        </p>
+                    )}
                     <Text className="desc-text">
-                        본인 인증을 위해 3분 이내에 <br />
-                        이메일로 발송된 인증번호를 입력해주세요.
+                        이메일로 발송된
+                        <br /> 인증번호를 입력해주세요.
                     </Text>
                     <div className="auth-container">
-                        <input
-                            className="auth-input"
-                            type="text"
-                            value={authCode}
-                            onChange={handleAuth}
-                        />
+                        <div className="auth-input-container">
+                            <input
+                                className="auth-input"
+                                type="text"
+                                value={authCode}
+                                onChange={handleAuth}
+                            />
+                            {props.authCodeText !== '' && (
+                                <p className="auth-text">
+                                    {props.authCodeText}
+                                </p>
+                            )}
+                        </div>
                         {authCode.length > 0 && (
                             <button
                                 className="compare-button"
-                                onClick={() =>
-                                    handleAuthCompare(
-                                        props.email,
-                                        authCode,
-                                        props.setShowEmailAuth,
-                                        props.setShowLogin,
-                                    )
-                                }
+                                onClick={handleCompareBtn}
                             >
                                 확인
                             </button>

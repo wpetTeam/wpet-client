@@ -9,9 +9,34 @@ import {
 } from './styles/style.js';
 import logo from 'assets/images/sample.jpg';
 import { Button } from '../Button.js';
+import API from 'utils/API.js';
 
 const Step3 = (props) => {
-    console.log(props.petInfo);
+    var birthDate =
+        props.petInfo.year +
+        '-' +
+        props.petInfo.month +
+        '-' +
+        props.petInfo.date;
+
+    const handleCreatePet = async () => {
+        const petData = {
+            petName: props.petInfo.petName,
+            birthDate: birthDate,
+            petSex: props.petInfo.gender,
+            petProfilePicture: props.picture,
+            petSpecies: props.petInfo.breed,
+        };
+
+        await API.post('/pet/create', petData)
+            .then((res) =>
+                console.log('>>> [CREATE PET] ✅ SUCCESS', res.data.petName),
+            )
+            .catch((err) =>
+                console.log('>>> [CREATE PET] ❌ ERROR', err.response),
+            );
+    };
+
     return (
         <Container className="page-step3">
             <Text className="title-text">
@@ -56,11 +81,7 @@ const Step3 = (props) => {
             </InputContainer>
             <Footer>
                 <div></div>
-                <Button
-                    text="확인 완료 및 등록"
-                    setStep={props.setStep}
-                    step={props.step}
-                />
+                <Button text="확인 완료 및 등록" onClick={handleCreatePet} />
             </Footer>
         </Container>
     );

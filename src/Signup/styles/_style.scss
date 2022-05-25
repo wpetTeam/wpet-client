@@ -88,34 +88,52 @@
     .main {
         @include s_common.text($top: 15px, $bottom: 40px, $font-size: 0.9em);
         text-align: center;
-
+        .already-text {
+            background: firebrick;
+            padding: 2px 4px;
+            margin-top: -1%;
+            color: white;
+            font-size: 0.9em;
+            font-weight: 700;
+        }
         .desc-text {
             line-height: 1.5em;
         }
         .auth-container {
+            @include common.flex-row();
             height: 40px;
             align-items: baseline;
 
-            .auth-input {
-                @include s_common.text(
-                    $top: 10px,
-                    $bottom: 50px,
-                    $font-size: 1.2em
-                );
-                @include common.shape();
+            .auth-input-container {
+                @include common.flex-column();
+                .auth-input {
+                    @include s_common.text(
+                        $top: 10px,
+                        $bottom: 0,
+                        $font-size: 1.2em
+                    );
+                    @include common.shape();
 
-                width: 200px;
-                margin-right: 10px;
-                padding-bottom: 5px;
+                    width: 200px;
+                    margin-right: 10px;
+                    padding-bottom: 5px;
 
-                text-align: center;
-                font-weight: 700;
-                border-bottom: 2.5px solid theme.$main-color;
+                    text-align: center;
+                    font-weight: 700;
+                    border-bottom: 2.5px solid theme.$main-color;
 
-                &:focus {
-                    outline: none;
+                    &:focus {
+                        outline: none;
+                    }
+                }
+                .auth-text {
+                    margin-top: 4px;
+                    color: firebrick;
+                    font-size: 0.85em;
+                    font-weight: 700;
                 }
             }
+
             .compare-button {
                 @include s_common.authButton();
             }
@@ -124,6 +142,7 @@
 
     .footer {
         @include common.flex-row($align-items: baseline);
+        margin-top: -2%;
         .time-text {
             @include s_common.text($top: 8px, $font-size: 0.85em);
             margin-right: 10px;
@@ -168,8 +187,8 @@
         padding: 20px;
         .text {
             font-size: 0.85em;
-            letter-spacing: 0.02em;
-            line-height: 1.3em;
+            letter-spacing: 0.07em;
+            line-height: 1.5em;
             span {
                 font-size: 1.2em;
                 font-weight: 600;

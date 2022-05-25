@@ -102,7 +102,7 @@ function EmailBox({ info, updateEmail, setUpdateEmail, handleUpdateInfo }) {
                         updateEmail ? 'email-input update' : 'email-input'
                     }
                     name="email"
-                    value={info.email}
+                    value={info.email || ''}
                     onChange={handleUpdateInfo}
                     disabled={updateEmail ? false : true}
                 />
@@ -199,7 +199,7 @@ function ProfileBox({
                         updateProfile ? 'name-input update' : 'name-input'
                     }
                     name="nickName"
-                    value={info.nickName}
+                    value={info.nickName || ''}
                     onChange={handleUpdateInfo}
                     disabled={updateProfile ? false : true}
                     placeholder="닉네임"

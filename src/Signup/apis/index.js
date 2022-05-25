@@ -8,13 +8,16 @@ export const handleSignup = async (
     setShowEmailAuth,
     setShowsConflict,
     setConflictMsg,
+    setIsNotAuth,
 ) => {
     await API.post('/user/create', userData)
         .then((response) => {
-            console.log('>>> [SIGNUP] SUCCESS', response.data.email);
+            console.log('>>> [SIGNUP] ✅ SUCCESS', response.data.nickName);
             if (response.status === 200) {
                 const authEmail = { email: userData.email };
                 var flag = 0;
+                setShowSignup(false);
+                setShowEmailAuth(true);
                 sendAuthMail(
                     authEmail,
                     setEmail,
@@ -37,36 +40,38 @@ export const handleSignup = async (
                     setConflictMsg('닉네임과 이메일');
                 }
             } else if (err.response.status === 403) {
-                /* 403 : 이메일 인증을 하지 않음 -> 이메일 인증 페이지 */
+                const authEmail = { email: userData.email };
+                var flag = 0;
+                setShowSignup(false);
+                setShowEmailAuth(true);
+                setIsNotAuth(true);
+                sendAuthMail(
+                    authEmail,
+                    setEmail,
+                    setShowSignup,
+                    setShowEmailAuth,
+                    flag,
+                );
             }
         });
 };
 
 /* 인증번호 보내기 */
-export const sendAuthMail = async (
-    email,
-    setEmail,
-    setShowSignup,
-    setShowEmailAuth,
-    flag,
-) => {
+export const sendAuthMail = async (email, setEmail, flag) => {
     await API.post('/user/sendauthemail', email)
         .then((res) => {
-            console.log('email auth', res);
+            console.log('>>> [EMAIL AUTH] ✅ SUCCESS');
             if (res.status === 200) {
                 if (flag === 0) {
                     setEmail(email.email);
-                    setShowSignup(false);
-                    setShowEmailAuth(true);
                 } else {
                     setEmail(email);
-                    alert('send');
                 }
             } else if (res.status === 403) {
                 alert('you already signup');
             }
         })
-        .catch((err) => console.log(err.response));
+        .catch((err) => console.log('>>> [EMAIL AUTH] ❌ ERROR', err.response));
 };
 
 /* 인증번호 비교하기 */
@@ -75,22 +80,25 @@ export const handleAuthCompare = async (
     authString,
     setShowEmailAuth,
     setShowLogin,
+    setAuthCodeText,
 ) => {
     const authData = {
-        email: email,
+        email: email.email,
         authString: authString,
     };
-
     await API.post('/user/compareauthemail', authData)
         .then((res) => {
-            console.log(res);
+            console.log('>>> [EMAIL AUTH COMPARE] ✅ SUCCESS');
             if (res.status === 200) {
                 alert('success');
                 setShowEmailAuth(false);
                 setShowLogin(true);
-            } else if (res.status === 401) {
-                alert('no match');
             }
         })
-        .catch((err) => console.error(err));
+        .catch((err) => {
+            console.log('>>> [EMAIL AUTH COMPARE] ❌ ERROR', err.response);
+            if (err.response.status === 401) {
+                setAuthCodeText('인증번호가 일치하지 않습니다.');
+            }
+        });
 };

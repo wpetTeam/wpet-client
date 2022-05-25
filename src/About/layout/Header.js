@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Logo from 'assets/images/Logo/text-icon.png';
@@ -14,8 +14,10 @@ const Header = (props) => {
     const [showLogin, setShowLogin] = useState(false);
     const [showSignup, setShowSignup] = useState(false);
     const [showEmailAuth, setShowEmailAuth] = useState(false);
+    const [isNotAuth, setIsNotAuth] = useState(false);
     const [showFindPw, setShowFindPw] = useState(false);
     const [email, setEmail] = useState('');
+    const [authCodeText, setAuthCodeText] = useState('');
 
     const LoginButtonHandler = () => {
         setShowLogin(true);
@@ -26,6 +28,13 @@ const Header = (props) => {
         setShowSignup(true);
         props.setBlur(true);
     };
+
+    useEffect(() => {}, [email, authCodeText]);
+
+    useEffect(() => {
+        setIsNotAuth(false);
+        setAuthCodeText('');
+    }, []);
 
     return (
         <Container>
@@ -71,17 +80,23 @@ const Header = (props) => {
                     setShowSignup={setShowSignup}
                     setShowLogin={setShowLogin}
                     setShowEmailAuth={setShowEmailAuth}
+                    setIsNotAuth={setIsNotAuth}
                     setEmail={setEmail}
+                    setAuthCodeText={setAuthCodeText}
                 />
             )}
             {showEmailAuth && (
                 <EmailAuthModal
+                    isNotAuth={isNotAuth}
+                    setIsNotAuth={setIsNotAuth}
                     setBlur={props.setBlur}
                     setShowSignup={setShowSignup}
                     setShowLogin={setShowLogin}
                     setShowEmailAuth={setShowEmailAuth}
                     email={email}
                     setEmail={setEmail}
+                    authCodeText={authCodeText}
+                    setAuthCodeText={setAuthCodeText}
                 />
             )}
             {showFindPw && (

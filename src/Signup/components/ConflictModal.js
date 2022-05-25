@@ -29,8 +29,8 @@ export const ConflictModal = (props) => {
 const Component = styled.div`
     position: fixed;
 
-    width: 330px;
-    height: 250px;
+    width: 380px;
+    height: 280px;
 
     display: flex;
     flex-direction: column;

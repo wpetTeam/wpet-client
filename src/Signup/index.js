@@ -82,6 +82,8 @@ const Signup = (props) => {
             props.setShowEmailAuth,
             setShowsConflict,
             setConflictMsg,
+            props.setIsNotAuth,
+            props.setAuthCodeText,
         );
     };
     return (
