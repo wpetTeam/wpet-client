@@ -3,22 +3,6 @@ import styled, { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import { Footer, Header, Main } from './layout';
 import { useNavigate } from 'react-router-dom';
-
-const Container = styled.div`
-    width: 100%;
-    height: 100%;
-
-    padding: 2% 3%;
-
-    transition: 0.4s ease-in-out;
-    background: ${({ theme }) => theme.aboutBackground};
-
-    &.isBlur {
-        transition: 0.4s ease-in-out;
-        background: ${({ theme }) => theme.aboutLogoText}99;
-        )
-    }
-`;
 const About = () => {
     var naviagate = useNavigate();
     /* Login, Signup 버튼이 눌릴 시  상태 수정*/
@@ -29,7 +13,7 @@ const About = () => {
             document.cookie.split('; ')[1] !== undefined &&
             document.cookie.split('; ')[1].length > 2
         ) {
-            console.log(document.cookie.split('; ')[1]);
+            console.log('>>> [BROWSER COOKIE]', document.cookie.split('; ')[1]);
             naviagate('/home');
         }
     }, [document.cookie]);
@@ -46,3 +30,15 @@ const About = () => {
 };
 
 export default About;
+const Container = styled.div`
+    width: 100%;
+    height: 100%;
+    padding: 2% 3%;
+    transition: 0.4s ease-in-out;
+    background: ${({ theme }) => theme.aboutBackground};
+    &.isBlur {
+        transition: 0.4s ease-in-out;
+        background: ${({ theme }) => theme.aboutLogoText}99;
+        )
+    }
+`;

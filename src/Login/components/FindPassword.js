@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { IoIosClose } from 'react-icons/io';
-import { useNavigate } from 'react-router-dom';
-
 import character from 'assets/images/Logo/findpw-character.png';
 import { Button, Input } from 'Login/components';
 import { Eclipse, Text } from 'assets/styles/common/loginSignup';
@@ -15,7 +13,6 @@ const FindPassword = (props) => {
     const handleButton = async () => {
         const userData = {
             email: email,
-            nickName: 'KAMEA',
         };
         await API.post('/user/findpw', userData)
             .then((res) => {

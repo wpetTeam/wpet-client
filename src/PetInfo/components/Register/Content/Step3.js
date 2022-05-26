@@ -10,15 +10,15 @@ import {
 import logo from 'assets/images/sample.jpg';
 import { Button } from '../Button.js';
 import API from 'utils/API.js';
+import uuid from 'react-uuid';
 
 const Step3 = (props) => {
     var birthDate =
         props.petInfo.year +
         '-' +
-        props.petInfo.month +
+        ('00' + props.petInfo.month).slice(-2) +
         '-' +
-        props.petInfo.date;
-
+        ('00' + props.petInfo.date).slice(-2);
     const handleCreatePet = async () => {
         const petData = {
             petName: props.petInfo.petName,
@@ -27,14 +27,16 @@ const Step3 = (props) => {
             petProfilePicture: props.picture,
             petSpecies: props.petInfo.breed,
         };
-
-        await API.post('/pet/create', petData)
-            .then((res) =>
-                console.log('>>> [CREATE PET] ✅ SUCCESS', res.data.petName),
-            )
-            .catch((err) =>
-                console.log('>>> [CREATE PET] ❌ ERROR', err.response),
-            );
+        await API.post('/pet/create', petData, {
+            withCredentials: true,
+        })
+            .then((res) => {
+                console.log('>>> [CREATE PET] ✅ SUCCESS', res.data.petName);
+                alert(res.data.message);
+            })
+            .catch((err) => {
+                console.log('>>> [CREATE PET] ❌ ERROR', err.response);
+            });
     };
 
     return (
@@ -51,33 +53,7 @@ const Step3 = (props) => {
                         width={230}
                     />
                 </Profile>
-                <Info className="dog-info-container">
-                    <div className="dog-info-sub">
-                        <div className="dog-info name">
-                            <p>반려견 이름</p>{' '}
-                            <span>{props.petInfo.petName}</span>
-                        </div>
-                        <div className="dog-info gender">
-                            <p>반려견 성별</p>{' '}
-                            <span>{props.petInfo.gender}</span>
-                        </div>
-                    </div>
-                    <div className="dog-info birth">
-                        <p>반려견 출생년월</p>{' '}
-                        <span>
-                            {props.petInfo.year}.{props.petInfo.month}.
-                            {props.petInfo.date}.
-                        </span>
-                    </div>
-                    <div className="dog-info breed">
-                        <p>반려견 종</p>
-                        <div className="dog-info-breeds">
-                            {props.petInfo.breed.map((item) => (
-                                <span className="breed">{item}</span>
-                            ))}
-                        </div>
-                    </div>
-                </Info>
+                <PetInfo petInfo={props.petInfo} />
             </InputContainer>
             <Footer>
                 <div></div>
@@ -87,3 +63,34 @@ const Step3 = (props) => {
     );
 };
 export default Step3;
+
+function PetInfo({ petInfo }) {
+    return (
+        <Info className="dog-info-container">
+            <div className="dog-info-sub">
+                <div className="dog-info name">
+                    <p>반려견 이름</p> <span>{petInfo.petName}</span>
+                </div>
+                <div className="dog-info gender">
+                    <p>반려견 성별</p> <span>{petInfo.gender}</span>
+                </div>
+            </div>
+            <div className="dog-info birth">
+                <p>반려견 출생년월</p>{' '}
+                <span>
+                    {petInfo.year}.{petInfo.month}.{petInfo.date}.
+                </span>
+            </div>
+            <div className="dog-info breed">
+                <p>반려견 종</p>
+                <div className="dog-info-breeds">
+                    {petInfo.breed.map((item) => (
+                        <span className="breed" key={uuid()}>
+                            {item}
+                        </span>
+                    ))}
+                </div>
+            </div>
+        </Info>
+    );
+}

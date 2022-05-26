@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoCloseSharp } from 'react-icons/io5';
 import uuid from 'react-uuid';
-import { Breed } from './const/breed.const';
 import { handleBreedPicker, handleDeleteBreed } from './handlePicker';
+import { API } from 'utils';
 import {
     ModalContainer,
     Header,
@@ -18,6 +18,25 @@ import './styles/_style.scss';
 
 const BreedModal = (props) => {
     const [search, setSearch] = useState('');
+    const [Breed, setBreed] = useState([]);
+
+    useEffect(() => {
+        const getBreeds = async () => {
+            await API.get('/pet/species', {
+                withCredentials: true,
+            })
+                .then((res) => {
+                    console.log('>>> [BREED MODAL] ✅ SUCCESS', res);
+                    if (res.status === 200) {
+                        setBreed(res.data.result);
+                    }
+                })
+                .catch((err) =>
+                    console.log('>>> [BREED MODAL] ❌ ERROR', err.message),
+                );
+        };
+        getBreeds();
+    }, []);
 
     const filteredBreed = Breed.filter((item) => {
         return item.name.includes(search);

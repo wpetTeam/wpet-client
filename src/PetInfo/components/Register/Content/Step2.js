@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import uuid from 'react-uuid';
 import BreedPicker from '../BreedPicker';
 import { IoPawSharp, IoCloseSharp } from 'react-icons/io5';
 import { Button } from '../Button';
@@ -55,7 +56,7 @@ const Step2 = (props) => {
             <Footer>
                 <div className="check-breed">
                     {breed.map((item) => (
-                        <SelectItem>
+                        <SelectItem key={uuid()}>
                             {item}
                             <IoCloseSharp
                                 className="delete-icon"
