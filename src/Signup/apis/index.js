@@ -16,7 +16,7 @@ export const handleSignup = async (
             setShowsSignup(false);
             setShowsAuth(true);
             if (res.status === 200) {
-                sendAuthMail(authEmail);
+                sendAuthMail(authEmail, false);
             }
         })
         .catch((err) => {
@@ -32,7 +32,7 @@ export const handleSignup = async (
                     setConflictMsg('닉네임과 이메일');
                 }
             } else if (err.response.status === 403) {
-                sendAuthMail(authEmail);
+                sendAuthMail(authEmail, false);
                 setShowsSignup(false);
                 setShowsAuth(true);
                 setNeedsAuth(true);
@@ -41,14 +41,29 @@ export const handleSignup = async (
 };
 
 /* 인증번호 보내기 */
-export const sendAuthMail = async (email) => {
-    await API.post('/user/sendauthemail', email)
-        .then((res) => {
-            console.log('>>> [EMAIL AUTH] ✅ SUCCESS');
-            if (res.status === 200) {
-            }
-        })
-        .catch((err) => console.log('>>> [EMAIL AUTH] ❌ ERROR', err.response));
+export const sendAuthMail = async (email, isResend) => {
+    if (isResend === true) {
+        const resendEmail = { email: email };
+        await API.post('user/sendauthemail', resendEmail)
+            .then((res) => {
+                console.log('>>> [AUTH RESEND] ✅ SUCCESS');
+                if (res.status === 200) {
+                }
+            })
+            .catch((err) =>
+                console.log('>>> [AUTH RESEND] ❌ ERROR', err.response),
+            );
+    } else {
+        await API.post('/user/sendauthemail', email)
+            .then((res) => {
+                console.log('>>> [AUTH SEND] ✅ SUCCESS');
+                if (res.status === 200) {
+                }
+            })
+            .catch((err) =>
+                console.log('>>> [AUTH SEND] ❌ ERROR', err.response),
+            );
+    }
 };
 
 /* 인증번호 비교하기 */
@@ -65,13 +80,13 @@ export const sendAuthCompare = async (
     };
     await API.post('/user/compareauthemail', authData)
         .then((res) => {
-            console.log('>>> [EMAIL AUTH COMPARE] ✅ SUCCESS');
+            console.log('>>> [AUTH COMPARE] ✅ SUCCESS');
             if (res.status === 200) {
                 setShowsAuth(false);
             }
         })
         .catch((err) => {
-            console.log('>>> [EMAIL AUTH COMPARE] ❌ ERROR', err.response);
+            console.log('>>> [AUTH COMPARE] ❌ ERROR', err.response);
             if (err.response.status === 401) {
                 setIsMatchCode(true);
             }

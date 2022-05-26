@@ -8,10 +8,8 @@ import { AuthContainer, AuthFrame } from 'Signup/styles/style.js';
 import 'Signup/styles/_style.scss';
 
 const EmailAuthModal = (props) => {
-    //인증번호
-    const [authCode, setAuthCode] = useState('');
-    /* 인증번호 매치 확인 */
-    const [isMatchCode, setIsMatchCode] = useState(false);
+    const [authCode, setAuthCode] = useState(''); //인증번호
+    const [isMatchCode, setIsMatchCode] = useState(false); //인증번호 비교 실패
 
     // 180초 타이머 관련 함수
     const [count, setCount] = useState(180);
@@ -33,7 +31,7 @@ const EmailAuthModal = (props) => {
     };
     //인증번호 재전송 버튼
     const handleResendAuth = () => {
-        sendAuthMail(props.email);
+        sendAuthMail(props.email, true);
         setCount(180);
         setIsRunning(true);
     };
@@ -62,15 +60,22 @@ const EmailAuthModal = (props) => {
             </Eclipse>
             <AuthFrame>
                 <div className="header">
-                    <SiMinutemailer className="sending-icon" size={20} />
-                    <Text className="header-text">본인 확인</Text>
+                    {props.needsAuth ? (
+                        <p className="already-text">
+                            가입된 이메일입니다.
+                            <br /> 본인 확인을 진행해주세요.
+                        </p>
+                    ) : (
+                        <>
+                            <SiMinutemailer
+                                className="sending-icon"
+                                size={20}
+                            />
+                            <Text className="header-text">본인 확인</Text>
+                        </>
+                    )}
                 </div>
                 <div className="main">
-                    {props.needsAuth && (
-                        <p className="already-text">
-                            이미 가입된 이메일입니다. 본인 확인을 진행해주세요.
-                        </p>
-                    )}
                     <Text className="desc-text">
                         이메일로 발송된
                         <br /> 인증번호를 입력해주세요.

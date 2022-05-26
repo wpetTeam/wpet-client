@@ -70,12 +70,18 @@
     }
     .header {
         @include common.flex-row();
-
         margin-top: 10px;
-
+        .already-text {
+            text-align: center;
+            background: firebrick;
+            padding: 2px 6px;
+            margin-bottom: -4%;
+            color: white;
+            font-size: 0.8em;
+            font-weight: 700;
+        }
         .sending-icon {
             margin-right: 10px;
-
             animation-duration: 4s;
             animation-name: fullCheck;
             animation-iteration-count: infinite;
@@ -87,14 +93,7 @@
     .main {
         @include s_common.text($top: 15px, $bottom: 40px, $font-size: 0.9em);
         text-align: center;
-        .already-text {
-            background: firebrick;
-            padding: 2px 4px;
-            margin-top: -1%;
-            color: white;
-            font-size: 0.9em;
-            font-weight: 700;
-        }
+
         .desc-text {
             line-height: 1.5em;
         }
@@ -112,11 +111,9 @@
                         $font-size: 1.2em
                     );
                     @include common.shape();
-
                     width: 200px;
                     margin-right: 10px;
                     padding-bottom: 5px;
-
                     text-align: center;
                     font-weight: 700;
                     border-bottom: 2.5px solid theme.$main-color;
@@ -132,7 +129,6 @@
                     font-weight: 700;
                 }
             }
-
             .compare-button {
                 @include s_common.authButton();
             }
