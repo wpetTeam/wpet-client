@@ -32,7 +32,6 @@
         .pw-check-component {
             @include common.flex-row($justify-content: flex-start);
             margin-top: -7.7%;
-
             .pw-check {
                 @include login.font-opacity(gray, 0.9);
                 @include common.flex-row();
@@ -93,7 +92,6 @@
     .main {
         @include s_common.text($top: 15px, $bottom: 40px, $font-size: 0.9em);
         text-align: center;
-
         .desc-text {
             line-height: 1.5em;
         }

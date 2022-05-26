@@ -3,45 +3,76 @@
 
 @mixin profile-dropdown() {
     @include common.hover-event();
+    @include common.shadow(1px, theme.$sub-color, 0);
     color: theme.$main-color;
     background-color: transparent;
-    box-shadow: 1px 1px 0px 0px theme.$sub-color;
 }
-
 .home-header {
     .logo-text {
         color: theme.$main-color;
         font-size: 1.4em;
     }
-    .user-profile-picture {
-        @include common.size(40px, 40px);
-        @include common.shape(theme.$dashboard-color, 2px double #c4c4c4, 50%);
-
-        margin-right: 10px;
-    }
-
-    .user-name-text {
-        font-size: 0.85em;
-        span {
-            @include common.font(
-                theme.$main-color,
-                theme.$function-font,
-                1em,
-                700
+    .profile-nav {
+        .user-profile-picture {
+            @include common.size(40px, 40px);
+            @include common.shape(
+                theme.$dashboard-color,
+                2px double #c4c4c4,
+                50%
             );
+            margin-right: 10px;
         }
-    }
-    .user-profile-info {
-        @include common.shape(theme.$main-color, transparent, 50%);
-
-        margin-left: 5px;
-        color: theme.$dashboard-color;
-
-        &:hover {
-            @include profile-dropdown();
+        .user-name-text {
+            font-size: 0.85em;
+            span {
+                @include common.font(
+                    theme.$main-color,
+                    theme.$description-font,
+                    1em,
+                    700
+                );
+            }
         }
-    }
-    .open-dropdown {
-        @include profile-dropdown();
+        .dropdown-container {
+            .dropdown-btn {
+                @include common.shape();
+                .dropdown-icon {
+                    @include common.shape(theme.$main-color, transparent, 50%);
+                    margin-left: 5px;
+                    color: theme.$dashboard-color;
+                    &:hover {
+                        @include profile-dropdown();
+                    }
+                }
+                .dropdown-icon.open {
+                    @include profile-dropdown();
+                }
+            }
+            .dropdown-menu {
+                .dropdown-item {
+                    @include common.font(
+                        black,
+                        theme.$description-font,
+                        0.7em,
+                        500
+                    );
+                    @include common.shape(
+                        theme.$dashboard-color,
+                        2px solid theme.$sub-color,
+                        0
+                    );
+                    @include common.shadow(3px, theme.$sub-color, 0.5);
+                    padding: 5px;
+                    margin-bottom: 9%;
+                    text-align: center;
+                    &:hover {
+                        @include common.hover-event();
+                        @include common.shadow(3px, theme.$main-color, 0.3);
+                        font-weight: 600;
+                        border: 2px solid theme.$main-color;
+                    }
+                }
+            }
+        }
     }
 }
