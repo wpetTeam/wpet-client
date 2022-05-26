@@ -6,7 +6,6 @@ const ColumnDiv = styled.div`
     flex-direction: column;
     align-items: center;
 `;
-
 /* 회원가입 : Signup */
 export const Container = styled(CommonContainer)`
     left: 26%;
@@ -17,8 +16,9 @@ export const Container = styled(CommonContainer)`
 export const Frame = styled(CommonFrame)`
     width: 570px;
     height: 440px;
+    visibility: ${(props) => props.visibility};
     background: ${(props) => props.background};
-    transition: 0.5s ease-in-out;
+    transition: background 0.5s ease-in-out;
 `;
 export const Content = styled.div`
     width: 90%;
@@ -49,9 +49,6 @@ export const Info = styled.div`
 export const AuthContainer = styled(CommonContainer)`
     width: 20%;
     height: 45%;
-
-    left: 40%;
-    top: 20%;
 `;
 export const AuthFrame = styled(CommonFrame)`
     width: 400px;

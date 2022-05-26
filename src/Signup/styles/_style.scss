@@ -84,7 +84,6 @@
             @include s_common.text($top: 0, $bottom: 0, $font-size: 1.3em);
         }
     }
-
     .main {
         @include s_common.text($top: 15px, $bottom: 40px, $font-size: 0.9em);
         text-align: center;
@@ -171,21 +170,14 @@
 .conflict-modal {
     top: 15%;
     z-index: 12345678;
-
-    .eclipse {
-        background: whitesmoke;
-        img {
-            margin: 5px;
-        }
-    }
     .frame {
         @include common.size(60%, 40%);
-        @include common.shape(whitesmoke, transparent, 10px);
+        @include common.shape(rgb(222, 222, 222), transparent, 10px);
+        @include common.shadow(4px, gray, 0.5);
         text-align: center;
-
-        margin-top: -25px;
         padding: 20px;
         .text {
+            margin-top: -1%;
             font-size: 0.85em;
             letter-spacing: 0.07em;
             line-height: 1.5em;
@@ -200,7 +192,7 @@
             @include common.shadow(4px, gray, 0.5);
             &:hover {
                 @include common.hover-event();
-                @include common.shape(white, transparent, 4px);
+                @include common.shape(rgb(243, 243, 2), transparent, 4px);
                 @include common.shadow(2px, gray, 0.2);
                 font-weight: 600;
             }

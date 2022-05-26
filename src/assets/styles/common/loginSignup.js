@@ -34,6 +34,7 @@ export const Eclipse = styled.div.attrs((props) => ({
     height: 50px;
 
     background: ${(props) => props.background};
+    visibility: ${(props) => props.visibility};
     border-radius: 50%;
 
     z-index: 2;

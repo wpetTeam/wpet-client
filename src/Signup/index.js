@@ -1,169 +1,59 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { IoIosClose } from 'react-icons/io';
 import { theme } from 'assets/styles/theme';
-import LogoImage from 'assets/images/Logo/text-icon.png';
-import {
-    NameInput,
-    EmailInput,
-    PwInput,
-    PwConfirmationInput,
-} from './components/functions';
-import { Button } from 'Login/components';
-import { ProfilePicture, ConflictModal } from 'Signup/components';
-import { onKeyPress } from 'utils';
-import { CheckPwDetail, checkUserInfo } from 'Signup/utils/signupCheck';
-import { handleSignup } from './apis';
-import { Eclipse, Text, BoldText } from 'assets/styles/common/loginSignup';
-import {
-    Container,
-    Frame,
-    Content,
-    Profile,
-    Info,
-} from 'Signup/styles/style.js';
-import 'Signup/styles/_style.scss';
+import styled from 'styled-components';
+import { Signup, EmailAuthModal } from './components';
 
-const Signup = (props) => {
-    const [profile, setProfile] = useState('');
-    const [info, setInfo] = useState({
-        nickName: '',
-        email: '',
-        pw: '',
-        passwordConfirm: '',
-    });
-    const [errMessage, setErrMessage] = useState({
-        name: '',
-        email: '',
-        pw: '',
-    });
-    const [pwErrorCheck, setPwErrorCheck] = useState({
-        number: false,
-        symbol: false,
-        length: false,
-    });
-    const [showsConflict, setShowsConflict] = useState(false);
-    const [conflictMsg, setConflictMsg] = useState('');
-    function handleChange(e) {
-        const value = e.target.value;
-        setInfo({
-            ...info,
-            [e.target.name]: value,
-        });
-        if (e.target.name === 'pw') {
-            setPwErrorCheck({
-                ...pwErrorCheck,
-                number: CheckPwDetail(value, 0),
-                symbol: CheckPwDetail(value, 1),
-                length: CheckPwDetail(value, 2),
-            });
-        }
-        setErrMessage({
-            ...errMessage,
-            name: '',
-            email: '',
-            pw: '',
-        });
-    }
-    const handleButton = () => {
-        if (checkUserInfo(info.nickName, info.email, info.pw, setErrMessage))
-            return;
-        const userData = {
-            nickName: info.nickName,
-            email: info.email,
-            pw: info.pw,
-            profilePicture: profile,
-            location: '',
-        };
-        handleSignup(
-            userData,
-            props.setEmail,
-            props.setShowSignup,
-            props.setShowEmailAuth,
-            setShowsConflict,
-            setConflictMsg,
-            props.setIsNotAuth,
-            props.setAuthCodeText,
-        );
-    };
+const SignupContainer = (props) => {
+    const [email, setEmail] = useState('');
+    const [showsSignup, setShowsSignup] = useState(true);
+    const [showsAuth, setShowsAuth] = useState(false);
+    /* 403번 에러(가입0,인증X) */
+    const [needsAuth, setNeedsAuth] = useState(false);
+
+    useEffect(() => {}, [showsSignup, showsAuth]);
+
+    console.log(needsAuth);
+
     return (
         <ThemeProvider theme={theme}>
-            <Container className="signup-container">
-                <Eclipse background={showsConflict ? '#f3c5b620' : ''}>
-                    <img src={LogoImage} width={50} height={50} alt="로고" />
-                </Eclipse>
-                <Frame
-                    className="signup"
-                    background={showsConflict ? '#f3c5b620' : ''}
-                >
-                    <IoIosClose
-                        className="close-icon"
-                        onClick={() => {
-                            props.setShowSignup(false);
-                            props.setBlur(false);
-                        }}
+            <Container>
+                {showsSignup && (
+                    <Signup
+                        setBlur={props.setBlur}
+                        setShowsSignupContainer={props.setShowsSignupContainer}
+                        setShowLogin={props.setShowLogin}
+                        setShowsSignup={setShowsSignup}
+                        setShowsAuth={setShowsAuth}
+                        setNeedsAuth={setNeedsAuth}
+                        setEmail={setEmail}
                     />
-                    <BoldText className="welcome-text">
-                        Welcome to <span>wpet !</span>
-                    </BoldText>
-                    <Text className="sub-text">
-                        반갑습니다. 반려견의 일상을 특별하게 기록해보세요.
-                    </Text>
-                    <Content>
-                        <Profile>
-                            <ProfilePicture
-                                type="signup"
-                                profile={profile}
-                                setProfile={setProfile}
-                                size="200px"
-                            />
-                        </Profile>
-                        <Info>
-                            <NameInput
-                                info={info}
-                                errMessage={errMessage}
-                                handleChange={handleChange}
-                                onKeyPress={onKeyPress}
-                                handleButton={handleButton}
-                            />
-                            <EmailInput
-                                info={info}
-                                errMessage={errMessage}
-                                handleChange={handleChange}
-                                onKeyPress={onKeyPress}
-                                handleButton={handleButton}
-                            />
-                            <PwInput
-                                info={info}
-                                errMessage={errMessage}
-                                pwErrorCheck={pwErrorCheck}
-                                handleChange={handleChange}
-                                onKeyPress={onKeyPress}
-                                handleButton={handleButton}
-                            />
-                            <PwConfirmationInput
-                                info={info}
-                                handleChange={handleChange}
-                                onKeyPress={onKeyPress}
-                                handleButton={handleButton}
-                            />
-                            <Button
-                                name="submit"
-                                text="본인 인증"
-                                marginTop="6%"
-                                onClick={handleButton}
-                            />
-                        </Info>
-                    </Content>
-                </Frame>
-                {showsConflict && (
-                    <ConflictModal
-                        setShowsConflict={setShowsConflict}
-                        conflictMsg={conflictMsg}
+                )}
+                {showsAuth && (
+                    <EmailAuthModal
+                        setBlur={props.setBlur}
+                        setShowsSignupContainer={props.setShowsSignupContainer}
+                        setShowsAuth={setShowsAuth}
+                        needsAuth={needsAuth}
+                        setNeedsAuth={setNeedsAuth}
+                        email={email}
                     />
                 )}
             </Container>
         </ThemeProvider>
     );
 };
-export default Signup;
+export default SignupContainer;
+
+const Container = styled.div`
+    position: fixed;
+    top: 10%;
+    left: 5%;
+
+    width: 90%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+`;
