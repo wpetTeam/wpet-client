@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import styled from 'styled-components';
-import { Signup, EmailAuthModal } from './components';
+import { Signup, EmailAuth, Welcome } from './components';
 
 const SignupContainer = (props) => {
     const [email, setEmail] = useState('');
     const [showsSignup, setShowsSignup] = useState(true);
     const [showsAuth, setShowsAuth] = useState(false);
-    /* 403번 에러(가입0,인증X) */
     const [needsAuth, setNeedsAuth] = useState(false);
+    const [showsWelcome, setShowsWelcome] = useState(false);
 
-    useEffect(() => {}, [showsSignup, showsAuth]);
+    useEffect(() => {}, [showsSignup, showsAuth, showsWelcome]);
 
     console.log(needsAuth);
 
@@ -30,13 +30,20 @@ const SignupContainer = (props) => {
                     />
                 )}
                 {showsAuth && (
-                    <EmailAuthModal
+                    <EmailAuth
                         setBlur={props.setBlur}
                         setShowsSignupContainer={props.setShowsSignupContainer}
                         setShowsAuth={setShowsAuth}
+                        setShowsWelcome={setShowsWelcome}
                         needsAuth={needsAuth}
                         setNeedsAuth={setNeedsAuth}
                         email={email}
+                    />
+                )}
+                {showsWelcome && (
+                    <Welcome
+                        setShowsSignupContainer={props.setShowsSignupContainer}
+                        setShowLogin={props.setShowLogin}
                     />
                 )}
             </Container>

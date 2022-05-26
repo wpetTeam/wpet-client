@@ -195,3 +195,19 @@
         }
     }
 }
+
+.welcome-modal {
+    @include common.size(330px, 300px);
+    @include common.shape(theme.$step-color, transparent, 20px);
+    @include common.flex-column();
+    margin-top: -10%;
+
+    .welcome-text {
+        font-family: theme.$description-font;
+        span {
+            font-family: theme.$english-font;
+            color: theme.$main-color;
+            font-size: 1.3em;
+        }
+    }
+}

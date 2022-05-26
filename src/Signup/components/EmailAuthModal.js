@@ -41,6 +41,7 @@ const EmailAuthModal = (props) => {
             props.email,
             authCode,
             props.setShowsAuth,
+            props.setShowsWelcome,
             setIsMatchCode,
         );
     };

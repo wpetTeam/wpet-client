@@ -71,6 +71,7 @@ export const sendAuthCompare = async (
     email,
     authCode,
     setShowsAuth,
+    setShowsWelcome,
     setIsMatchCode,
 ) => {
     console.log(email, authCode);
@@ -83,6 +84,7 @@ export const sendAuthCompare = async (
             console.log('>>> [AUTH COMPARE] ✅ SUCCESS');
             if (res.status === 200) {
                 setShowsAuth(false);
+                setShowsWelcome(true);
             }
         })
         .catch((err) => {
