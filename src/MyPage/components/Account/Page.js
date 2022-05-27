@@ -7,6 +7,8 @@ import './styles/_style.scss';
 
 const MyAccount = () => {
     const [user, setUser] = useState({});
+    const [userPets, setUserPets] = useState([]);
+    const [petPics, setPetPics] = useState([]);
     const [updateInfo, setUpdateInfo] = useState({});
     const [profilePic, setProfilePic] = useState('');
     const [updateEmail, setUpdateEmail] = useState(false);
@@ -29,8 +31,45 @@ const MyAccount = () => {
                     console.log('>>> [ACCOUNT] ❌ ERROR', err.message),
                 );
         };
+        const getPets = async () => {
+            await API.get('/pet/getnames', {
+                withCredentials: true,
+            })
+                .then((res) => {
+                    console.log(
+                        '>>> [ACCOUNT / GET USER PETS] ✅ SUCCESS',
+                        res,
+                    );
+                    setUserPets(res.data.result);
+                })
+                .catch((err) => {
+                    console.log('>>> [ACCOUNT / GET USER PETS] ✅ ERROR', err);
+                });
+        };
         getAuth();
+        getPets();
     }, []);
+
+    useEffect(() => {
+        if (userPets !== undefined) {
+            const getPetPicture = async (id) => {
+                const petID = { petID: id };
+                await API.post('/pet/getInfo', petID, {
+                    withCredentials: true,
+                }).then((res) => {
+                    console.log('>>> [ACCOUNT / GET PET PIC] ✅ SUCCESS');
+                    setPetPics((old) => [
+                        ...old,
+                        res.data.result.petProfilePicture,
+                    ]);
+                });
+            };
+            for (let i = 0; i < userPets.length; i++) {
+                getPetPicture(userPets[i]['petID']);
+            }
+        }
+    }, [userPets]);
+    console.log(petPics);
 
     const handleUpdateInfo = (e) => {
         setUpdateInfo({ ...updateInfo, [e.target.name]: e.target.value });
@@ -59,7 +98,20 @@ const MyAccount = () => {
                 />
             </div>
             <div className="third-row">
-                <div className="pet-box">미남이</div>
+                <div className="pet-box">
+                    {userPets.map((item, idx) => (
+                        <div className="pet-item">
+                            <img
+                                className="pet-pic"
+                                src={petPics[idx]}
+                                alt="반려견 사진"
+                                width={90}
+                                height={90}
+                            />
+                            {item.petName}
+                        </div>
+                    ))}
+                </div>
                 <div className="community-box">
                     <Icon
                         className="icon no"

@@ -81,6 +81,12 @@
                 color: green;
                 font-weight: 600;
             }
+            // focus 도 함께 처리
+            &:hover {
+                transform: scale(1.02);
+                transition: 0.4s ease-in-out;
+                background: transparentize(theme.$gray-color, 0.5);
+            }
         }
         .pw-box {
             @include common.size(90%, fit-content);
@@ -103,6 +109,11 @@
                     @include common.size(150px, 35px);
                 }
             }
+            &:hover {
+                transform: scale(1.02);
+                transition: 0.4s ease-in-out;
+                background: transparentize(theme.$gray-color, 0.5);
+            }
         }
         .date-box {
             @include common.size(90%, fit-content);
@@ -112,6 +123,11 @@
             font-size: 1.2em;
             p {
                 font-size: 0.8em;
+            }
+            &:hover {
+                transform: scale(1.02);
+                transition: 0.4s ease-in-out;
+                background: transparentize(theme.$gray-color, 0.5);
             }
         }
     }
@@ -190,6 +206,11 @@
                     font-weight: 600;
                 }
             }
+            &:hover {
+                transform: scale(1.02);
+                transition: 0.4s ease-in-out;
+                background: transparentize(theme.$gray-color, 0.5);
+            }
         }
     }
     .third-row {
@@ -198,9 +219,24 @@
 
         .pet-box {
             @include common.size(90%, fit-content);
+            @include common.flex-row();
+            flex-wrap: wrap;
             padding: 20px;
             background: transparentize(theme.$gray-color, 0.9);
             border-radius: 4px;
+            .pet-item {
+                @include common.size(50%, fit-content);
+                @include common.flex-column();
+                .pet-pic {
+                    margin-bottom: 5%;
+                    border-radius: 50%;
+                }
+            }
+            &:hover {
+                transform: scale(1.02);
+                transition: 0.4s ease-in-out;
+                background: transparentize(theme.$gray-color, 0.5);
+            }
         }
         .community-box {
             @include common.size(90%, fit-content);
@@ -212,6 +248,11 @@
                 @include common.size(8%, fit-content);
                 margin-bottom: 5%;
                 color: rgb(255, 209, 5);
+            }
+            &:hover {
+                transform: scale(1.02);
+                transition: 0.4s ease-in-out;
+                background: transparentize(theme.$gray-color, 0.5);
             }
         }
     }
