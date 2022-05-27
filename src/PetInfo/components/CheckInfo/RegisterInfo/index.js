@@ -3,36 +3,70 @@ import styled from 'styled-components';
 import BreedModal from 'PetInfo/components/Register/BreedPicker/BreedModal';
 import { Header, PetName, PetGender, PetBirth, PetBreed } from './components';
 import { DateCalculator } from './utils/dateCalculator';
+import { API } from 'utils';
 
 const RegisterInfo = (props) => {
-    /* 반려견 정보 POST (petID : props로 받아오기) => /pet/getinfor */
-    /* 반려견 수정 POST => /pet/update */
-    /* 반려견 삭제 POST => /pet/delete */
+    const petID = { petID: props.petId };
 
-    const [isUpdate, setIsUpdate] = useState(false);
-    const [petInfo, setPetInfo] = useState({
-        petName: '미남이',
-        year: '2015',
-        month: 9,
-        date: 24,
-        petSex: '남',
-        petProfilePicture: '',
-        petSpecies: ['말티즈', '푸들', '페키니즈'],
-    });
+    const [info, setInfo] = useState([]); // 원래 정보
+    const [updateInfo, setUpdateInfo] = useState([]); // 수정 정보
 
-    const [month, setMonth] = useState(petInfo.month);
-    const [date, setDate] = useState(petInfo.date);
-    const [breed, setBreed] = useState(petInfo.petSpecies);
-    const [gender, setGender] = useState(petInfo.petSex);
-    const [showsModal, setShowsModal] = useState(false);
+    const [isUpdate, setIsUpdate] = useState(false); // 수정 여부
+    const [selectBreed, setSelectBreed] = useState([]); // 반려견 종 선택
+    const [showsModal, setShowsModal] = useState(false); // 반려견 종 선택 모달
+    const [month, setMonth] = useState(0); // birthDate - month
+    const [date, setDate] = useState(0); // birthDate - date
+    const [gender, setGender] = useState(''); // 반려견 성별
+    const [dDay, setDDay] = useState(0);
 
-    const [dDay, setDDay] = useState(
-        DateCalculator(petInfo.year, petInfo.month, petInfo.date),
-    );
+    useEffect(() => {
+        const getPetInfo = async () => {
+            await API.post('/pet/getinfo', petID, {
+                withCredentials: true,
+            })
+                .then((res) => {
+                    console.log(
+                        '>>> [GET PET] ✅ SUCCESS 🐶',
+                        res.data.result.petName,
+                    );
+                    setInfo(res.data.result);
+                })
+                .catch((err) => {
+                    console.log('>>> [GET PET] ❌ ERROR');
+                });
+        };
+        getPetInfo();
+    }, []);
+
+    useEffect(() => {
+        if (info !== undefined && info.birthDate !== undefined) {
+            console.log('>>> [PET INFO SET] ✅ SUCCESS');
+            setUpdateInfo({
+                petName: info.petName,
+                petSpecies: info.petSpecies,
+                petProfilePicture: info.petProfilePicture,
+                year: info.birthDate.split('-')[0],
+                month: info.birthDate.split('-')[1],
+                date: info.birthDate.split('-')[2],
+                petSex: info.petSex,
+            });
+            setMonth(updateInfo.month);
+            setDate(updateInfo.date);
+            setGender(updateInfo.petSex);
+            setSelectBreed(updateInfo.petSpecies);
+            setDDay(
+                DateCalculator(
+                    updateInfo.year,
+                    updateInfo.month,
+                    updateInfo.date,
+                ),
+            );
+        }
+    }, [info]);
 
     const handleUpdateInfo = (e) => {
-        setPetInfo({
-            ...petInfo,
+        setUpdateInfo({
+            ...updateInfo,
             [e.target.name]: e.target.value,
         });
     };
@@ -46,17 +80,19 @@ const RegisterInfo = (props) => {
     };
 
     useEffect(() => {
-        setPetInfo({
-            ...petInfo,
+        setUpdateInfo({
+            ...updateInfo,
             month: month,
             date: date,
-            petSpecies: breed,
+            petSpecies: selectBreed,
             petSex: gender,
         });
-    }, [breed, gender, dDay, month, date]);
+    }, [selectBreed, gender, dDay, month, date]);
 
     const handleUpdateBtn = () => {
-        setDDay(DateCalculator(petInfo.year, petInfo.month, petInfo.date));
+        setDDay(
+            DateCalculator(updateInfo.year, updateInfo.month, updateInfo.date),
+        );
         setIsUpdate(false);
     };
 
@@ -64,7 +100,7 @@ const RegisterInfo = (props) => {
         <Component>
             <div className="color-header"></div>
             <Header
-                petInfo={petInfo}
+                petInfo={updateInfo}
                 dDay={dDay}
                 isUpdate={isUpdate}
                 setIsUpdate={setIsUpdate}
@@ -72,17 +108,17 @@ const RegisterInfo = (props) => {
             />
             <div className="main">
                 <PetName
-                    petInfo={petInfo}
+                    petInfo={updateInfo}
                     handleUpdateInfo={handleUpdateInfo}
                     isUpdate={isUpdate}
                 />
                 <PetGender
-                    petInfo={petInfo}
+                    petInfo={updateInfo}
                     isUpdate={isUpdate}
                     handlePetGender={handlePetGender}
                 />
                 <PetBirth
-                    petInfo={petInfo}
+                    petInfo={updateInfo}
                     handleUpdateInfo={handleUpdateInfo}
                     isUpdate={isUpdate}
                     month={month}
@@ -91,7 +127,7 @@ const RegisterInfo = (props) => {
                     setDate={setDate}
                 />
                 <PetBreed
-                    petInfo={petInfo}
+                    petInfo={updateInfo}
                     isUpdate={isUpdate}
                     setShowsModal={setShowsModal}
                 />
@@ -101,8 +137,9 @@ const RegisterInfo = (props) => {
             )}
             {showsModal && (
                 <BreedModal
-                    breed={breed}
-                    setBreed={setBreed}
+                    breeds={props.breeds}
+                    selectBreed={selectBreed}
+                    setSelectBreed={setSelectBreed}
                     setShowModal={setShowsModal}
                 />
             )}

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Input } from 'PetInfo/components/Register/Input';
-import DatePicker from '../DatePicker';
-import { Button as SubmitButton } from '../Button';
+import { DatePicker, Button, Input } from 'PetInfo/components/Register';
+import { ProfilePicture } from 'Signup/components';
 import {
     Text,
     Container,
@@ -11,7 +10,6 @@ import {
     Label,
     Footer,
 } from './styles/style';
-import { ProfilePicture } from 'Signup/components';
 
 const Step1 = (props) => {
     const [month, setMonth] = useState('');
@@ -67,7 +65,7 @@ const Step1 = (props) => {
             </InputContainer>
             <Footer>
                 <div></div>
-                <SubmitButton text="다음 단계" onClick={HandleButton} />
+                <Button text="다음 단계" onClick={HandleButton} />
             </Footer>
         </Container>
     );

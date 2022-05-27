@@ -1,7 +1,7 @@
 import uuid from 'react-uuid';
 import { Icon } from '@iconify/react';
-import { Input } from 'PetInfo/components/Register/Input';
-import DatePicker from 'PetInfo/components/Register/DatePicker';
+import { Input } from 'PetInfo/components/Register';
+import { DatePicker } from 'PetInfo/components/Register/DatePicker';
 import logo from 'assets/images/Logo/text-icon.png';
 import './_style.scss';
 
@@ -19,7 +19,7 @@ export function Header({
                 src={
                     petInfo.petProfilePicture === ''
                         ? logo
-                        : petInfo.PetProfilePicture
+                        : petInfo.petProfilePicture
                 }
                 alt="반려견 프로필"
                 width={110}
@@ -51,7 +51,7 @@ export function PetName({ petInfo, handleUpdateInfo, isUpdate }) {
     return (
         <div className="main-info">
             <p className="info-label">반려견 이름</p>
-            <p className="info-text name">
+            <div className="info-text name">
                 <input
                     className={isUpdate ? 'name-input update' : 'name-input'}
                     name="petName"
@@ -59,7 +59,7 @@ export function PetName({ petInfo, handleUpdateInfo, isUpdate }) {
                     onChange={handleUpdateInfo}
                     disabled={isUpdate ? false : true}
                 />
-            </p>
+            </div>
         </div>
     );
 }
@@ -132,7 +132,7 @@ export function PetBreed({ petInfo, isUpdate, setShowsModal }) {
             <p className="info-label">견종</p>
             <div className="info-text breed">
                 <div className="breed-container">
-                    {petInfo.petSpecies.map((item, idx) => (
+                    {petInfo.petSpecies?.map((item, idx) => (
                         <div
                             key={uuid()}
                             className={

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { IoCloseSharp } from 'react-icons/io5';
 import uuid from 'react-uuid';
 import { handleBreedPicker, handleDeleteBreed } from './handlePicker';
-import { API } from 'utils';
 import {
     ModalContainer,
     Header,
@@ -18,28 +17,10 @@ import './styles/_style.scss';
 
 const BreedModal = (props) => {
     const [search, setSearch] = useState('');
-    const [Breed, setBreed] = useState([]);
+    console.log(props.selectBreed);
 
-    useEffect(() => {
-        const getBreeds = async () => {
-            await API.get('/pet/species', {
-                withCredentials: true,
-            })
-                .then((res) => {
-                    console.log('>>> [BREED MODAL] ✅ SUCCESS', res);
-                    if (res.status === 200) {
-                        setBreed(res.data.result);
-                    }
-                })
-                .catch((err) =>
-                    console.log('>>> [BREED MODAL] ❌ ERROR', err.message),
-                );
-        };
-        getBreeds();
-    }, []);
-
-    const filteredBreed = Breed.filter((item) => {
-        return item.name.includes(search);
+    const filteredBreed = props.breeds.filter((item) => {
+        return item.includes(search);
     });
 
     return (
@@ -62,26 +43,20 @@ const BreedModal = (props) => {
                 <SearchResult>
                     {filteredBreed
                         .sort(function (a, b) {
-                            let a_name = a.name;
-                            let b_name = b.name;
-                            return a_name === b_name
-                                ? 0
-                                : a_name > b_name
-                                ? 1
-                                : -1;
+                            return a === b ? 0 : a > b ? 1 : -1;
                         })
                         .map((item) => (
                             <Result
                                 key={uuid()}
                                 onClick={() =>
                                     handleBreedPicker(
-                                        item.name,
-                                        props.breed,
-                                        props.setBreed,
+                                        item,
+                                        props.selectBreed,
+                                        props.setSelectBreed,
                                     )
                                 }
                             >
-                                {item.name}
+                                {item}
                             </Result>
                         ))}
                 </SearchResult>
@@ -89,7 +64,7 @@ const BreedModal = (props) => {
             <Footer>
                 <p style={{ fontSize: '0.7em' }}>이미 선택한 견종 (최대 3개)</p>
                 <SelectContainer>
-                    {props.breed.map((item) => (
+                    {props.selectBreed.map((item) => (
                         <SelectItem key={uuid()}>
                             {item}
                             <IoCloseSharp
@@ -98,8 +73,8 @@ const BreedModal = (props) => {
                                 onClick={() =>
                                     handleDeleteBreed(
                                         item,
-                                        props.breed,
-                                        props.setBreed,
+                                        props.selectBreed,
+                                        props.setSelectBreed,
                                     )
                                 }
                             />

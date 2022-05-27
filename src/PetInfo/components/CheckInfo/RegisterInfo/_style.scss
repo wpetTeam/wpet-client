@@ -68,10 +68,11 @@
         margin-bottom: 3%;
     }
     .info-text.name {
+        margin-bottom: 6%;
         .name-input {
             @include common.shape();
             @include common.font(black, theme.$description-font, 1.1em, 500);
-            margin: 1% 0 0 -1.5%;
+            margin: 8% 0 0 -1.5%;
         }
         .name-input.update {
             @include common.size(230px, 25px);

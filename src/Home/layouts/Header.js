@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { NavIcon, UserProfile } from 'Home/components';
-import 'Home/styles/_style.scss';
 import { API } from 'utils';
+import 'Home/styles/_style.scss';
 
 const Header = (props) => {
     const [user, setUser] = useState({});

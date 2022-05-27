@@ -13,12 +13,13 @@ import API from 'utils/API.js';
 import uuid from 'react-uuid';
 
 const Step3 = (props) => {
-    var birthDate =
+    const birthDate =
         props.petInfo.year +
         '-' +
         ('00' + props.petInfo.month).slice(-2) +
         '-' +
         ('00' + props.petInfo.date).slice(-2);
+
     const handleCreatePet = async () => {
         const petData = {
             petName: props.petInfo.petName,
@@ -32,7 +33,7 @@ const Step3 = (props) => {
         })
             .then((res) => {
                 console.log('>>> [CREATE PET] ✅ SUCCESS', res.data.petName);
-                alert(res.data.message);
+                alert('성공');
             })
             .catch((err) => {
                 console.log('>>> [CREATE PET] ❌ ERROR', err.response);
@@ -76,9 +77,10 @@ function PetInfo({ petInfo }) {
                 </div>
             </div>
             <div className="dog-info birth">
-                <p>반려견 출생년월</p>{' '}
+                <p>반려견 출생년월 / 만난 날</p>{' '}
                 <span>
-                    {petInfo.year}.{petInfo.month}.{petInfo.date}.
+                    {petInfo.year}. {('00' + petInfo.month).slice(-2)}.{' '}
+                    {('00' + petInfo.date).slice(-2)}
                 </span>
             </div>
             <div className="dog-info breed">

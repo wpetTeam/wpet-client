@@ -1,26 +1,26 @@
 import React from 'react';
-import { PickerContainer, Select, ImageDiv, TextDiv } from './styles/style';
-import { Breed } from './const/breed.const';
+import uuid from 'react-uuid';
 import { handleBreedPicker, breedNameHandler } from './handlePicker';
+import { PickerContainer, Select, ImageDiv, TextDiv } from './styles/style';
 import './styles/_style.scss';
 
 const BreedPicker = (props) => {
     return (
         <PickerContainer>
-            {Breed.map(
+            {props.breeds.map(
                 (item, idx) =>
                     idx <= 26 && (
                         <Select
-                            key={item.id}
+                            key={uuid()}
                             onClick={() =>
                                 handleBreedPicker(
-                                    item.name,
-                                    props.breed,
-                                    props.setBreed,
+                                    item,
+                                    props.selectBreed,
+                                    props.setSelectBreed,
                                 )
                             }
                             className={
-                                props.breed.includes(item.name)
+                                props.selectBreed.includes(item)
                                     ? 'breed-option select'
                                     : 'breed-option'
                             }
@@ -29,14 +29,14 @@ const BreedPicker = (props) => {
                                 <img
                                     src={
                                         process.env.PUBLIC_URL +
-                                        `/Breed/${Breed[idx]['name']}.png`
+                                        `/Breed/${props.breeds[idx]}.png`
                                     }
                                     width={45}
                                     height={50}
                                     alt="반려견 종"
                                 />
                             </ImageDiv>
-                            <TextDiv>{breedNameHandler(item.name)}</TextDiv>
+                            <TextDiv>{breedNameHandler(item)}</TextDiv>
                         </Select>
                     ),
             )}
