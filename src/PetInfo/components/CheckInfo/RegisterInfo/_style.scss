@@ -4,7 +4,6 @@
 .petinfo-header {
     @include common.flex-row(flex-start, center);
     padding-left: 5%;
-
     .pet-picture {
         @include common.shape(
             theme.$step-color,
@@ -14,65 +13,38 @@
     }
     .pet-name {
         @include common.size(100%, 100%);
-        @include common.flex-row(center, center);
-        margin-top: -2%;
-
-        .text-area {
-            @include common.size(100%, 100%);
-            @include common.flex-column(center, flex-start);
-            margin: 2% 0 0 4%;
-
-            .name-text {
-                @include common.size(90%, fit-content);
-                @include common.shape(transparent, transparent, 0);
-
-                color: black;
-                font-size: 1.6em;
-                font-weight: 600;
-            }
-            .dday-text {
-                margin: -18% 0 0 1%;
-
-                font-size: 0.8em;
-                color: theme.$dark-gray-color;
-            }
+        @include common.flex-column(center, flex-start);
+        margin: -2% 0 0 2%;
+        .name-text {
+            @include common.size(90%, fit-content);
+            @include common.shape(transparent, transparent, 0);
+            color: black;
+            font-size: 1.6em;
+            font-weight: 600;
         }
-        .btn-area {
-            @include common.size(120px, 30px);
-            @include common.shape(theme.$step-color, transparent, 2px);
-
-            margin: 10% 10% 0 0;
+        .dday-text {
+            margin: -12% 0 0 1%;
+            font-size: 0.85em;
             color: theme.$dark-gray-color;
-            font-weight: 700;
-
-            &:hover {
-                @include common.hover-event();
-            }
         }
     }
 }
 
 .main-info {
-    @include common.size(100%, 20%);
+    @include common.size(100%, 21%);
     @include common.flex-column(center, flex-start);
     padding-left: 5%;
-
     .info-label {
-        margin-bottom: -4%;
+        margin-bottom: -3%;
         color: theme.$dark-gray-color;
         font-size: 0.7em;
     }
-    .info-date {
-        @include common.flex-row(flex-start, center);
-        margin-top: 6%;
-        margin-bottom: 3%;
-    }
     .info-text.name {
-        margin-bottom: 6%;
+        margin-bottom: 10%;
         .name-input {
             @include common.shape();
             @include common.font(black, theme.$description-font, 1.1em, 500);
-            margin: 8% 0 0 -1.5%;
+            margin: 5% 0 0 -1.5%;
         }
         .name-input.update {
             @include common.size(230px, 25px);
@@ -92,6 +64,7 @@
     .info-text.gender {
         @include common.size(100%, 100%);
         @include common.flex-row(flex-start, center);
+        margin-top: 3%;
         font-size: 1.1em;
 
         .gender-text {
@@ -101,6 +74,7 @@
                 1px solid theme.$gray-color,
                 4px
             );
+            margin-top: 1%;
             padding-top: 4px;
             text-align: center;
             font-size: 0.8em;
@@ -123,6 +97,11 @@
                 background: theme.$step-color;
             }
         }
+    }
+    .info-date {
+        @include common.flex-row(flex-start, center);
+        margin-top: 5%;
+        margin-bottom: 3%;
     }
     .info-text.breed {
         @include common.size(100%, 100%);
@@ -172,7 +151,7 @@
     }
 }
 .delete-text {
-    margin: -2% 0 0 59%;
+    margin: -2% 0 0 55%;
     font-size: 0.75em;
     color: gray;
     &:hover {

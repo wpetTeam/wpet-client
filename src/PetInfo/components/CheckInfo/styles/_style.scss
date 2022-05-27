@@ -4,32 +4,66 @@
 .pet-check {
     @include common.flex-row(flex-start, center);
     padding-left: 1.5%;
+    overflow: auto;
 
     .section-1 {
-        @include common.size(27%, 90%);
-        @include common.flex-column(center, center);
-        @include common.shape(
-            theme.$dashboard-color,
-            5px solid theme.$step-color,
-            10px
-        );
-        font-family: theme.$description-font;
+        @include common.size(100%, 90%);
+        @include common.flex-row(flex-start, center);
+        flex-wrap: wrap;
 
-        .color-header {
-            @include common.size(100%, 15%);
-            margin-bottom: -10%;
-            background: theme.$step-color;
-        }
-        .main {
-            @include common.size(90%, 62%);
-            @include common.flex-column(center, flex-start);
+        font-family: theme.$description-font;
+        .register-info {
+            @include common.size(24%, 89%);
             @include common.shape(
-                transparentize(theme.$dashboard-color, 0.6),
-                transparent,
+                theme.$dashboard-color,
+                5px solid theme.$step-color,
                 10px
             );
+            margin: 1%;
 
-            margin: -1% 0 0 5%;
+            .color-header {
+                @include common.size(100%, 15%);
+                margin-bottom: -10%;
+
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-end;
+
+                background: theme.$step-color;
+
+                .btn {
+                    @include common.size(13%, 37px);
+                    @include common.shape(white, transparent, 8px);
+                    margin-bottom: -2%;
+                    padding: 2px;
+                    color: theme.$gray-color;
+                    font-weight: 700;
+                    &:hover {
+                        @include common.hover-event();
+                        color: theme.$dark-gray-color;
+                    }
+                    .icon {
+                        @include common.size(fit-content, 30px);
+                    }
+                }
+                .btn.complete {
+                    color: rgba(0, 128, 0, 0.726);
+                    &:hover {
+                        color: green;
+                    }
+                }
+            }
+            .main {
+                @include common.size(90%, 62%);
+                @include common.flex-column(center, flex-start);
+                @include common.shape(
+                    transparentize(theme.$dashboard-color, 0.6),
+                    transparent,
+                    10px
+                );
+
+                margin: -5% 0 0 5%;
+            }
         }
     }
 }

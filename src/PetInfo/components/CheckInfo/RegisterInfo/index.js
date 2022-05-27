@@ -4,20 +4,14 @@ import BreedModal from 'PetInfo/components/Register/BreedPicker/BreedModal';
 import { Header, PetName, PetGender, PetBirth, PetBreed } from './components';
 import { DateCalculator } from './utils/dateCalculator';
 import { API } from 'utils';
+import { Icon } from '@iconify/react';
 
 const RegisterInfo = (props) => {
     const petID = { petID: props.petId };
-
     const [info, setInfo] = useState([]); // 원래 정보
     const [updateInfo, setUpdateInfo] = useState([]); // 수정 정보
-
     const [isUpdate, setIsUpdate] = useState(false); // 수정 여부
-    const [selectBreed, setSelectBreed] = useState([]); // 반려견 종 선택
     const [showsModal, setShowsModal] = useState(false); // 반려견 종 선택 모달
-    const [month, setMonth] = useState(0); // birthDate - month
-    const [date, setDate] = useState(0); // birthDate - date
-    const [gender, setGender] = useState(''); // 반려견 성별
-    const [dDay, setDDay] = useState(0);
 
     useEffect(() => {
         const getPetInfo = async () => {
@@ -40,29 +34,30 @@ const RegisterInfo = (props) => {
 
     useEffect(() => {
         if (info !== undefined && info.birthDate !== undefined) {
-            console.log('>>> [PET INFO SET] ✅ SUCCESS');
+            //console.log('>>> [PET INFO SET] ✅ SUCCESS', info);
+            var birth = info.birthDate.split('-');
             setUpdateInfo({
                 petName: info.petName,
                 petSpecies: info.petSpecies,
                 petProfilePicture: info.petProfilePicture,
-                year: info.birthDate.split('-')[0],
-                month: info.birthDate.split('-')[1],
-                date: info.birthDate.split('-')[2],
+                year: birth[0],
+                month: birth[1],
+                date: birth[2],
                 petSex: info.petSex,
             });
-            setMonth(updateInfo.month);
-            setDate(updateInfo.date);
-            setGender(updateInfo.petSex);
-            setSelectBreed(updateInfo.petSpecies);
-            setDDay(
-                DateCalculator(
-                    updateInfo.year,
-                    updateInfo.month,
-                    updateInfo.date,
-                ),
-            );
+            setMonth(birth[1]);
+            setDate(birth[2]);
+            setGender(info.petSex);
+            setSelectBreed(info.petSpecies);
+            setDDay(DateCalculator(birth[0], birth[1], birth[2]));
         }
     }, [info]);
+
+    const [month, setMonth] = useState(); // birthDate - month
+    const [date, setDate] = useState(); // birthDate - date
+    const [gender, setGender] = useState(); // 반려견 성별
+    const [selectBreed, setSelectBreed] = useState(); // 반려견 종 선택
+    const [dDay, setDDay] = useState();
 
     const handleUpdateInfo = (e) => {
         setUpdateInfo({
@@ -70,7 +65,6 @@ const RegisterInfo = (props) => {
             [e.target.name]: e.target.value,
         });
     };
-
     const handlePetGender = () => {
         if (gender === '남') {
             setGender('여');
@@ -96,16 +90,36 @@ const RegisterInfo = (props) => {
         setIsUpdate(false);
     };
 
+    const handlePetDelete = async () => {
+        await API.post('/pet/delete', petID, {
+            withCredentials: true,
+        })
+            .then((res) => {
+                console.log('>>> [PET DELETE] ✅ SUCCESS');
+                alert('삭제 완료');
+            })
+            .catch((err) => {
+                console.log('>>> [PET DELETE] ❌ ERROR');
+            });
+    };
+
     return (
-        <Component>
-            <div className="color-header"></div>
-            <Header
-                petInfo={updateInfo}
-                dDay={dDay}
-                isUpdate={isUpdate}
-                setIsUpdate={setIsUpdate}
-                handleUpdateBtn={handleUpdateBtn}
-            />
+        <Component className="register-info">
+            <div className="color-header">
+                {isUpdate ? (
+                    <button className="btn complete" onClick={handleUpdateBtn}>
+                        <Icon
+                            icon="bxs:message-square-check"
+                            className="icon "
+                        />
+                    </button>
+                ) : (
+                    <button className="btn" onClick={() => setIsUpdate(true)}>
+                        <Icon icon="bxs:message-square-edit" className="icon" />
+                    </button>
+                )}
+            </div>
+            <Header petInfo={updateInfo} dDay={dDay} />
             <div className="main">
                 <PetName
                     petInfo={updateInfo}
@@ -133,7 +147,9 @@ const RegisterInfo = (props) => {
                 />
             </div>
             {isUpdate && (
-                <p className="delete-text">반려견을 삭제하고 싶어요.</p>
+                <p className="delete-text" onClick={handlePetDelete}>
+                    반려견을 삭제하고 싶어요.
+                </p>
             )}
             {showsModal && (
                 <BreedModal

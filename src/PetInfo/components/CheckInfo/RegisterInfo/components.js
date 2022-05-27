@@ -5,13 +5,7 @@ import { DatePicker } from 'PetInfo/components/Register/DatePicker';
 import logo from 'assets/images/Logo/text-icon.png';
 import './_style.scss';
 
-export function Header({
-    petInfo,
-    isUpdate,
-    setIsUpdate,
-    dDay,
-    handleUpdateBtn,
-}) {
+export function Header({ petInfo, dDay }) {
     return (
         <div className="petinfo-header">
             <img
@@ -26,22 +20,8 @@ export function Header({
                 height={110}
             />
             <div className="pet-name">
-                <div className="text-area">
-                    <p className="name-text">{petInfo.petName}</p>
-                    <p className="dday-text">D+{dDay}</p>
-                </div>
-                {isUpdate ? (
-                    <button className="btn-area" onClick={handleUpdateBtn}>
-                        수정 완료
-                    </button>
-                ) : (
-                    <button
-                        className="btn-area"
-                        onClick={() => setIsUpdate(true)}
-                    >
-                        정보 수정
-                    </button>
-                )}
+                <p className="name-text">{petInfo.petName}</p>
+                <p className="dday-text">D+{dDay}</p>
             </div>
         </div>
     );
@@ -50,12 +30,12 @@ export function Header({
 export function PetName({ petInfo, handleUpdateInfo, isUpdate }) {
     return (
         <div className="main-info">
-            <p className="info-label">반려견 이름</p>
+            <label className="info-label">반려견 이름</label>
             <div className="info-text name">
                 <input
                     className={isUpdate ? 'name-input update' : 'name-input'}
                     name="petName"
-                    value={petInfo.petName}
+                    value={petInfo.petName || ''}
                     onChange={handleUpdateInfo}
                     disabled={isUpdate ? false : true}
                 />
@@ -67,10 +47,10 @@ export function PetName({ petInfo, handleUpdateInfo, isUpdate }) {
 export function PetGender({ petInfo, isUpdate, handlePetGender }) {
     return (
         <div className="main-info">
-            <p className="info-label">반려견 성별</p>
+            <label className="info-label">반려견 성별</label>
             <p className="info-text gender">
                 <span className={isUpdate ? 'gender-text' : ''}>
-                    {petInfo.petSex}
+                    {petInfo.petSex || ''}
                 </span>
                 {isUpdate && (
                     <Icon
@@ -95,11 +75,11 @@ export function PetBirth({
 }) {
     return (
         <div className="main-info">
-            <p className="info-label">반려견 만난 날</p>
+            <p className="info-label">반려견 출생년월 / 만난 날</p>
             <div className="info-date">
                 <Input
                     name="year"
-                    value={petInfo.year}
+                    value={petInfo.year || ''}
                     onChange={handleUpdateInfo}
                     width="50px"
                     text="년"
@@ -143,16 +123,15 @@ export function PetBreed({ petInfo, isUpdate, setShowsModal }) {
                             {'   '}
                         </div>
                     ))}
+                    {isUpdate && (
+                        <button
+                            className="breed-btn"
+                            onClick={() => setShowsModal(true)}
+                        >
+                            수정
+                        </button>
+                    )}
                 </div>
-
-                {isUpdate && (
-                    <button
-                        className="breed-btn"
-                        onClick={() => setShowsModal(true)}
-                    >
-                        수정
-                    </button>
-                )}
             </div>
         </div>
     );
