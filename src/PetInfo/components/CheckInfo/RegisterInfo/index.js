@@ -34,7 +34,6 @@ const RegisterInfo = (props) => {
 
     useEffect(() => {
         if (info !== undefined && info.birthDate !== undefined) {
-            //console.log('>>> [PET INFO SET] ✅ SUCCESS', info);
             var birth = info.birthDate.split('-');
             setUpdateInfo({
                 petName: info.petName,
@@ -83,7 +82,32 @@ const RegisterInfo = (props) => {
         });
     }, [selectBreed, gender, dDay, month, date]);
 
-    const handleUpdateBtn = () => {
+    const handleUpdateBtn = async () => {
+        const birthDate =
+            updateInfo.year +
+            '-' +
+            ('00' + updateInfo.month).slice(-2) +
+            '-' +
+            ('00' + updateInfo.date).slice(-2);
+
+        const updateData = {
+            petID: props.petID,
+            updateElement: {
+                petName: updateInfo.petName,
+                birthDate: birthDate,
+                petSex: updateInfo.petSex,
+                petSpecies: updateInfo.petSpecies,
+            },
+        };
+        await API.patch('/pet/update', updateData, {
+            withCredentials: true,
+        })
+            .then((res) => {
+                console.log('>>> [PET UPDATE] ✅ SUCCESS');
+                window.location.reload(false);
+            })
+            .catch((err) => console.log('>>> [PET UPDATE] ❌ ERROR', err));
+
         setDDay(
             DateCalculator(updateInfo.year, updateInfo.month, updateInfo.date),
         );
@@ -96,7 +120,7 @@ const RegisterInfo = (props) => {
         })
             .then((res) => {
                 console.log('>>> [PET DELETE] ✅ SUCCESS');
-                alert('삭제 완료');
+                window.location.reload(false);
             })
             .catch((err) => {
                 console.log('>>> [PET DELETE] ❌ ERROR');
@@ -104,8 +128,10 @@ const RegisterInfo = (props) => {
     };
 
     return (
-        <Component className="register-info">
-            <div className="color-header">
+        <Component
+            className={isUpdate ? 'register-info update' : 'register-info'}
+        >
+            <div className={isUpdate ? 'color-header update' : 'color-header'}>
                 {isUpdate ? (
                     <button className="btn complete" onClick={handleUpdateBtn}>
                         <Icon

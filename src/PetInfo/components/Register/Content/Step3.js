@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
     Container,
     Text,
@@ -20,7 +19,6 @@ const Step3 = (props) => {
         ('00' + props.petInfo.month).slice(-2) +
         '-' +
         ('00' + props.petInfo.date).slice(-2);
-    const navigate = useNavigate();
 
     const handleCreatePet = async () => {
         const petData = {
@@ -35,7 +33,7 @@ const Step3 = (props) => {
         })
             .then((res) => {
                 console.log('>>> [CREATE PET] ✅ SUCCESS', res.data.petName);
-                navigate('/pet-info');
+                window.location.reload(false);
             })
             .catch((err) => {
                 console.log('>>> [CREATE PET] ❌ ERROR', err.response);

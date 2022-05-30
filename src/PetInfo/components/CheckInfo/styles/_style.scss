@@ -10,8 +10,31 @@
         @include common.size(100%, 90%);
         @include common.flex-row(flex-start, center);
         flex-wrap: wrap;
-
         font-family: theme.$description-font;
+
+        .no-pet-text {
+            @include common.size(100%, 90%);
+            @include common.flex-column();
+            text-align: center;
+            font-size: 0.95em;
+            p {
+                margin-top: -0.8%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .plus-icon {
+                    @include common.size(14px, 14px);
+                    @include common.shape(
+                        transparent,
+                        1.5px solid theme.$sub-color,
+                        5px
+                    );
+                    margin: 0 4px;
+                    padding: 5px;
+                    color: theme.$main-color;
+                }
+            }
+        }
         .register-info {
             @include common.size(24%, 89%);
             @include common.shape(
@@ -20,6 +43,7 @@
                 10px
             );
             margin: 1%;
+            transition: 150ms ease-in-out;
 
             .color-header {
                 @include common.size(100%, 15%);
@@ -30,6 +54,7 @@
                 align-items: flex-end;
 
                 background: theme.$step-color;
+                transition: 150ms ease-in-out;
 
                 .btn {
                     @include common.size(13%, 37px);
@@ -46,8 +71,13 @@
                         @include common.size(fit-content, 30px);
                     }
                 }
+            }
+            .color-header.update {
+                transition: 150ms ease-in-out;
+                background: theme.$gray-color;
                 .btn.complete {
-                    color: rgba(0, 128, 0, 0.726);
+                    transition: 150ms ease-in-out;
+                    color: rgba(0, 128, 0, 0.5);
                     &:hover {
                         color: green;
                     }
@@ -64,6 +94,11 @@
 
                 margin: -5% 0 0 5%;
             }
+        }
+        .register-info.update {
+            transform: scale(1.05);
+            transition: 150ms ease-in-out;
+            border: 5px solid theme.$gray-color;
         }
     }
 }

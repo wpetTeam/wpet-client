@@ -99,18 +99,22 @@ const MyAccount = () => {
             </div>
             <div className="third-row">
                 <div className="pet-box">
-                    {userPets.map((item, idx) => (
-                        <div className="pet-item">
-                            <img
-                                className="pet-pic"
-                                src={petPics[idx]}
-                                alt="반려견 사진"
-                                width={90}
-                                height={90}
-                            />
-                            {item.petName}
-                        </div>
-                    ))}
+                    {userPets.length === 0 ? (
+                        <p className="noPet-text">등록된 반려견이 없습니다.</p>
+                    ) : (
+                        userPets.map((item, idx) => (
+                            <div className="pet-item">
+                                <img
+                                    className="pet-pic"
+                                    src={petPics[idx]}
+                                    alt="반려견 사진"
+                                    width={90}
+                                    height={90}
+                                />
+                                {item.petName}
+                            </div>
+                        ))
+                    )}
                 </div>
                 <div className="community-box">
                     <Icon

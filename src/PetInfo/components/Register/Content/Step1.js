@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { DatePicker, Button, Input } from 'PetInfo/components/Register';
 import { ProfilePicture } from 'Signup/components';
+import { EmptyCheck } from './Step1ErrorCheck';
 import {
     Text,
     Container,
@@ -15,22 +16,31 @@ const Step1 = (props) => {
     const [month, setMonth] = useState('');
     const [date, setDate] = useState('');
     const [gender, setGender] = useState('');
-
+    const [hasEmpty, setHasEmpty] = useState({
+        name: false,
+        year: false,
+        month: false,
+        date: false,
+        gender: false,
+    });
     function handleChange(e) {
         props.setPetInfo({
             ...props.petInfo,
             [e.target.name]: e.target.value,
         });
     }
-
     const HandleButton = () => {
-        props.setPetInfo({
-            ...props.petInfo,
-            month: month,
-            date: date,
-            gender: gender,
-        });
-        props.setStep(props.step + 1);
+        if (EmptyCheck(props.petInfo, hasEmpty, setHasEmpty) === true) {
+            alert('필수 항목 입력 다 안함');
+        } else {
+            props.setPetInfo({
+                ...props.petInfo,
+                month: month,
+                date: date,
+                gender: gender,
+            });
+            props.setStep(props.step + 1);
+        }
     };
 
     return (
@@ -41,18 +51,16 @@ const Step1 = (props) => {
             </Text>
             <InputContainer>
                 <PictureComponent
-                    setPicture={props.setPicture}
                     picture={props.picture}
+                    setPicture={props.setPicture}
                 />
                 <Info>
-                    <Label>반려견 이름*</Label>
-                    <Input
-                        name="petName"
-                        value={props.petInfo.petName}
-                        onChange={handleChange}
-                        width="230px"
+                    <PetName
+                        petInfo={props.petInfo}
+                        handleChange={handleChange}
+                        hasEmpty={hasEmpty}
                     />
-                    <BirthComponent
+                    <PetBirth
                         petInfo={props.petInfo}
                         handleChange={handleChange}
                         month={month}
@@ -60,7 +68,7 @@ const Step1 = (props) => {
                         date={date}
                         setDate={setDate}
                     />
-                    <GenderComponent gender={gender} setGender={setGender} />
+                    <PetGender gender={gender} setGender={setGender} />
                 </Info>
             </InputContainer>
             <Footer>
@@ -90,17 +98,10 @@ function PictureComponent({ setPicture, picture }) {
     );
 }
 
-function BirthComponent({
-    handleChange,
-    month,
-    setMonth,
-    date,
-    setDate,
-    petInfo,
-}) {
+function PetBirth({ handleChange, month, setMonth, date, setDate, petInfo }) {
     return (
         <React.Fragment>
-            <Label>반려견 출생년월 또는 만난 날* </Label>
+            <Label>반려견 출생년월 또는 만난 날(*) </Label>
             <div
                 style={{
                     display: 'flex',
@@ -134,10 +135,10 @@ function BirthComponent({
     );
 }
 
-function GenderComponent({ gender, setGender }) {
+function PetGender({ gender, setGender }) {
     return (
         <React.Fragment>
-            <Label>반려견 성별*</Label>
+            <Label>반려견 성별(*)</Label>
             <div
                 style={{
                     display: 'flex',
@@ -162,5 +163,20 @@ function GenderComponent({ gender, setGender }) {
                 </button>
             </div>
         </React.Fragment>
+    );
+}
+
+function PetName({ petInfo, handleChange, hasEmpty }) {
+    return (
+        <>
+            <Label>반려견 이름(*)</Label>
+            <Input
+                name="petName"
+                value={petInfo.petName}
+                onChange={handleChange}
+                width="230px"
+                empty={hasEmpty.name}
+            />
+        </>
     );
 }

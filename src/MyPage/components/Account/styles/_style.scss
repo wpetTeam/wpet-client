@@ -95,6 +95,7 @@
             border-radius: 4px;
             font-size: 1.1em;
             padding: 20px;
+
             .icon {
                 @include common.size(8%, fit-content);
                 margin-bottom: -2%;
@@ -110,7 +111,7 @@
                 }
             }
             &:hover {
-                transform: scale(1.02);
+                transform: scale(1.01);
                 transition: 0.4s ease-in-out;
                 background: transparentize(theme.$gray-color, 0.5);
             }
@@ -224,6 +225,9 @@
             padding: 20px;
             background: transparentize(theme.$gray-color, 0.9);
             border-radius: 4px;
+            .noPet-text {
+                color: theme.$dark-gray-color;
+            }
             .pet-item {
                 @include common.size(50%, fit-content);
                 @include common.flex-column();

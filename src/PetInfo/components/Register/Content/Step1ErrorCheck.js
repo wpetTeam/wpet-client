@@ -1,34 +1,26 @@
-const handleHasError = (hasError, setHasError, name) => {
-    setHasError({
-        ...hasError,
-        [name]: true,
-    });
-};
+export function EmptyCheck(info, hasEmpty, setHasEmpty) {
+    let isEmpty = false;
 
-export function ErrorCheck({ petInfo, hasError, setHasError }) {
-    var isError = false;
-    console.log(petInfo);
-
-    if (petInfo.name === '') {
-        handleHasError(hasError, setHasError, 'name');
-        isError = true;
+    if (info.petName === '') {
+        //console.log('name empty');
+        isEmpty = true;
     }
-    if (petInfo.year === '') {
-        handleHasError(hasError, setHasError, 'year');
-        isError = true;
+    if (info.year === '') {
+        //console.log('year empty');
+        isEmpty = true;
     }
-    if (petInfo.month === '') {
-        handleHasError(hasError, setHasError, 'month');
-        isError = true;
+    if (info.month === '') {
+        //console.log('month empty');
+        isEmpty = true;
     }
-    if (petInfo.date === '') {
-        handleHasError(hasError, setHasError, 'date');
-        isError = true;
+    if (info.date === '') {
+        //console.log('date empty');
+        isEmpty = true;
     }
-    if (petInfo.gender === '') {
-        handleHasError(hasError, setHasError, 'gender');
-        isError = true;
+    if (info.gender === '') {
+        //console.log('gender empty');
+        isEmpty = true;
     }
 
-    return isError;
+    return isEmpty;
 }

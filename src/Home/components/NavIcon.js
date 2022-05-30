@@ -12,9 +12,14 @@ export const NavIcon = () => {
 
     const DIARY_URL = 'http://localhost:5000/diary';
     const DIARY_WRITE_URL = 'http://localhost:5000/diary/write';
+
     const PETINFO_URL = 'http://localhost:5000/pet-info';
+    const PETINFO_REGISTER_URL = 'http://localhost:5000/pet-info/register';
+
     const COMMUNITY_URL = 'http://localhost:5000/community';
+
     const MYPAGE_URL = 'http://localhost:5000/mypage';
+    const MYPAGE_ACCOUNT_URL = 'http://localhost:5000/mypage/account';
 
     return (
         <>
@@ -32,7 +37,8 @@ export const NavIcon = () => {
                     <Icon name="mypage" isShow />
                 </Nav>
             )}
-            {current_location === DIARY_URL && (
+            {(current_location === DIARY_URL ||
+                current_location === DIARY_WRITE_URL) && (
                 <Nav>
                     <Icon name="diary" isSelect />
                     <Icon name="pet-info" />
@@ -40,15 +46,8 @@ export const NavIcon = () => {
                     <Icon name="mypage" />
                 </Nav>
             )}
-            {current_location === DIARY_WRITE_URL && (
-                <Nav>
-                    <Icon name="diary" isSelect />
-                    <Icon name="pet-info" />
-                    <Icon name="community" />
-                    <Icon name="mypage" />
-                </Nav>
-            )}
-            {current_location === PETINFO_URL && (
+            {(current_location === PETINFO_URL ||
+                current_location === PETINFO_REGISTER_URL) && (
                 <Nav>
                     <Icon name="diary" />
                     <Icon name="pet-info" isSelect />
@@ -64,7 +63,8 @@ export const NavIcon = () => {
                     <Icon name="mypage" />
                 </Nav>
             )}
-            {current_location === MYPAGE_URL && (
+            {(current_location === MYPAGE_URL ||
+                current_location === MYPAGE_ACCOUNT_URL) && (
                 <Nav>
                     <Icon name="diary" />
                     <Icon name="pet-info" />

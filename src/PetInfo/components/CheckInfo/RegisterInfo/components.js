@@ -11,7 +11,7 @@ export function Header({ petInfo, dDay }) {
             <img
                 className="pet-picture"
                 src={
-                    petInfo.petProfilePicture === ''
+                    petInfo.petProfilePicture === null
                         ? logo
                         : petInfo.petProfilePicture
                 }

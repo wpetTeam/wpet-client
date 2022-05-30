@@ -7,11 +7,12 @@ export const Input = (props) => {
                 name={props.name}
                 value={props.value}
                 onChange={props.onChange}
+                placeholder={props.placeholder}
+                disabled={props.disabled}
                 maxLength={props.maxLength}
                 width={props.width}
                 text={props.text}
-                placeholder={props.placeholder}
-                disabled={props.disabled}
+                empty={props.empty}
             />
             {props.text && <Text>{props.text}</Text>}
         </Container>
@@ -32,11 +33,15 @@ const Container = styled.div`
 
 const Form = styled.input.attrs((props) => ({
     width: props.width,
-    textAlign: props.text ? 'center' : 'left',
     paddingLeft: props.text ? '0' : '10px',
-    border: props.disabled ? 'transparent' : '1px solid #bdbdbd',
+    textAlign: props.text ? 'center' : 'left',
     fontWeight: props.disabled ? '500' : '700',
     fontSize: props.disabled ? '0.95em' : '0.8em',
+    border: props.disabled
+        ? 'transparent'
+        : props.empty
+        ? '1px solid red'
+        : '1px solid #bdbdbd',
 }))`
     width: ${(props) => props.width};
     height: 30px;
