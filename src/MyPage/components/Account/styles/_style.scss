@@ -118,6 +118,7 @@
         }
         .date-box {
             @include common.size(90%, fit-content);
+            @include common.flex-column(center, flex-start);
             @include common.shape(
                 transparentize(theme.$gray-color, 0.9),
                 transparent,
@@ -131,9 +132,19 @@
                 padding: 8px;
                 color: white;
             }
-            p {
-                margin-top: 1%;
+            .text {
+                margin-top: 3%;
                 font-size: 0.9em;
+            }
+            .text.delete {
+                margin-top: -3%;
+                font-size: 0.65em;
+                color: theme.$dark-gray-color;
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: 1px rgb(33, 117, 150) underline;
+                    color: rgb(33, 117, 150);
+                }
             }
             &:hover {
                 transform: scale(1.02);
@@ -230,11 +241,21 @@
 
         .pet-box {
             @include common.size(90%, fit-content);
-            @include common.flex-row();
+            @include common.flex-column(center, flex-start);
+            @include common.shape(
+                transparentize(theme.$gray-color, 0.9),
+                transparent,
+                4px
+            );
             flex-wrap: wrap;
             padding: 20px;
-            background: transparentize(theme.$gray-color, 0.9);
-            border-radius: 4px;
+            svg {
+                @include common.size(7%, fit-content);
+                @include common.shape(orange, transparent, 50%);
+                color: white;
+                padding: 8px;
+                margin-bottom: 2%;
+            }
             .noPet-text {
                 color: theme.$dark-gray-color;
             }

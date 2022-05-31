@@ -1,9 +1,10 @@
 import uuid from 'react-uuid';
+import { Icon } from '@iconify/react';
 
 export const PetBox = ({ userPets, petPics, IMAGE }) => {
     return (
         <div className="pet-box">
-            나의 가족
+            <Icon icon="carbon:dog-walker" />
             {userPets.length === 0 ? (
                 <p className="noPet-text">등록된 반려견이 없습니다.</p>
             ) : (

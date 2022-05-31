@@ -1,6 +1,7 @@
-import { API } from 'utils';
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
+import { sendAuthCode, handleUpdateEmail } from '../apis';
+
 export const EmailBox = ({
     info,
     updateEmail,
@@ -10,44 +11,6 @@ export const EmailBox = ({
     const [isSend, setIsSend] = useState(false);
     const [authCode, setAuthCode] = useState('');
 
-    const sendAuthCode = async () => {
-        setIsSend(true);
-        await API.post(
-            '/user/sendmail/email/update',
-            {
-                newEmail: info.email,
-            },
-            {
-                withCredentials: true,
-            },
-        )
-            .then((res) => {
-                console.log('>>> [UPDATE EMAIL SEND CODE] ✅ SUCCESS');
-                setIsSend(true);
-            })
-            .catch((err) =>
-                console.log('>>> [UPDATE EMAIL SEND CODE] ❌ ERRPR'),
-            );
-    };
-
-    const handleUpdateEmail = async () => {
-        await API.post(
-            '/user/update/email',
-            {
-                newEmail: info.email,
-                authString: authCode,
-            },
-            {
-                withCredentials: true,
-            },
-        )
-            .then((res) => {
-                console.log('>>> [UPDATE EMAIL ] ✅ SUCCESS');
-                setIsSend(false);
-                window.location.reload(false);
-            })
-            .catch((err) => console.log('>>> [UPDATE EMAIL ] ❌ ERRPR'));
-    };
     return (
         <div className="email-box">
             {updateEmail ? (
@@ -72,7 +35,10 @@ export const EmailBox = ({
                     disabled={updateEmail ? false : true}
                 />
                 {updateEmail ? (
-                    <button className="update-btn auth" onClick={sendAuthCode}>
+                    <button
+                        className="update-btn auth"
+                        onClick={() => sendAuthCode(info.email, setIsSend)}
+                    >
                         인증
                     </button>
                 ) : (
@@ -98,7 +64,13 @@ export const EmailBox = ({
                         />
                         <button
                             className="update-btn authcode"
-                            onClick={handleUpdateEmail}
+                            onClick={() =>
+                                handleUpdateEmail(
+                                    info.email,
+                                    authCode,
+                                    setIsSend,
+                                )
+                            }
                         >
                             확인
                         </button>
