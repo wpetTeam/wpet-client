@@ -118,12 +118,22 @@
         }
         .date-box {
             @include common.size(90%, fit-content);
+            @include common.shape(
+                transparentize(theme.$gray-color, 0.9),
+                transparent,
+                4px
+            );
             padding: 20px;
-            background: transparentize(theme.$gray-color, 0.9);
-            border-radius: 4px;
             font-size: 1.2em;
+            svg {
+                @include common.size(7%, fit-content);
+                @include common.shape(lightblue, transparent, 50%);
+                padding: 8px;
+                color: white;
+            }
             p {
-                font-size: 0.8em;
+                margin-top: 1%;
+                font-size: 0.9em;
             }
             &:hover {
                 transform: scale(1.02);
