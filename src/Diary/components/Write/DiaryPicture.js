@@ -13,7 +13,7 @@ export const DiaryPicture = (props) => {
                     className="pic-select-yet-component"
                     background={props.backgroundColor}
                 >
-                    <Select size={props.size}>
+                    <Select>
                         <Icon
                             icon="gridicons:cloud-upload"
                             className="pic-upload-icon"
@@ -40,11 +40,7 @@ export const DiaryPicture = (props) => {
                         className="select-pic"
                         background={props.backgroundColor}
                     >
-                        <Image
-                            src={props.picture}
-                            size={props.size}
-                            alt="프로필 사진"
-                        />
+                        <Image src={props.picture} alt="프로필 사진" />
                     </Frame>
                     <div className="select-btn">
                         <button
@@ -79,11 +75,9 @@ const Frame = styled.div.attrs((props) => ({
     border: 6px solid ${(props) => props.background};
     box-shadow: 8px 8px 0px 0px ${(props) => props.background}80;
 `;
-const Select = styled.div.attrs((props) => ({
-    size: props.size,
-}))`
-    width: ${(props) => props.size};
-    height: ${(props) => props.size};
+const Select = styled.div`
+    width: 100%;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
@@ -94,9 +88,7 @@ const Select = styled.div.attrs((props) => ({
     border-radius: 4px;
 `;
 
-const Image = styled.img.attrs((props) => ({
-    size: props.size,
-}))`
-    width: ${(props) => props.size};
-    height: ${(props) => props.size};
+const Image = styled.img`
+    width: 100%;
+    height: 100%;
 `;

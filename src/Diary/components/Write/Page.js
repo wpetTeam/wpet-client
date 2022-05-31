@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import uuid from 'react-uuid';
 import {
     Today,
     Content,
@@ -7,17 +8,55 @@ import {
     DiaryPicture,
 } from 'Diary/components/Write';
 import { Icon } from '@iconify/react';
+import { API } from 'utils';
 
 const WriteDiary = () => {
-    /* /pet/getnames 에서 반려동물 이름 GET 하기 -> 상단에 체크박스 형식으로 구현(1명일 경우는 X, 2명 이상부터)*/
-    const petList = ['미남', '미녀', '두콩', '세콩'];
+    const [userPets, setUserPets] = useState([]);
+
+    useEffect(() => {
+        const getUserPets = async () => {
+            await API.get('/pet/getnames', {
+                withCredentials: true,
+            }).then((res) => {
+                console.log('>>> [GET USER PETS] ✅ SUCCESS');
+                setUserPets(res.data.result);
+            });
+        };
+        getUserPets();
+    }, []);
+
+    console.log(userPets);
+
     const [weather, setWeather] = useState('');
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [picture, setPicture] = useState('');
-
     const [color, setColor] = useState('#ebcfc6');
     const [selectColor, setSelectColor] = useState(false);
+
+    const handleCreateBtn = async () => {
+        // 오류 400번 / 형식 물어보기
+        const diaryData = {
+            petIDs: [6],
+            title: title,
+            picture: picture,
+            texts: '미남이가 미용을 했다',
+            shareIs: 0,
+            petState: 'happy',
+            weather: weather,
+            color: color,
+            font: 'Pretendard',
+            hashTags: ['반려견'],
+        };
+        await API.post('/diary/create', diaryData, {
+            withCredentials: true,
+        })
+            .then((res) => {
+                console.log('>>> [DIARY CREATE] ✅ SUCCESS');
+                console.log(diaryData);
+            })
+            .catch((err) => console.log('>>> [DIARY CREATE] ❌ ERROR', err));
+    };
 
     return (
         <React.Fragment>
@@ -27,7 +66,6 @@ const WriteDiary = () => {
                         <DiaryPicture
                             picture={picture}
                             setPicture={setPicture}
-                            size="450px"
                             backgroundColor={color}
                         />
                     </div>
@@ -52,7 +90,7 @@ const WriteDiary = () => {
                         <Content content={content} setContent={setContent} />
                     </div>
                 </div>
-                <Footer petList={petList} />
+                <Footer userPets={userPets} hadleCreateBtn={handleCreateBtn} />
             </div>
         </React.Fragment>
     );
@@ -68,7 +106,7 @@ function DateWeather({ weather, setWeather }) {
     );
 }
 
-function Title({ title, e, setTitle, color }) {
+function Title({ title, setTitle, color }) {
     return (
         <div className="journal-title">
             <div className="title-text">제목 {'  '}: </div>
@@ -84,38 +122,39 @@ function Title({ title, e, setTitle, color }) {
     );
 }
 
-function Footer({ petList }) {
+function Footer({ userPets, hadleCreateBtn }) {
     return (
         <div className="write-footer">
-            <div className="pet-choice">
-                <label className="text-label">누구의 일기인가요?</label>
-                <div className="pet-list">
-                    {petList.map((item) => (
-                        <label>
-                            <input
-                                name={item}
-                                className="check-input"
-                                id="input"
-                                type="checkbox"
-                            />
-                            <Icon
-                                icon="ph:paw-print-fill"
-                                className="custom-checkbox"
-                                htmlFor="input"
-                            />
-                            {/* <span
-                                className="custom-checkbox"
-                                htmlFor="input"
-                            ></span> */}
-                            <span className="custom-label" htmlFor="input">
-                                {item}
-                            </span>
-                        </label>
-                    ))}
+            {userPets.length > 1 && (
+                <div className="pet-choice">
+                    <label className="text-label">누구의 일기인가요?</label>
+                    <div className="pet-list">
+                        {userPets.map((item) => (
+                            <label key={uuid()}>
+                                <input
+                                    name={item}
+                                    className="check-input"
+                                    id="input"
+                                    type="checkbox"
+                                />
+                                <Icon
+                                    icon="ph:paw-print-fill"
+                                    className="custom-checkbox"
+                                    htmlFor="input"
+                                />
+                                <span className="custom-label" htmlFor="input">
+                                    {item.petName}
+                                </span>
+                            </label>
+                        ))}
+                    </div>
                 </div>
-            </div>
+            )}
+
             <div>
-                <button className="complete-btn">작성 완료</button>
+                <button className="complete-btn" onClick={hadleCreateBtn}>
+                    작성 완료
+                </button>
             </div>
         </div>
     );

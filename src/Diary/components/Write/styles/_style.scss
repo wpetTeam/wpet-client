@@ -21,7 +21,7 @@
         .pic-container {
             @include common.size(40%, 100%);
             .pic-select-yet-component {
-                @include common.size(fit-content, fit-content);
+                @include common.size(95%, 80%);
                 .pic-upload-icon {
                     @include common.size(45px, 45px);
                     color: theme.$gray-color;

@@ -1,75 +1,36 @@
 import React, { useState, useEffect } from 'react';
+import IMAGE from 'assets/images/Logo/text-common-character.png';
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
-import logo from 'assets/images/Logo/text-icon.png';
-import { API, removePicture, uploadPicture } from 'utils';
+import { ProfileBox, PwBox, EmailBox, DateBox, PetBox } from './boxs';
+import { getAuth, getPets, getPetPicture } from './apis';
 import './styles/_style.scss';
+import { UpdatePwModal } from './UpdatePwModal';
 
 const MyAccount = () => {
     const [user, setUser] = useState({});
-    const [userPets, setUserPets] = useState([]);
-    const [petPics, setPetPics] = useState([]);
+    // userInfo
     const [updateInfo, setUpdateInfo] = useState({});
     const [profilePic, setProfilePic] = useState('');
     const [updateEmail, setUpdateEmail] = useState(false);
     const [updateProfile, setUpdateProfile] = useState(false);
+    // PetBox
+    const [userPets, setUserPets] = useState([]);
+    const [petPics, setPetPics] = useState([]);
+    const [showsUpdatePw, setShowsUpdatePw] = useState(false);
 
     useEffect(() => {
-        const getAuth = async () => {
-            await API.get('/user/auth', {
-                withCredentials: true,
-            })
-                .then((res) => {
-                    console.log('>>> [ACCOUNT] ✅ SUCCESS', res.data);
-                    if (res.status === 200) {
-                        setUser(res.data);
-                        setUpdateInfo(res.data);
-                        setProfilePic(res.data.profilePicture);
-                    }
-                })
-                .catch((err) =>
-                    console.log('>>> [ACCOUNT] ❌ ERROR', err.message),
-                );
-        };
-        const getPets = async () => {
-            await API.get('/pet/getnames', {
-                withCredentials: true,
-            })
-                .then((res) => {
-                    console.log(
-                        '>>> [ACCOUNT / GET USER PETS] ✅ SUCCESS',
-                        res,
-                    );
-                    setUserPets(res.data.result);
-                })
-                .catch((err) => {
-                    console.log('>>> [ACCOUNT / GET USER PETS] ✅ ERROR', err);
-                });
-        };
-        getAuth();
-        getPets();
+        getAuth(setUser, setUpdateInfo, setProfilePic);
+        getPets(setUserPets);
     }, []);
 
     useEffect(() => {
         if (userPets !== undefined) {
-            const getPetPicture = async (id) => {
-                const petID = { petID: id };
-                await API.post('/pet/getInfo', petID, {
-                    withCredentials: true,
-                }).then((res) => {
-                    console.log('>>> [ACCOUNT / GET PET PIC] ✅ SUCCESS');
-                    setPetPics((old) => [
-                        ...old,
-                        res.data.result.petProfilePicture,
-                    ]);
-                });
-            };
             for (let i = 0; i < userPets.length; i++) {
-                getPetPicture(userPets[i]['petID']);
+                getPetPicture(userPets[i]['petID'], setPetPics);
             }
         }
     }, [userPets]);
-    console.log(petPics);
 
     const handleUpdateInfo = (e) => {
         setUpdateInfo({ ...updateInfo, [e.target.name]: e.target.value });
@@ -84,7 +45,7 @@ const MyAccount = () => {
                     setUpdateEmail={setUpdateEmail}
                     handleUpdateInfo={handleUpdateInfo}
                 />
-                <PwBox />
+                <PwBox setShowsUpdatePw={setShowsUpdatePw} />
                 <DateBox info={updateInfo} />
             </div>
             <div className="second-row">
@@ -98,24 +59,7 @@ const MyAccount = () => {
                 />
             </div>
             <div className="third-row">
-                <div className="pet-box">
-                    {userPets.length === 0 ? (
-                        <p className="noPet-text">등록된 반려견이 없습니다.</p>
-                    ) : (
-                        userPets.map((item, idx) => (
-                            <div className="pet-item">
-                                <img
-                                    className="pet-pic"
-                                    src={petPics[idx]}
-                                    alt="반려견 사진"
-                                    width={90}
-                                    height={90}
-                                />
-                                {item.petName}
-                            </div>
-                        ))
-                    )}
-                </div>
+                <PetBox userPets={userPets} petPics={petPics} IMAGE={IMAGE} />
                 <div className="community-box">
                     <Icon
                         className="icon no"
@@ -124,6 +68,9 @@ const MyAccount = () => {
                     커뮤니티에 가입하지 않았습니다.
                 </div>
             </div>
+            {showsUpdatePw && (
+                <UpdatePwModal setShowsUpdatePw={setShowsUpdatePw} />
+            )}
         </Component>
     );
 };
@@ -137,154 +84,3 @@ const Component = styled.div`
     justify-content: space-between;
     align-items: center;
 `;
-
-function EmailBox({ info, updateEmail, setUpdateEmail, handleUpdateInfo }) {
-    return (
-        <div className="email-box">
-            {updateEmail ? (
-                <Icon
-                    className="auth-icon loading"
-                    icon="dashicons:email-alt2"
-                />
-            ) : (
-                <Icon
-                    className="auth-icon success"
-                    icon="ic:baseline-mark-email-read"
-                />
-            )}
-            <div className="user-email">
-                <input
-                    className={
-                        updateEmail ? 'email-input update' : 'email-input'
-                    }
-                    name="email"
-                    value={info.email || ''}
-                    onChange={handleUpdateInfo}
-                    disabled={updateEmail ? false : true}
-                />
-                {updateEmail ? (
-                    <button
-                        className="update-btn auth"
-                        onClick={() => setUpdateEmail(false)}
-                    >
-                        인증
-                    </button>
-                ) : (
-                    <button
-                        className="update-btn"
-                        onClick={() => setUpdateEmail(true)}
-                    >
-                        변경
-                    </button>
-                )}
-            </div>
-            {updateEmail ? (
-                <div className="authcode-check">
-                    <p className="auth-text update">
-                        이메일로 발송된 인증번호 13자리를 입력해주세요.
-                    </p>
-                    <input className="authcode-input" placeholder="인증번호" />
-                    <button className="update-btn authcode">확인</button>
-                </div>
-            ) : (
-                <p className="auth-text success">이메일 인증 완료</p>
-            )}
-        </div>
-    );
-}
-
-function PwBox({}) {
-    return (
-        <div className="pw-box">
-            <Icon className="icon" icon="teenyicons:password-solid" />
-            <p>비밀번호 변경을 원하시나요?</p>
-            <div className="btn-box">
-                <button className="update-btn update">
-                    네, 변경하고 싶습니다.
-                </button>
-            </div>
-        </div>
-    );
-}
-
-function ProfileBox({
-    info,
-    profilePic,
-    setProfilePic,
-    updateProfile,
-    setUpdateProfile,
-    handleUpdateInfo,
-}) {
-    var inputRef;
-    return (
-        <div className="profile-box">
-            <div className="pic-box">
-                <img
-                    className={updateProfile ? 'user-pic update' : 'user-pic'}
-                    src={profilePic === '' ? logo : profilePic}
-                    alt="유저 프로필"
-                />
-                {updateProfile && (
-                    <div className="btn-container">
-                        <button
-                            className="btn delete"
-                            onClick={(e) => removePicture(e, setProfilePic)}
-                        >
-                            삭제
-                        </button>
-                        <button
-                            className="btn reselect"
-                            onClick={() => inputRef.click()}
-                        >
-                            재선택
-                        </button>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            name="profile_img"
-                            onChange={(e) => uploadPicture(e, setProfilePic)}
-                            ref={(refParam) => (inputRef = refParam)}
-                            hidden={true}
-                        />
-                    </div>
-                )}
-            </div>
-            <div className="name-box">
-                <input
-                    className={
-                        updateProfile ? 'name-input update' : 'name-input'
-                    }
-                    name="nickName"
-                    value={info.nickName || ''}
-                    onChange={handleUpdateInfo}
-                    disabled={updateProfile ? false : true}
-                    placeholder="닉네임"
-                />
-            </div>
-            {updateProfile ? (
-                <button
-                    onClick={() => setUpdateProfile(false)}
-                    className="update-btn"
-                >
-                    수정 완료
-                </button>
-            ) : (
-                <button
-                    onClick={() => setUpdateProfile(true)}
-                    className="update-btn"
-                >
-                    정보 수정
-                </button>
-            )}
-        </div>
-    );
-}
-
-function DateBox({ info }) {
-    return (
-        <div className="date-box">
-            가입날짜
-            <p>{info.joinDate}</p>
-        </div>
-    );
-}
