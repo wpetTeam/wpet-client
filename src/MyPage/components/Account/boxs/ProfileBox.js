@@ -4,6 +4,8 @@ import { API } from 'utils';
 
 export const ProfileBox = ({
     info,
+    originName,
+    originPic,
     profilePic,
     setProfilePic,
     updateProfile,
@@ -14,21 +16,41 @@ export const ProfileBox = ({
         if (info.nickName === '') {
             return;
         }
-        const updateUser = {
-            nickName: info.nickName,
-            profilePicture: profilePic,
-        };
-
-        await API.patch('/user/update', updateUser, {
-            withCredentials: true,
-        })
-            .then((res) => {
-                console.log('>>> [USER PROFILE UPDATE] ✅ SUCCESS');
-                setUpdateProfile(false);
-            })
-            .catch((err) =>
-                console.log('>>> [USER PROFILE UPDATE] ❌ ERROR', err),
-            );
+        if (originName !== info.nickName) {
+            console.log('name changed');
+            await API.patch(
+                '/user/update',
+                { nickName: info.nickName },
+                {
+                    withCredentials: true,
+                },
+            )
+                .then((res) => {
+                    console.log('>>> [USER NICKNAME UPDATE] ✅ SUCCESS');
+                    setUpdateProfile(false);
+                    window.location.reload(false);
+                })
+                .catch((err) =>
+                    console.log('>>> [USER NICKNAME UPDATE] ❌ ERROR', err),
+                );
+        }
+        if (originPic !== profilePic) {
+            await API.patch(
+                '/user/update',
+                { profilePicture: profilePic },
+                {
+                    withCredentials: true,
+                },
+            )
+                .then((res) => {
+                    console.log('>>> [USER PROFILE UPDATE] ✅ SUCCESS');
+                    setUpdateProfile(false);
+                    window.location.reload(false);
+                })
+                .catch((err) =>
+                    console.log('>>> [USER PROFILE UPDATE] ❌ ERROR', err),
+                );
+        }
     };
 
     var inputRef;

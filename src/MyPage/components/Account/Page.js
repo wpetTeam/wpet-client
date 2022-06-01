@@ -51,6 +51,8 @@ const MyAccount = () => {
             <div className="second-row">
                 <ProfileBox
                     info={updateInfo}
+                    originName={user.nickName}
+                    originPic={user.profilePicture}
                     profilePic={profilePic}
                     setProfilePic={setProfilePic}
                     updateProfile={updateProfile}
