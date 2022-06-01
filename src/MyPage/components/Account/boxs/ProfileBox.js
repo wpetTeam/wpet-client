@@ -1,6 +1,7 @@
 import IMAGE from 'assets/images/Logo/common-character.png';
 import { removePicture, uploadPicture } from 'utils';
-import { API } from 'utils';
+import { handleUpdateName, handleUpdateProfile } from '../apis';
+import { Box } from '../styles/style';
 
 export const ProfileBox = ({
     info,
@@ -17,61 +18,31 @@ export const ProfileBox = ({
             return;
         }
         if (originName !== info.nickName) {
-            console.log('name changed');
-            await API.patch(
-                '/user/update',
-                { nickName: info.nickName },
-                {
-                    withCredentials: true,
-                },
-            )
-                .then((res) => {
-                    console.log('>>> [USER NICKNAME UPDATE] ✅ SUCCESS');
-                    setUpdateProfile(false);
-                    window.location.reload(false);
-                })
-                .catch((err) =>
-                    console.log('>>> [USER NICKNAME UPDATE] ❌ ERROR', err),
-                );
+            handleUpdateName(info, setUpdateProfile);
         }
         if (originPic !== profilePic) {
-            await API.patch(
-                '/user/update',
-                { profilePicture: profilePic },
-                {
-                    withCredentials: true,
-                },
-            )
-                .then((res) => {
-                    console.log('>>> [USER PROFILE UPDATE] ✅ SUCCESS');
-                    setUpdateProfile(false);
-                    window.location.reload(false);
-                })
-                .catch((err) =>
-                    console.log('>>> [USER PROFILE UPDATE] ❌ ERROR', err),
-                );
+            handleUpdateProfile(profilePic, setUpdateProfile);
         }
     };
-
     var inputRef;
     return (
-        <div className="profile-box">
-            <div className="pic-box">
+        <Box className="profile-box row">
+            <div className="row-1 picture">
                 <img
-                    className={updateProfile ? 'user-pic update' : 'user-pic'}
+                    className={updateProfile ? 'pic update' : 'pic'}
                     src={profilePic === '' ? IMAGE : profilePic}
                     alt="유저 프로필"
                 />
                 {updateProfile && (
-                    <div className="btn-container">
+                    <div className="btn update">
                         <button
-                            className="btn delete"
+                            className="delete"
                             onClick={(e) => removePicture(e, setProfilePic)}
                         >
                             삭제
                         </button>
                         <button
-                            className="btn reselect"
+                            className="reselect"
                             onClick={() => inputRef.click()}
                         >
                             재선택
@@ -87,11 +58,9 @@ export const ProfileBox = ({
                     </div>
                 )}
             </div>
-            <div className="name-box">
+            <div className="row-2 name">
                 <input
-                    className={
-                        updateProfile ? 'name-input update' : 'name-input'
-                    }
+                    className={updateProfile ? 'input update' : 'input'}
                     name="nickName"
                     value={info.nickName || ''}
                     onChange={handleUpdateInfo}
@@ -99,18 +68,15 @@ export const ProfileBox = ({
                     placeholder="닉네임"
                 />
             </div>
-            {updateProfile ? (
-                <button onClick={completeProfile} className="update-btn">
-                    수정 완료
-                </button>
-            ) : (
-                <button
-                    onClick={() => setUpdateProfile(true)}
-                    className="update-btn"
-                >
-                    정보 수정
-                </button>
-            )}
-        </div>
+            <div className="row-3 btn">
+                {updateProfile ? (
+                    <button onClick={completeProfile}>수정 완료</button>
+                ) : (
+                    <button onClick={() => setUpdateProfile(true)}>
+                        정보 수정
+                    </button>
+                )}
+            </div>
+        </Box>
     );
 };

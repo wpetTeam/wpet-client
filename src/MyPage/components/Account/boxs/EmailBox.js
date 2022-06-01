@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import { sendAuthCode, handleUpdateEmail } from '../apis';
+import { Box } from '../styles/style';
 
 export const EmailBox = ({
     info,
@@ -12,24 +13,23 @@ export const EmailBox = ({
     const [authCode, setAuthCode] = useState('');
 
     return (
-        <div className="email-box">
-            {updateEmail ? (
-                <Icon
-                    className="auth-icon loading"
-                    icon="dashicons:email-alt2"
-                />
-            ) : (
-                <Icon
-                    className="auth-icon success"
-                    icon="ic:baseline-mark-email-read"
-                />
-            )}
-            <div className="user-email">
-                <div className="email-input-container">
+        <Box className="email-box row" isUpdate={updateEmail ? 'blue' : false}>
+            <div className="row-1">
+                {updateEmail ? (
+                    <Icon className="update" icon="dashicons:email-alt2" />
+                ) : (
+                    <Icon
+                        className="success"
+                        icon="ic:baseline-mark-email-read"
+                    />
+                )}
+            </div>
+            <div className="row-2 col">
+                <div className="col-1 input">
                     {updateEmail && <label>새로운 이메일</label>}
                     <input
                         className={
-                            updateEmail ? 'email-input update' : 'email-input'
+                            updateEmail ? 'input email update' : 'input email'
                         }
                         name="email"
                         value={info.email || ''}
@@ -39,7 +39,7 @@ export const EmailBox = ({
                 </div>
                 {updateEmail ? (
                     <button
-                        className="update-btn auth"
+                        className="col-2 btn"
                         style={{ marginTop: '4%' }}
                         onClick={() => sendAuthCode(info.email, setIsSend)}
                     >
@@ -47,7 +47,7 @@ export const EmailBox = ({
                     </button>
                 ) : (
                     <button
-                        className="update-btn"
+                        className="col-2 btn"
                         onClick={() => setUpdateEmail(true)}
                     >
                         변경
@@ -56,18 +56,18 @@ export const EmailBox = ({
             </div>
             {updateEmail ? (
                 isSend && (
-                    <div className="authcode-check">
-                        <p className="auth-text update">
+                    <div className="row-3 auth-check">
+                        <p className="text">
                             이메일로 발송된 인증번호 13자리를 입력해주세요.
                         </p>
                         <input
-                            className="authcode-input"
+                            className="input auth-code"
                             value={authCode}
                             onChange={(e) => setAuthCode(e.target.value)}
                             placeholder="인증번호"
                         />
                         <button
-                            className="update-btn authcode"
+                            className="btn auth-compare"
                             onClick={() =>
                                 handleUpdateEmail(
                                     info.email,
@@ -81,8 +81,8 @@ export const EmailBox = ({
                     </div>
                 )
             ) : (
-                <p className="auth-text success">이메일 인증 완료</p>
+                <p className="row-3 auth-success">이메일 인증 완료</p>
             )}
-        </div>
+        </Box>
     );
 };

@@ -1,13 +1,14 @@
 import { Icon } from '@iconify/react';
+import { Box } from '../styles/style';
 
 export const DateBox = ({ info }) => {
     return (
-        <div className="date-box">
-            <Icon icon="uil:calender" className="icon" />
+        <Box className="date-box">
+            <Icon icon="uil:calender" />
             <p className="text">
                 {info.joinDate} 부터 wpet과 함께하고 있습니다.
             </p>
             <p className="text delete"> 탈퇴하고 싶어요</p>
-        </div>
+        </Box>
     );
 };

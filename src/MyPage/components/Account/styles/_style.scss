@@ -1,58 +1,68 @@
 @use 'assets/styles/_theme.scss' as theme;
 @use 'assets/styles/common/_common.scss' as common;
 
+@mixin box-shape {
+    @include common.shape(
+        transparentize(theme.$gray-color, 0.9),
+        transparent,
+        5px
+    );
+    padding: 5%;
+}
+@mixin update-btn {
+    @include common.shape(theme.$gray-color, transparent, 4px);
+    padding: 2px;
+    &:hover {
+        @include common.hover-event();
+        background: rgba(128, 128, 128, 0.574);
+        font-weight: 600;
+    }
+}
+
 .myaccount-component {
     font-family: theme.$description-font;
-    .first-row {
+    .col-start {
         @include common.size(33%, 100%);
         @include common.flex-column(space-around, flex-start);
-        .update-btn {
-            @include common.size(35px, 33px);
-            @include common.shape(theme.$gray-color, transparent, 4px);
-            padding: 2px;
-            &:hover {
-                @include common.hover-event();
-                background: rgba(128, 128, 128, 0.574);
-                font-weight: 600;
-            }
-        }
         .email-box {
+            @include box-shape();
             @include common.size(90%, fit-content);
             @include common.flex-column(space-between, flex-start);
-            background: transparentize(theme.$gray-color, 0.9);
-            border-radius: 5px;
-            padding: 5%;
-            .auth-icon {
-                @include common.size(8%, fit-content);
-                padding: 8px;
-                border-radius: 50%;
-                margin-bottom: 6%;
-                color: white;
+
+            .row-1 {
+                @include common.size(100%, 15%);
+                svg {
+                    @include common.size(8%, fit-content);
+                    padding: 8px;
+                    margin-bottom: 6%;
+                    border-radius: 50%;
+                    color: white;
+                }
+                .success {
+                    background: green;
+                }
+                .update {
+                    background: theme.$gray-color;
+                }
             }
-            .auth-icon.success {
-                background: green;
-            }
-            .auth-icon.loading {
-                background: theme.$gray-color;
-            }
-            .user-email {
+            .row-2 {
                 @include common.size(100%, 60px);
                 @include common.flex-row(space-between, center);
-                .email-input-container {
+                .col-1 {
                     @include common.size(100%, fit-content);
                     @include common.flex-column(center, flex-start);
                     label {
-                        font-size: 0.8em;
+                        font-size: 0.7em;
+                        margin-bottom: 3px;
                     }
-                    .email-input {
+                    .input {
                         @include common.size(90%, 33px);
                         @include common.shape(transparent, transparent, 0);
-                        //text-align: center;
                         font-size: 1.5em;
                         letter-spacing: 0.02em;
                         color: black;
                     }
-                    .email-input.update {
+                    .input.email.update {
                         @include common.shape(
                             transparent,
                             0.8px solid gray,
@@ -66,17 +76,18 @@
                         }
                     }
                 }
+                .col-2 {
+                    @include update-btn();
+                    @include common.size(35px, 33px);
+                }
             }
-            .auth-text {
-                margin-top: 1.5%;
-                font-size: 0.8em;
-            }
-            .authcode-check {
-                margin-top: 4%;
-                .auth-text.update {
+            .row-3.auth-check {
+                .text {
+                    margin-top: -3%;
+                    font-size: 0.8em;
                     color: gray;
                 }
-                .authcode-input {
+                .input.auth-code {
                     @include common.size(140px, 33px);
                     @include common.shape(transparent, 0.3px dotted gray, 4px);
                     padding-left: 3%;
@@ -84,58 +95,46 @@
                         outline: none;
                     }
                 }
-                .update-btn.authcode {
-                    margin-left: 4%;
+                .btn.auth-compare {
+                    @include update-btn();
+                    @include common.size(35px, 33px);
                 }
             }
-            .auth-text.success {
-                color: green;
-                font-weight: 600;
-            }
-            // focus 도 함께 처리
-            &:hover {
-                transform: scale(1.02);
-                transition: 0.4s ease-in-out;
-                background: transparentize(theme.$gray-color, 0.5);
+            .row-3.auth-success {
+                @include common.font(
+                    green,
+                    theme.$description-font,
+                    0.8em,
+                    600
+                );
+                margin-top: -9%;
             }
         }
         .pw-box {
             @include common.size(90%, fit-content);
             @include common.flex-column(center, flex-end);
-            background: transparentize(theme.$gray-color, 0.9);
-            border-radius: 4px;
+            @include box-shape();
             font-size: 1.1em;
-            padding: 20px;
-
-            .icon {
+            .row-1 {
                 @include common.size(8%, fit-content);
+                @include common.shape(theme.$sub-color, transparent, 50%);
                 margin-bottom: -2%;
                 padding: 8px;
-                background: theme.$sub-color;
-                border-radius: 50%;
                 color: theme.$dashboard-color;
             }
-            .btn-box {
-                .update-btn.update {
-                    background: transparentize(theme.$sub-color, 0.4);
-                    @include common.size(150px, 35px);
+            .row-3 {
+                @include common.size(150px, 35px);
+                @include update-btn();
+                background: transparentize(theme.$sub-color, 0.4);
+                &:hover {
+                    background: theme.$sub-color;
                 }
-            }
-            &:hover {
-                transform: scale(1.01);
-                transition: 0.4s ease-in-out;
-                background: transparentize(theme.$gray-color, 0.5);
             }
         }
         .date-box {
             @include common.size(90%, fit-content);
             @include common.flex-column(center, flex-start);
-            @include common.shape(
-                transparentize(theme.$gray-color, 0.9),
-                transparent,
-                4px
-            );
-            padding: 20px;
+            @include box-shape();
             font-size: 1.2em;
             svg {
                 @include common.size(7%, fit-content);
@@ -157,59 +156,42 @@
                     color: rgb(33, 117, 150);
                 }
             }
-            &:hover {
-                transform: scale(1.02);
-                transition: 0.4s ease-in-out;
-                background: transparentize(theme.$gray-color, 0.5);
-            }
         }
     }
-    .second-row {
+    .col-center {
         @include common.size(33%, fit-content);
         @include common.flex-column(space-between, center);
         padding: 5%;
-
         .profile-box {
             @include common.flex-column(space-between, center);
-            padding: 20px 0;
-            background: transparentize(theme.$gray-color, 0.9);
-            border-radius: 4px;
+            @include box-shape();
 
-            .pic-box {
+            .row-1.picture {
                 @include common.flex-column();
-                .user-pic {
+                .pic {
                     @include common.size(80%, 80%);
                     @include common.shape(transparent, transparent, 50%);
                 }
-                .user-pic.update {
+                .pic.update {
                     transform: scale(0.85);
                     padding: 15px;
                     border: 8px double theme.$gray-color;
                 }
-                .btn-container {
+                .btn.update {
                     @include common.flex-row(center, center);
                     margin-top: -4%;
-                    .btn {
+                    button {
+                        @include update-btn();
                         @include common.size(50px, 33px);
-                        @include common.shape(
-                            transparentize(theme.$gray-color, 0.7),
-                            transparent,
-                            4px
-                        );
+                        background: transparentize(theme.$gray-color, 0.5);
                         margin-right: 2%;
-                        &:hover {
-                            @include common.hover-event();
-                            background: theme.$gray-color;
-                            font-weight: 600;
-                        }
                     }
                 }
             }
-            .name-box {
+            .row-2.name {
                 @include common.flex-column(center, flex-start);
                 margin-top: 4%;
-
-                .name-input {
+                .input {
                     @include common.size(240px, 40px);
                     @include common.shape(transparent, transparent, 0);
 
@@ -217,7 +199,7 @@
                     font-size: 1.3em;
                     color: black;
                 }
-                .name-input.update {
+                .input.update {
                     @include common.shape(transparent, 0.8px solid gray, 4px);
                     font-size: 1.1em;
                     &:focus {
@@ -225,76 +207,52 @@
                     }
                 }
             }
-            .update-btn {
-                @include common.shape(
-                    transparentize(theme.$gray-color, 0.6),
-                    transparent,
-                    4px
-                );
-                padding: 8px;
+            .row-3.btn {
                 margin-top: 4%;
-                &:hover {
-                    @include common.hover-event();
-                    background: theme.$gray-color;
-                    font-weight: 600;
+                button {
+                    @include update-btn();
+                    background: transparentize(theme.$gray-color, 0.5);
+                    padding: 8px;
                 }
-            }
-            &:hover {
-                transform: scale(1.02);
-                transition: 0.4s ease-in-out;
-                background: transparentize(theme.$gray-color, 0.5);
             }
         }
     }
-    .third-row {
+    .col-end {
         @include common.size(33%, 100%);
         @include common.flex-column(space-around, flex-start);
         .pet-box {
             @include common.size(90%, fit-content);
             @include common.flex-column(flex-start, flex-end);
-            @include common.shape(
-                transparentize(theme.$gray-color, 0.9),
-                transparent,
-                4px
-            );
-            padding: 20px;
+            @include box-shape();
             svg {
                 @include common.size(8%, fit-content);
                 @include common.shape(orange, transparent, 50%);
-                color: white;
                 padding: 8px;
                 margin-bottom: 5%;
+                color: white;
             }
             .noPet-text {
                 color: theme.$dark-gray-color;
             }
-            .pet-item-container {
+            .container {
                 @include common.size(100%, 60%);
                 @include common.flex-row(space-around, center);
                 flex-wrap: wrap;
                 margin-bottom: 4%;
-                .pet-item {
+                .item.pet {
                     @include common.size(50%, fit-content);
                     @include common.flex-column();
-                    .pet-pic {
+                    .picture {
                         margin-bottom: 5%;
                         border-radius: 50%;
                     }
                 }
             }
-
-            &:hover {
-                transform: scale(1.02);
-                transition: 0.4s ease-in-out;
-                background: transparentize(theme.$gray-color, 0.5);
-            }
         }
         .community-box {
             @include common.size(90%, fit-content);
             @include common.flex-column(center, flex-start);
-            padding: 20px;
-            background: transparentize(theme.$gray-color, 0.9);
-            border-radius: 4px;
+            @include box-shape();
             .icon {
                 @include common.size(8%, fit-content);
                 margin-bottom: 5%;

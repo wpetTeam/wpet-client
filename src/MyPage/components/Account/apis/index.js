@@ -80,3 +80,38 @@ export const handleUpdateEmail = async (email, authCode, setIsSend) => {
         })
         .catch((err) => console.log('>>> [UPDATE EMAIL ] ❌ ERRPR'));
 };
+
+// ProfileBox 사용자 닉네임 변경
+export const handleUpdateName = async (info, setUpdateProfile) => {
+    await API.patch(
+        '/user/update',
+        { nickName: info.nickName },
+        {
+            withCredentials: true,
+        },
+    )
+        .then((res) => {
+            console.log('>>> [USER NICKNAME UPDATE] ✅ SUCCESS');
+            setUpdateProfile(false);
+            window.location.reload(false);
+        })
+        .catch((err) =>
+            console.log('>>> [USER NICKNAME UPDATE] ❌ ERROR', err),
+        );
+};
+// ProfileBox 사용자 사진 변경
+export const handleUpdateProfile = async (profilePic, setUpdateProfile) => {
+    await API.patch(
+        '/user/update',
+        { profilePicture: profilePic },
+        {
+            withCredentials: true,
+        },
+    )
+        .then((res) => {
+            console.log('>>> [USER PROFILE UPDATE] ✅ SUCCESS');
+            setUpdateProfile(false);
+            window.location.reload(false);
+        })
+        .catch((err) => console.log('>>> [USER PROFILE UPDATE] ❌ ERROR', err));
+};

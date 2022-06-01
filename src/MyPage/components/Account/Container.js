@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { Icon } from '@iconify/react';
 import { ProfileBox, PwBox, EmailBox, DateBox, PetBox } from './boxs';
 import { getAuth, getPets, getPetPicture } from './apis';
-import './styles/_style.scss';
 import { UpdatePwModal } from './UpdatePwModal';
+import './styles/_style.scss';
 
 const MyAccount = () => {
     const [user, setUser] = useState({});
@@ -37,8 +37,8 @@ const MyAccount = () => {
     };
 
     return (
-        <Component className="myaccount-component">
-            <div className="first-row">
+        <Component className="myaccount-component col">
+            <div className="col-start">
                 <EmailBox
                     info={updateInfo}
                     updateEmail={updateEmail}
@@ -48,7 +48,7 @@ const MyAccount = () => {
                 <PwBox setShowsUpdatePw={setShowsUpdatePw} />
                 <DateBox info={updateInfo} />
             </div>
-            <div className="second-row">
+            <div className="col-center">
                 <ProfileBox
                     info={updateInfo}
                     originName={user.nickName}
@@ -60,7 +60,7 @@ const MyAccount = () => {
                     handleUpdateInfo={handleUpdateInfo}
                 />
             </div>
-            <div className="third-row">
+            <div className="col-end">
                 <PetBox userPets={userPets} petPics={petPics} IMAGE={IMAGE} />
                 <div className="community-box">
                     <Icon
