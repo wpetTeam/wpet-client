@@ -11,10 +11,13 @@ const FindPassword = (props) => {
     const [email, setEmail] = useState('');
 
     const handleButton = async () => {
-        const userData = {
-            email: email,
-        };
-        await API.post('/user/findpw', userData)
+        await API.post(
+            '/user/find/pw',
+            { email: email },
+            {
+                withCredentials: true,
+            },
+        )
             .then((res) => {
                 console.log('>>> [SENDPW] ✅ SUCCESS');
                 props.setShowFindPw(false);
