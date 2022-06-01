@@ -36,23 +36,34 @@
                 background: theme.$gray-color;
             }
             .user-email {
-                @include common.size(100%, 33px);
+                @include common.size(100%, 60px);
                 @include common.flex-row(space-between, center);
-                .email-input {
-                    @include common.size(90%, 33px);
-                    @include common.shape(transparent, transparent, 0);
-                    //text-align: center;
-                    font-size: 1.5em;
-                    letter-spacing: 0.02em;
-                    color: black;
-                }
-                .email-input.update {
-                    @include common.shape(transparent, 0.8px solid gray, 4px);
-                    font-size: 1.05em;
-                    padding-left: 2%;
-                    margin-right: 2%;
-                    &:focus {
-                        outline: none;
+                .email-input-container {
+                    @include common.size(100%, fit-content);
+                    @include common.flex-column(center, flex-start);
+                    label {
+                        font-size: 0.8em;
+                    }
+                    .email-input {
+                        @include common.size(90%, 33px);
+                        @include common.shape(transparent, transparent, 0);
+                        //text-align: center;
+                        font-size: 1.5em;
+                        letter-spacing: 0.02em;
+                        color: black;
+                    }
+                    .email-input.update {
+                        @include common.shape(
+                            transparent,
+                            0.8px solid gray,
+                            4px
+                        );
+                        font-size: 1.05em;
+                        padding-left: 2%;
+                        margin-right: 2%;
+                        &:focus {
+                            outline: none;
+                        }
                     }
                 }
             }
@@ -238,35 +249,40 @@
     .third-row {
         @include common.size(33%, 100%);
         @include common.flex-column(space-around, flex-start);
-
         .pet-box {
             @include common.size(90%, fit-content);
-            @include common.flex-column(center, flex-start);
+            @include common.flex-column(flex-start, flex-end);
             @include common.shape(
                 transparentize(theme.$gray-color, 0.9),
                 transparent,
                 4px
             );
-            flex-wrap: wrap;
             padding: 20px;
             svg {
-                @include common.size(7%, fit-content);
+                @include common.size(8%, fit-content);
                 @include common.shape(orange, transparent, 50%);
                 color: white;
                 padding: 8px;
-                margin-bottom: 2%;
+                margin-bottom: 5%;
             }
             .noPet-text {
                 color: theme.$dark-gray-color;
             }
-            .pet-item {
-                @include common.size(50%, fit-content);
-                @include common.flex-column();
-                .pet-pic {
-                    margin-bottom: 5%;
-                    border-radius: 50%;
+            .pet-item-container {
+                @include common.size(100%, 60%);
+                @include common.flex-row(space-around, center);
+                flex-wrap: wrap;
+                margin-bottom: 4%;
+                .pet-item {
+                    @include common.size(50%, fit-content);
+                    @include common.flex-column();
+                    .pet-pic {
+                        margin-bottom: 5%;
+                        border-radius: 50%;
+                    }
                 }
             }
+
             &:hover {
                 transform: scale(1.02);
                 transition: 0.4s ease-in-out;

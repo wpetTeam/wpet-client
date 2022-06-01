@@ -25,18 +25,22 @@ export const EmailBox = ({
                 />
             )}
             <div className="user-email">
-                <input
-                    className={
-                        updateEmail ? 'email-input update' : 'email-input'
-                    }
-                    name="email"
-                    value={info.email || ''}
-                    onChange={handleUpdateInfo}
-                    disabled={updateEmail ? false : true}
-                />
+                <div className="email-input-container">
+                    {updateEmail && <label>새로운 이메일</label>}
+                    <input
+                        className={
+                            updateEmail ? 'email-input update' : 'email-input'
+                        }
+                        name="email"
+                        value={info.email || ''}
+                        onChange={handleUpdateInfo}
+                        disabled={updateEmail ? false : true}
+                    />
+                </div>
                 {updateEmail ? (
                     <button
                         className="update-btn auth"
+                        style={{ marginTop: '4%' }}
                         onClick={() => sendAuthCode(info.email, setIsSend)}
                     >
                         인증

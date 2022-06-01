@@ -11,22 +11,24 @@ export const ProfileBox = ({
     handleUpdateInfo,
 }) => {
     const completeProfile = async () => {
+        if (info.nickName === '') {
+            return;
+        }
         const updateUser = {
             nickName: info.nickName,
             profilePicture: profilePic,
         };
+
         await API.patch('/user/update', updateUser, {
             withCredentials: true,
         })
             .then((res) => {
                 console.log('>>> [USER PROFILE UPDATE] ✅ SUCCESS');
-                console.log(updateUser);
                 setUpdateProfile(false);
             })
             .catch((err) =>
                 console.log('>>> [USER PROFILE UPDATE] ❌ ERROR', err),
             );
-        setUpdateProfile(false);
     };
 
     var inputRef;

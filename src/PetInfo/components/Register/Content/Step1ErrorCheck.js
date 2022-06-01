@@ -1,4 +1,4 @@
-export function EmptyCheck(info, hasEmpty, setHasEmpty) {
+export function EmptyCheck(info, gender, month, date) {
     let isEmpty = false;
 
     if (info.petName === '') {
@@ -9,15 +9,15 @@ export function EmptyCheck(info, hasEmpty, setHasEmpty) {
         //console.log('year empty');
         isEmpty = true;
     }
-    if (info.month === '') {
+    if (month === '') {
         //console.log('month empty');
         isEmpty = true;
     }
-    if (info.date === '') {
+    if (date === '') {
         //console.log('date empty');
         isEmpty = true;
     }
-    if (info.gender === '') {
+    if (gender === '') {
         //console.log('gender empty');
         isEmpty = true;
     }

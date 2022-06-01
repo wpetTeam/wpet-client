@@ -16,13 +16,6 @@ const Step1 = (props) => {
     const [month, setMonth] = useState('');
     const [date, setDate] = useState('');
     const [gender, setGender] = useState('');
-    const [hasEmpty, setHasEmpty] = useState({
-        name: false,
-        year: false,
-        month: false,
-        date: false,
-        gender: false,
-    });
     function handleChange(e) {
         props.setPetInfo({
             ...props.petInfo,
@@ -30,7 +23,8 @@ const Step1 = (props) => {
         });
     }
     const HandleButton = () => {
-        if (EmptyCheck(props.petInfo, hasEmpty, setHasEmpty) === true) {
+        if (EmptyCheck(props.petInfo, gender, month, date) === true) {
+            console.log(gender, month, date);
             alert('필수 항목 입력 다 안함');
         } else {
             props.setPetInfo({
@@ -58,7 +52,6 @@ const Step1 = (props) => {
                     <PetName
                         petInfo={props.petInfo}
                         handleChange={handleChange}
-                        hasEmpty={hasEmpty}
                     />
                     <PetBirth
                         petInfo={props.petInfo}
@@ -166,7 +159,7 @@ function PetGender({ gender, setGender }) {
     );
 }
 
-function PetName({ petInfo, handleChange, hasEmpty }) {
+function PetName({ petInfo, handleChange }) {
     return (
         <>
             <Label>반려견 이름(*)</Label>
@@ -175,7 +168,6 @@ function PetName({ petInfo, handleChange, hasEmpty }) {
                 value={petInfo.petName}
                 onChange={handleChange}
                 width="230px"
-                empty={hasEmpty.name}
             />
         </>
     );
